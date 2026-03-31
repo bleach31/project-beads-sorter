@@ -13,7 +13,6 @@ Beads Sorter ドキュメント
    requirements/index
    design/index
    cad/index
-   api/index
 
 Indices and tables
 ==================

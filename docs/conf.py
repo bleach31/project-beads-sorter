@@ -25,7 +25,7 @@ extensions = [
     "sphinx_needs",
 ]
 
-templates_path = ["_templates"]
+templates_path = []
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # 日本語対応
@@ -33,7 +33,7 @@ language = "ja"
 
 # -- Options for HTML output -------------------------------------------------
 html_theme = "alabaster"
-html_static_path = ["_static"]
+html_static_path = []
 
 # -- Options for todo extension ----------------------------------------------
 todo_include_todos = True
