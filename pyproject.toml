@@ -28,7 +28,7 @@ ci = [
 docs = [
     "sphinx>=7.0",
     "sphinx-needs",
-    "sphinx-theme-shibuya",
+    "shibuya",
 ]
 
 [tool.setuptools.packages.find]
