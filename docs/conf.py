@@ -32,7 +32,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 language = "ja"
 
 # -- Options for HTML output -------------------------------------------------
-html_theme = "alabaster"
+html_theme = "shibuya"
 html_static_path = []
 
 # -- Options for todo extension ----------------------------------------------

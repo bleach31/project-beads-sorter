@@ -1,5 +1,8 @@
 # Project Beads Sorter
 
+[![CI](https://github.com/bleach31/project-beads-sorter/actions/workflows/ci.yml/badge.svg)](https://github.com/bleach31/project-beads-sorter/actions/workflows/ci.yml)
+📖 [ドキュメント](https://bleach31.github.io/project-beads-sorter/)
+
 ビーズを自動仕分けするシステムのプロジェクトです。  
 ソフトウェア（画像認識・制御）と3Dプリント用CADデータを含みます。
 
