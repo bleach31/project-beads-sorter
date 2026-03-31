@@ -21,6 +21,10 @@ dev = [
     "ruff",
     "mypy",
 ]
+ci = [
+    "dagger-io",
+    "anyio",
+]
 docs = [
     "sphinx>=7.0",
     "sphinx-needs",
