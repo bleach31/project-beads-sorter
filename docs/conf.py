@@ -7,7 +7,7 @@ import os
 import sys
 
 # ソースコードのパスを追加
-sys.path.insert(0, os.path.abspath("../src"))
+sys.path.insert(0, os.path.abspath("../impl/src"))
 
 # -- Project information -----------------------------------------------------
 project = "Beads Sorter"

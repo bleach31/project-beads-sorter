@@ -7,16 +7,18 @@
 
 ```
 project-beads-sorter/
-├── src/                  # プロジェクト成果物
-│   ├── beads_sorter/     # メインPythonパッケージ
-│   ├── firmware/         # ファームウェア（組み込み用）
-│   ├── cad/              # 3Dプリント用CADデータ
-│   │   ├── parts/        # 個別パーツ
-│   │   ├── assembly/     # アセンブリデータ
-│   │   └── exports/      # エクスポート済み STL/STEP
-│   └── hardware/         # 回路図・配線図
-├── tests/                # テストコード
-└── docs/                 # ドキュメント（Sphinx + sphinx-needs）
+├── impl/                     # 実装成果物
+│   ├── src/                  # ソースコード
+│   │   └── beads_sorter/     # Pythonパッケージ（Raspberry Pi上で動作）
+│   │       ├── vision/       # ビーズ色認識
+│   │       └── ejector/      # 仕分け（排出）機構制御
+│   ├── cad/                  # 3Dプリント用CADデータ
+│   │   ├── parts/            # 個別パーツ
+│   │   ├── assembly/         # アセンブリデータ
+│   │   └── exports/          # エクスポート済み STL/STEP
+│   └── hardware/             # 回路図・配線図
+├── tests/                    # テストコード
+└── docs/                     # ドキュメント（Sphinx + sphinx-needs）
 ```
 
 ## セットアップ
