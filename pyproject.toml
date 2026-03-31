@@ -1,0 +1,47 @@
+[project]
+name = "beads-sorter"
+version = "0.1.0"
+description = "ビーズ自動仕分けシステム"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "TBD"}
+authors = [
+    {name = "Beads Sorter Team"},
+]
+
+dependencies = []
+
+[project.scripts]
+beads-sorter = "beads_sorter.main:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov",
+    "ruff",
+    "mypy",
+]
+docs = [
+    "sphinx>=7.0",
+    "sphinx-needs",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+
+[build-system]
+requires = ["setuptools>=68.0", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
