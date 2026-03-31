@@ -29,6 +29,7 @@ docs = [
     "sphinx>=7.0",
     "sphinx-needs",
     "shibuya",
+    "myst-parser",
 ]
 
 [tool.setuptools.packages.find]

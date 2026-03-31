@@ -13,6 +13,7 @@ Beads Sorter ドキュメント
    requirements/index
    design/index
    cad/index
+   wbs_v1
 
 Indices and tables
 ==================

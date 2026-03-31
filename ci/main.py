@@ -24,7 +24,7 @@ async def build_docs(client: dagger.Client) -> str:
         .from_("python:3.12-slim")
         .with_directory("/work", src)
         .with_workdir("/work")
-        .with_exec(["pip", "install", "sphinx", "sphinx-needs", "shibuya"])
+        .with_exec(["pip", "install", "sphinx", "sphinx-needs", "shibuya", "myst-parser"])
         .with_exec(
             ["sphinx-build", "-b", "html", "docs", "docs/_build/html"]
         )
