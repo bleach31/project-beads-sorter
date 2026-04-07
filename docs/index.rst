@@ -10,9 +10,9 @@ Beads Sorter ドキュメント
    :maxdepth: 2
    :caption: 目次:
 
-   requirements/index
+   requirements/system_requirements
    design/index
-   cad/index
+   shopping_list
    wbs_v1
 
 Indices and tables
