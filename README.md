@@ -48,3 +48,24 @@ uv run sphinx-build docs docs/_build/html
 ## ライセンス
 
 TBD
+
+
+## Test
+
+camera test
+
+```bash
+sudo apt update
+sudo apt install -y python3-picamera2
+
+rm -rf .venv
+uv venv --system-site-packages
+uv sync
+
+uv run uvicorn stream:app --host 0.0.0.0 --port 8000
+```
+
+pusher(sg90) test
+```bash
+sudo python3 pusher.py
+```
