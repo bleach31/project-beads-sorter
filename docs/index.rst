@@ -12,6 +12,7 @@ Beads Sorter ドキュメント
 
    requirements/system_requirements
    design/index
+   servo_pwm
    shopping_list
    wbs_v1
 
