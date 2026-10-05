@@ -1,34 +1,26 @@
-"""Tests for camera ROI sampling."""
+"""Tests for camera bead-area measurement."""
 
+import cv2
 import numpy as np
 
-from beads_sorter.vision.camera import sample_roi_rgb
+from beads_sorter.vision.camera import measure_bead_rgb
 
 
-def test_roi_sampling_uses_multiple_points_and_rejects_one_outlier() -> None:
-    target_bgr = (35, 45, 210)
-    frame = np.full((60, 60, 3), target_bgr, dtype=np.uint8)
+def test_measurement_averages_the_whole_bead_without_background() -> None:
+    frame = np.full((100, 120, 3), (170, 165, 160), dtype=np.uint8)
+    cv2.ellipse(frame, (70, 50), (35, 40), 0, 0, 360, (35, 55, 210), -1)
+    cv2.rectangle(frame, (36, 35), (104, 65), (45, 65, 200), -1)
+    cv2.circle(frame, (82, 34), 5, (245, 245, 245), -1)
 
-    rgb, points = sample_roi_rgb(
+    rgb, bead_mask = measure_bead_rgb(
         frame,
-        center=(30, 30),
-        roi_size=40,
+        region=(25, 5, 110, 95),
+        seed=(60, 50),
+        color_tolerance=55,
     )
 
-    assert rgb == (210, 45, 35)
-    assert len(points) == 9
-
-    outlier_x, outlier_y = points[0]
-    frame[outlier_y - 2 : outlier_y + 3, outlier_x - 2 : outlier_x + 3] = (
-        255,
-        255,
-        255,
-    )
-
-    robust_rgb, _ = sample_roi_rgb(
-        frame,
-        center=(30, 30),
-        roi_size=40,
-    )
-
-    assert robust_rgb == (210, 45, 35)
+    assert 195 <= rgb[0] <= 215
+    assert 50 <= rgb[1] <= 70
+    assert 35 <= rgb[2] <= 50
+    assert cv2.countNonZero(bead_mask) > 3_500
+    assert bead_mask[0, 0] == 0

@@ -20,56 +20,97 @@ class CameraReading:
     rgb: RGB
     jpeg: bytes
     sequence: int
-    sample_count: int = 9
+    sample_count: int = 0
 
 
-def sample_roi_rgb(
+def measure_bead_rgb(
     frame: np.ndarray,
     *,
-    center: tuple[int, int],
-    roi_size: int,
-    grid_size: int = 3,
-    patch_radius: int = 2,
-) -> tuple[RGB, tuple[tuple[int, int], ...]]:
-    """Sample a grid of small patches and return their median RGB color."""
-    if grid_size < 2 or roi_size <= 0 or patch_radius < 0:
-        raise ValueError("Invalid ROI sampling configuration")
+    region: tuple[int, int, int, int],
+    seed: tuple[int, int],
+    color_tolerance: float = 55.0,
+    minimum_pixels: int = 200,
+) -> tuple[RGB, np.ndarray]:
+    """Segment the bead around a seed point and average its visible surface."""
+    if color_tolerance <= 0 or minimum_pixels <= 0:
+        raise ValueError("Invalid bead measurement configuration")
 
     height, width = frame.shape[:2]
-    center_x, center_y = center
-    half = roi_size // 2
-    x1, x2 = max(0, center_x - half), min(width, center_x + half)
-    y1, y2 = max(0, center_y - half), min(height, center_y + half)
-    if x2 - x1 < grid_size or y2 - y1 < grid_size:
-        raise ValueError("ROI is too small for the sampling grid")
+    x1, y1, x2, y2 = region
+    seed_x, seed_y = seed
+    if not (0 <= x1 < x2 <= width and 0 <= y1 < y2 <= height):
+        raise ValueError("Measurement region is outside the frame")
+    if not (x1 <= seed_x < x2 and y1 <= seed_y < y2):
+        raise ValueError("Seed point must be inside the measurement region")
 
-    x_margin = max(patch_radius, (x2 - x1) // (grid_size + 1))
-    y_margin = max(patch_radius, (y2 - y1) // (grid_size + 1))
-    xs = np.linspace(x1 + x_margin, x2 - x_margin - 1, grid_size).astype(int)
-    ys = np.linspace(y1 + y_margin, y2 - y_margin - 1, grid_size).astype(int)
+    roi = frame[y1:y2, x1:x2]
+    local_seed_x = seed_x - x1
+    local_seed_y = seed_y - y1
+    seed_radius = max(2, min(roi.shape[:2]) // 50)
+    seed_patch = roi[
+        max(0, local_seed_y - seed_radius) : local_seed_y + seed_radius + 1,
+        max(0, local_seed_x - seed_radius) : local_seed_x + seed_radius + 1,
+    ]
+    seed_bgr = np.median(seed_patch, axis=(0, 1)).astype(np.uint8)
 
-    points: list[tuple[int, int]] = []
-    samples: list[np.ndarray] = []
-    for sample_y in ys:
-        for sample_x in xs:
-            patch = frame[
-                max(0, sample_y - patch_radius) : min(
-                    height, sample_y + patch_radius + 1
-                ),
-                max(0, sample_x - patch_radius) : min(
-                    width, sample_x + patch_radius + 1
-                ),
-            ]
-            points.append((int(sample_x), int(sample_y)))
-            samples.append(np.median(patch, axis=(0, 1)))
-
-    median_bgr = np.median(np.stack(samples), axis=0).astype(int)
-    rgb: RGB = (
-        int(median_bgr[2]),
-        int(median_bgr[1]),
-        int(median_bgr[0]),
+    roi_lab = cv2.cvtColor(roi, cv2.COLOR_BGR2LAB).astype(np.float32)
+    seed_lab = cv2.cvtColor(seed_bgr.reshape(1, 1, 3), cv2.COLOR_BGR2LAB)[
+        0, 0
+    ].astype(np.float32)
+    distances = np.linalg.norm(roi_lab - seed_lab, axis=2)
+    candidate_mask = np.where(distances <= color_tolerance, 255, 0).astype(
+        np.uint8
     )
-    return rgb, tuple(points)
+    candidate_mask = cv2.morphologyEx(
+        candidate_mask,
+        cv2.MORPH_OPEN,
+        np.ones((3, 3), np.uint8),
+    )
+    candidate_mask = cv2.morphologyEx(
+        candidate_mask,
+        cv2.MORPH_CLOSE,
+        np.ones((11, 11), np.uint8),
+    )
+
+    component_count, labels, statistics, _centroids = cv2.connectedComponentsWithStats(
+        candidate_mask
+    )
+    seed_label = int(labels[local_seed_y, local_seed_x])
+    if seed_label == 0 and component_count > 1:
+        seed_label = 1 + int(np.argmax(statistics[1:, cv2.CC_STAT_AREA]))
+    if seed_label == 0:
+        raise CameraUnavailableError("No bead area found in the measurement region")
+
+    component_mask = np.where(labels == seed_label, 255, 0).astype(np.uint8)
+    contours, _hierarchy = cv2.findContours(
+        component_mask,
+        cv2.RETR_EXTERNAL,
+        cv2.CHAIN_APPROX_SIMPLE,
+    )
+    if not contours:
+        raise CameraUnavailableError("No bead contour found in the measurement region")
+
+    bead_mask = np.zeros(component_mask.shape, dtype=np.uint8)
+    cv2.drawContours(
+        bead_mask,
+        [max(contours, key=cv2.contourArea)],
+        -1,
+        255,
+        cv2.FILLED,
+    )
+    pixel_count = cv2.countNonZero(bead_mask)
+    if pixel_count < minimum_pixels:
+        raise CameraUnavailableError(
+            f"Detected bead area is too small ({pixel_count} pixels)"
+        )
+
+    average_bgr = np.mean(roi[bead_mask > 0], axis=0).astype(int)
+    rgb: RGB = (
+        int(average_bgr[2]),
+        int(average_bgr[1]),
+        int(average_bgr[0]),
+    )
+    return rgb, bead_mask
 
 
 class CameraService:
@@ -79,10 +120,19 @@ class CameraService:
         self,
         *,
         frame_size: tuple[int, int] = (640, 480),
-        roi_size: int = 40,
+        measurement_region: tuple[float, float, float, float] = (
+            0.36,
+            0.16,
+            0.92,
+            0.90,
+        ),
+        seed_position: tuple[float, float] = (0.50, 0.50),
+        color_tolerance: float = 55.0,
     ) -> None:
         self.frame_size = frame_size
-        self.roi_size = roi_size
+        self.measurement_region = measurement_region
+        self.seed_position = seed_position
+        self.color_tolerance = color_tolerance
         self._condition = Condition()
         self._stop_event = Event()
         self._thread: Thread | None = None
@@ -184,22 +234,38 @@ class CameraService:
                 frame = camera.capture_array()
                 frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
                 height, width = frame.shape[:2]
-                half = self.roi_size // 2
-                center_x, center_y = width // 2, height // 2
-                x1, x2 = center_x - half, center_x + half
-                y1, y2 = center_y - half, center_y + half
-                rgb, sample_points = sample_roi_rgb(
+                x1 = round(width * self.measurement_region[0])
+                y1 = round(height * self.measurement_region[1])
+                x2 = round(width * self.measurement_region[2])
+                y2 = round(height * self.measurement_region[3])
+                seed_x = round(width * self.seed_position[0])
+                seed_y = round(height * self.seed_position[1])
+                rgb, bead_mask = measure_bead_rgb(
                     frame,
-                    center=(center_x, center_y),
-                    roi_size=self.roi_size,
+                    region=(x1, y1, x2, y2),
+                    seed=(seed_x, seed_y),
+                    color_tolerance=self.color_tolerance,
                 )
 
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (44, 220, 166), 2)
-                for sample_point in sample_points:
-                    cv2.circle(frame, sample_point, 2, (44, 220, 166), -1)
+                contours, _hierarchy = cv2.findContours(
+                    bead_mask,
+                    cv2.RETR_EXTERNAL,
+                    cv2.CHAIN_APPROX_SIMPLE,
+                )
+                offset = np.array([[[x1, y1]]], dtype=np.int32)
+                cv2.drawContours(
+                    frame,
+                    [contour + offset for contour in contours],
+                    -1,
+                    (0, 220, 255),
+                    2,
+                )
+                cv2.circle(frame, (seed_x, seed_y), 4, (44, 220, 166), -1)
+                pixel_count = cv2.countNonZero(bead_mask)
                 cv2.putText(
                     frame,
-                    f"R:{rgb[0]} G:{rgb[1]} B:{rgb[2]} / {len(sample_points)} points",
+                    f"R:{rgb[0]} G:{rgb[1]} B:{rgb[2]} / {pixel_count} px",
                     (20, height - 20),
                     cv2.FONT_HERSHEY_SIMPLEX,
                     0.65,
@@ -215,7 +281,7 @@ class CameraService:
                     rgb,
                     buffer.tobytes(),
                     sequence,
-                    len(sample_points),
+                    pixel_count,
                 )
                 with self._condition:
                     self._reading = reading

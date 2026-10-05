@@ -31,6 +31,7 @@ COLOR_LABELS = {
     "pink": "ピンク",
     "white": "白",
     "black": "黒",
+    "unknown": "判定外",
 }
 
 
@@ -42,7 +43,7 @@ class UnavailableStepper:
     def __init__(self, error: str) -> None:
         self.error = error
         self.current_slot = 0
-        self.travel_steps = 3072
+        self.travel_steps = 1536
         self.step_delay = 0.004
 
     def _raise(self) -> None:
@@ -65,7 +66,7 @@ class UnavailableStepper:
 class SimulatedStepper:
     def __init__(self) -> None:
         self.current_slot = 0
-        self.travel_steps = 3072
+        self.travel_steps = 1536
         self.step_delay = 0.004
 
     def move_to_slot(self, slot: int) -> int:
@@ -155,6 +156,7 @@ class AppRuntime:
         self.last_error: str | None = None
         self.last_result: dict[str, Any] | None = None
         self.last_detection: ColorMatch | None = None
+        self._recognition_paused = False
 
     def start(self) -> None:
         self.camera.start()
@@ -197,26 +199,47 @@ class AppRuntime:
             self.last_detection = match
         return match
 
-    def _recognize_after_return(self) -> ColorMatch:
-        latest = self.camera.latest()
-        after_sequence = latest.sequence if latest is not None else None
-        return self.recognize_current(after_sequence=after_sequence)
+    def _refresh_live_detection(self) -> ColorMatch | None:
+        reading = self.camera.latest()
+        if reading is None:
+            return None
+        with self._state_lock:
+            if self._recognition_paused:
+                return self.last_detection
+            self.last_detection = self.controller.recognize(reading.rgb)
+            return self.last_detection
+
+    def _push_with_recognition_paused(self) -> ColorMatch:
+        with self._state_lock:
+            self._recognition_paused = True
+        try:
+            self.pusher.push_and_return()
+            latest = self.camera.latest()
+            after_sequence = latest.sequence if latest is not None else None
+            reading = self.camera.get_reading(after_sequence=after_sequence)
+            match = self.controller.recognize(reading.rgb)
+            with self._state_lock:
+                self.last_detection = match
+            return match
+        finally:
+            with self._state_lock:
+                self._recognition_paused = False
 
     def sort_current(self):
-        with self._state_lock:
-            match = self.last_detection
+        match = self._refresh_live_detection()
         if match is None:
             match = self.recognize_current()
 
-        result = self.controller.sort_match(match)
-        self._recognize_after_return()
-        return result
+        return self.controller.sort_match(
+            match,
+            push_action=self._push_with_recognition_paused,
+        )
 
     def push_and_recognize(self) -> ColorMatch:
-        self.pusher.push_and_return()
-        return self._recognize_after_return()
+        return self._push_with_recognition_paused()
 
     def status(self) -> dict[str, Any]:
+        self._refresh_live_detection()
         reading = self.camera.latest()
         with self._state_lock:
             detection = (
@@ -224,9 +247,11 @@ class AppRuntime:
                 if self.last_detection is not None
                 else None
             )
+            recognition_paused = self._recognition_paused
         return {
             "busy": self.busy,
             "action": self.action,
+            "recognition_paused": recognition_paused,
             "camera": {
                 "ready": reading is not None,
                 "error": self.camera.error,
@@ -252,6 +277,7 @@ class AppRuntime:
             "hold_seconds": self.pusher.hold_seconds,
             "settle_seconds": self.pusher.settle_seconds,
             "minimum_confidence": self.controller.minimum_confidence,
+            "rgb_tolerance": self.controller.classifier.rgb_tolerance,
         }
 
 
@@ -263,6 +289,31 @@ class CalibrationRequest(SlotRequest):
     color: str
 
 
+class ColorRequest(BaseModel):
+    color: str
+
+
+class SlotAssignmentRequest(SlotRequest):
+    color: str
+
+
+class StepperConfig(BaseModel):
+    travel_steps: int = Field(ge=-100_000, le=100_000)
+    step_delay: float = Field(ge=0, le=0.1)
+
+
+class ServoConfig(BaseModel):
+    push_angle: int = Field(ge=0, le=180)
+    rest_angle: int = Field(ge=0, le=180)
+    hold_seconds: float = Field(ge=0, le=10)
+    settle_seconds: float = Field(ge=0, le=10)
+
+
+class RecognitionConfig(BaseModel):
+    minimum_confidence: float = Field(ge=0, le=1)
+    rgb_tolerance: int = Field(ge=0, le=255)
+
+
 class MotionConfig(BaseModel):
     travel_steps: int = Field(ge=-100_000, le=100_000)
     step_delay: float = Field(ge=0, le=0.1)
@@ -271,6 +322,7 @@ class MotionConfig(BaseModel):
     hold_seconds: float = Field(ge=0, le=10)
     settle_seconds: float = Field(ge=0, le=10)
     minimum_confidence: float = Field(ge=0, le=1)
+    rgb_tolerance: int | None = Field(default=None, ge=0, le=255)
 
 
 def create_app(runtime: AppRuntime | None = None) -> FastAPI:
@@ -317,15 +369,20 @@ def create_app(runtime: AppRuntime | None = None) -> FastAPI:
 
     @app.get("/api/colors")
     def colors() -> list[dict[str, Any]]:
-        return [
-            {
-                "name": name,
-                "label": COLOR_LABELS.get(name, name),
-                "rgb": rgb,
-                "slot": runtime.controller.slots[name],
-            }
-            for name, rgb in runtime.controller.classifier.references.items()
-        ]
+        result = []
+        for name, rgb in runtime.controller.classifier.references.items():
+            threshold = runtime.controller.classifier.threshold_for(name)
+            result.append(
+                {
+                    "name": name,
+                    "label": COLOR_LABELS.get(name, name),
+                    "rgb": rgb,
+                    "rgb_min": threshold.minimum,
+                    "rgb_max": threshold.maximum,
+                    "slot": runtime.controller.slots[name],
+                }
+            )
+        return result
 
     @app.post("/api/recognize")
     async def recognize() -> Any:
@@ -370,20 +427,93 @@ def create_app(runtime: AppRuntime | None = None) -> FastAPI:
 
         return await run_action("calibrating", apply_calibration)
 
+    @app.post("/api/calibrate/color")
+    async def calibrate_color(request: ColorRequest) -> Any:
+        def apply_color_calibration() -> dict[str, Any]:
+            reading = runtime.camera.get_reading()
+            with runtime._state_lock:
+                runtime.controller.classifier.set_reference(
+                    request.color,
+                    reading.rgb,
+                )
+                runtime.last_detection = runtime.controller.recognize(reading.rgb)
+            return {"color": request.color, "rgb": reading.rgb}
+
+        return await run_action("calibrating", apply_color_calibration)
+
+    @app.put("/api/slots")
+    async def assign_slot(request: SlotAssignmentRequest) -> Any:
+        def apply_slot() -> dict[str, Any]:
+            if request.color not in runtime.controller.classifier.references:
+                raise ValueError(f"Unknown color: {request.color}")
+            runtime.controller.slots[request.color] = request.slot
+            return {"color": request.color, "slot": request.slot}
+
+        return await run_action("configuring", apply_slot)
+
+    def apply_stepper_config(request: StepperConfig) -> dict[str, Any]:
+        runtime.stepper.configure(
+            travel_steps=request.travel_steps,
+            step_delay=request.step_delay,
+        )
+        return runtime.config()
+
+    def apply_servo_config(request: ServoConfig) -> dict[str, Any]:
+        runtime.pusher.configure(
+            push_angle=request.push_angle,
+            rest_angle=request.rest_angle,
+            hold_seconds=request.hold_seconds,
+            settle_seconds=request.settle_seconds,
+        )
+        return runtime.config()
+
+    def apply_recognition_config(request: RecognitionConfig) -> dict[str, Any]:
+        with runtime._state_lock:
+            runtime.controller.minimum_confidence = request.minimum_confidence
+            runtime.controller.classifier.set_rgb_tolerance(request.rgb_tolerance)
+        return runtime.config()
+
+    @app.put("/api/config/stepper")
+    async def configure_stepper(request: StepperConfig) -> Any:
+        return await run_action(
+            "configuring",
+            lambda: apply_stepper_config(request),
+        )
+
+    @app.put("/api/config/servo")
+    async def configure_servo(request: ServoConfig) -> Any:
+        return await run_action(
+            "configuring",
+            lambda: apply_servo_config(request),
+        )
+
+    @app.put("/api/config/recognition")
+    async def configure_recognition(request: RecognitionConfig) -> Any:
+        return await run_action(
+            "configuring",
+            lambda: apply_recognition_config(request),
+        )
+
     @app.put("/api/config")
     async def configure(request: MotionConfig) -> Any:
         def apply_config() -> dict[str, Any]:
-            runtime.stepper.configure(
+            apply_stepper_config(StepperConfig(
                 travel_steps=request.travel_steps,
                 step_delay=request.step_delay,
-            )
-            runtime.pusher.configure(
+            ))
+            apply_servo_config(ServoConfig(
                 push_angle=request.push_angle,
                 rest_angle=request.rest_angle,
                 hold_seconds=request.hold_seconds,
                 settle_seconds=request.settle_seconds,
-            )
-            runtime.controller.minimum_confidence = request.minimum_confidence
+            ))
+            if request.rgb_tolerance is None:
+                runtime.controller.minimum_confidence = request.minimum_confidence
+            else:
+                apply_recognition_config(RecognitionConfig(
+                    minimum_confidence=request.minimum_confidence,
+                    rgb_tolerance=request.rgb_tolerance,
+                ))
             return runtime.config()
 
         return await run_action("configuring", apply_config)
@@ -436,13 +566,12 @@ OPERATOR_HTML = """<!doctype html>
     .slot-readout { font-family: monospace; font-size: 13px; color: var(--muted); }
     .feed { position: relative; background: #111; aspect-ratio: 4 / 3; }
     .feed img { width: 100%; height: 100%; display: block; object-fit: contain; }
-    .scan-mark { position: absolute; inset: 50% auto auto 50%; width: 48px; height: 48px; transform: translate(-50%,-50%); border: 1px solid rgba(255,255,255,.6); pointer-events: none; }
     .control-panel { padding: 18px; display: flex; flex-direction: column; gap: 18px; }
     .detection { display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: center; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
     .swatch { width: 64px; height: 64px; border: 1px solid var(--line); border-radius: 6px; background: #d5dbd8; }
     .color-name { font: 700 28px/1 "Arial Narrow", "Noto Sans JP", sans-serif; }
     .rgb, .confidence { color: var(--muted); font: 12px/1.5 monospace; }
-    .primary-actions { display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; }
+    .primary-actions button { width: 100%; }
     button, select, input { min-height: 42px; border: 1px solid var(--line); border-radius: 5px; font: inherit; }
     button { padding: 0 14px; color: var(--ink); background: white; cursor: pointer; font-weight: 700; }
     button:hover { border-color: var(--ink); }
@@ -455,20 +584,32 @@ OPERATOR_HTML = """<!doctype html>
     .message.error { border-color: var(--accent); background: #fff0ed; }
     details { margin-top: 20px; box-shadow: none; }
     summary { cursor: pointer; padding: 15px 18px; font-weight: 700; }
-    .settings { border-top: 1px solid var(--line); padding: 18px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+        .calibration-layout { border-top: 1px solid var(--line); padding: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .settings-group { min-width: 0; margin: 0; padding: 16px; border: 1px solid var(--line); border-radius: 5px; }
+        .settings-group legend { padding: 0 8px; color: var(--ink); font-size: 14px; font-weight: 700; }
+        .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .group-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+        .subsection-title { margin: 18px 0 10px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--ink); font-size: 12px; font-weight: 700; }
+        .color-settings { grid-column: 1 / -1; }
+        .recognition-body { display: grid; grid-template-columns: minmax(220px, .65fr) minmax(0, 1.35fr); gap: 18px; }
+        .table-wrap { min-width: 0; overflow-x: auto; }
+        .color-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        .color-table th, .color-table td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; white-space: nowrap; }
+        .color-table th { color: var(--muted); background: #f2f5f3; font-weight: 700; }
+        .color-chip { display: inline-block; width: 18px; height: 18px; margin-right: 8px; border: 1px solid var(--line); border-radius: 3px; vertical-align: middle; }
+        .threshold { color: var(--muted); font-family: monospace; line-height: 1.45; }
     label { display: grid; gap: 6px; color: var(--muted); font-size: 12px; }
     input, select { width: 100%; padding: 0 10px; color: var(--ink); background: white; }
-    .calibration { grid-column: span 2; display: grid; grid-template-columns: 1.2fr .7fr 1fr; gap: 8px; align-items: end; }
-    .save-config { align-self: end; }
     @media (max-width: 820px) {
       header { min-height: 64px; } main { padding: 14px; }
       .workspace { grid-template-columns: 1fr; }
-      .settings { grid-template-columns: 1fr 1fr; }
-      .calibration { grid-column: span 2; }
+            .calibration-layout, .recognition-body { grid-template-columns: 1fr; }
+            .color-settings { grid-column: auto; }
     }
     @media (max-width: 460px) {
-      .primary-actions, .manual-grid, .settings, .calibration { grid-template-columns: 1fr; }
-      .calibration { grid-column: span 1; } .status-pill span:last-child { display: none; }
+            .manual-grid, .field-grid { grid-template-columns: 1fr; }
+            .group-actions { display: grid; }
+            .status-pill span:last-child { display: none; }
     }
   </style>
 </head>
@@ -480,8 +621,8 @@ OPERATOR_HTML = """<!doctype html>
   <main>
     <div class="workspace">
       <section class="camera-panel">
-        <div class="panel-head"><h2>CAMERA / 9-POINT ROI</h2><span id="slot" class="slot-readout">SLOT 0</span></div>
-        <div class="feed"><img src="/video_feed" alt="Pi Camera live feed"><span class="scan-mark"></span></div>
+                <div class="panel-head"><h2>CAMERA / BEAD AREA</h2><span id="slot" class="slot-readout">SLOT 0</span></div>
+                <div class="feed"><img src="/video_feed" alt="Pi Camera live feed"></div>
       </section>
       <aside class="control-panel">
         <div class="detection">
@@ -490,7 +631,6 @@ OPERATOR_HTML = """<!doctype html>
         </div>
         <div><h2 class="section-title">自動運転</h2></div>
         <div class="primary-actions">
-          <button class="action" data-action="recognize">色を認識</button>
           <button class="primary action" data-action="sort">認識して仕分け</button>
         </div>
         <div><h2 class="section-title">手動操作</h2></div>
@@ -505,27 +645,63 @@ OPERATOR_HTML = """<!doctype html>
     </div>
     <details>
       <summary>校正・機構設定</summary>
-      <div class="settings">
-        <label>SLOT 0→9 可動量（ステップ）<input id="travel" type="number" min="-100000" max="100000"></label>
-        <label>1ステップ待ち時間（秒）<input id="delay" type="number" min="0" max="0.1" step="0.001"></label>
-        <label>押し角度<input id="push-angle" type="number" min="0" max="180"></label>
-        <label>待機角度<input id="rest-angle" type="number" min="0" max="180"></label>
-        <label>押し保持（秒）<input id="hold" type="number" min="0" max="10" step="0.05"></label>
-        <label>戻り待ち（秒）<input id="settle" type="number" min="0" max="10" step="0.05"></label>
-        <label>最低信頼度<input id="confidence-min" type="number" min="0" max="1" step="0.01"></label>
-        <button id="save-config" class="save-config action">機構設定を適用</button>
-        <div class="calibration">
-          <label>校正する色<select id="calibration-color"></select></label>
-          <label>排出スロット<input id="calibration-slot" type="number" min="0" max="9" value="0"></label>
-          <button id="calibrate" class="action">現在色を登録</button>
-        </div>
+            <div class="calibration-layout">
+                <fieldset class="settings-group">
+                    <legend>スロット / ステッパー</legend>
+                    <div class="field-grid">
+                        <label>SLOT 0→9 可動量（フルステップ）<input id="travel" type="number" min="-100000" max="100000"></label>
+                        <label>1フルステップ待ち時間（秒）<input id="delay" type="number" min="0" max="0.1" step="0.001"></label>
+                    </div>
+                    <div class="group-actions"><button id="save-stepper" class="action">ステッパー設定を適用</button></div>
+                    <div class="subsection-title">色別の排出先</div>
+                    <div class="field-grid">
+                        <label>認識色<select id="slot-color"></select></label>
+                        <label>排出スロット<input id="calibration-slot" type="number" min="0" max="9" value="0"></label>
+                    </div>
+                    <div class="group-actions"><button id="save-slot" class="action">スロット割当を保存</button></div>
+                </fieldset>
+                <fieldset class="settings-group">
+                    <legend>押し出しサーボ</legend>
+                    <div class="field-grid">
+                        <label>押し出し角度<input id="push-angle" type="number" min="0" max="180"></label>
+                        <label>戻り角度<input id="rest-angle" type="number" min="0" max="180"></label>
+                        <label>押し保持（秒）<input id="hold" type="number" min="0" max="10" step="0.05"></label>
+                        <label>戻り待ち（秒）<input id="settle" type="number" min="0" max="10" step="0.05"></label>
+                    </div>
+                    <div class="group-actions"><button id="save-servo" class="action">サーボ設定を適用</button></div>
+                </fieldset>
+                <fieldset class="settings-group color-settings">
+                    <legend>色認識</legend>
+                    <div class="recognition-body">
+                        <div>
+                            <div class="field-grid">
+                                <label>RGB許容幅（±）<input id="rgb-tolerance" type="number" min="0" max="255"></label>
+                                <label>最低信頼度<input id="confidence-min" type="number" min="0" max="1" step="0.01"></label>
+                            </div>
+                            <div class="group-actions"><button id="save-recognition" class="action">判定設定を適用</button></div>
+                            <div class="subsection-title">基準色の校正</div>
+                            <label>校正する色<select id="calibration-color"></select></label>
+                            <div class="group-actions"><button id="calibrate" class="action">現在のRGBを基準色に登録</button></div>
+                        </div>
+                        <div class="table-wrap">
+                            <table class="color-table">
+                                <thead><tr><th>認識色</th><th>基準RGB</th><th>RGB閾値</th><th>SLOT</th></tr></thead>
+                                <tbody id="color-table-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </fieldset>
       </div>
     </details>
   </main>
   <script>
-    const labels = {red:'赤',orange:'オレンジ',yellow:'黄',green:'緑',cyan:'水色',blue:'青',purple:'紫',pink:'ピンク',white:'白',black:'黒'};
-    const fields = {travel_steps:'travel',step_delay:'delay',push_angle:'push-angle',rest_angle:'rest-angle',hold_seconds:'hold',settle_seconds:'settle',minimum_confidence:'confidence-min'};
+    const labels = {red:'赤',orange:'オレンジ',yellow:'黄',green:'緑',cyan:'水色',blue:'青',purple:'紫',pink:'ピンク',white:'白',black:'黒',unknown:'判定外'};
+    const stepperFields = {travel_steps:'travel',step_delay:'delay'};
+    const servoFields = {push_angle:'push-angle',rest_angle:'rest-angle',hold_seconds:'hold',settle_seconds:'settle'};
+    const recognitionFields = {minimum_confidence:'confidence-min',rgb_tolerance:'rgb-tolerance'};
+    const fields = {...stepperFields,...servoFields,...recognitionFields};
     let configLoaded = false;
+    let colors = [];
     const manualSlot = document.querySelector('#manual-slot');
     for (let slot = 0; slot < 10; slot++) manualSlot.add(new Option(`スロット ${slot}`, slot));
     function message(text, error=false) { const box=document.querySelector('#message'); box.textContent=text; box.classList.toggle('error',error); }
@@ -541,7 +717,7 @@ OPERATOR_HTML = """<!doctype html>
       document.querySelector('#swatch').style.background=`rgb(${r},${g},${b})`;
       document.querySelector('#color-name').textContent=labels[item.name] || item.name;
       document.querySelector('#rgb').textContent=`RGB ${r} / ${g} / ${b}`;
-            document.querySelector('#confidence').textContent=`CONFIDENCE ${Math.round(item.confidence*100)}% / ${sampleCount} POINTS`;
+        document.querySelector('#confidence').textContent=`CONFIDENCE ${Math.round(item.confidence*100)}% / ${sampleCount} PIXELS`;
     }
     async function refresh() {
       try {
@@ -549,13 +725,13 @@ OPERATOR_HTML = """<!doctype html>
         showDetection(state.detection,state.camera.sample_count);
         document.querySelector('#slot').textContent=`SLOT ${state.current_slot}`;
         document.querySelector('#status-dot').classList.toggle('ready',state.camera.ready && state.hardware.mode!=='unavailable');
-        document.querySelector('#status-text').textContent=state.busy ? state.action.toUpperCase() : `${state.camera.ready?'CAMERA OK':'CAMERA WAIT'} / ${state.hardware.mode.toUpperCase()}`;
+        document.querySelector('#status-text').textContent=state.recognition_paused ? 'PUSHING / COLOR HOLD' : state.busy ? state.action.toUpperCase() : `${state.camera.ready?'CAMERA OK':'CAMERA WAIT'} / ${state.hardware.mode.toUpperCase()}`;
         document.querySelectorAll('.action').forEach(button => button.disabled=state.busy);
         if (!configLoaded) { for (const [name,id] of Object.entries(fields)) document.querySelector(`#${id}`).value=state.config[name]; configLoaded=true; }
         if (state.last_error) message(state.last_error,true);
         else if (state.camera.error) message(state.camera.error,true);
         else if (state.hardware.error) message(state.hardware.error,true);
-        else if (!state.busy) message('操作可能');
+        else if (!state.busy) message('常時認識中');
       } catch (error) { message(error.message,true); }
     }
     async function act(name) {
@@ -571,23 +747,53 @@ OPERATOR_HTML = """<!doctype html>
       await refresh();
     }
     document.querySelectorAll('[data-action]').forEach(button => button.addEventListener('click',()=>act(button.dataset.action)));
-    document.querySelector('#save-config').addEventListener('click',async()=>{
-      const body={}; for (const [name,id] of Object.entries(fields)) body[name]=Number(document.querySelector(`#${id}`).value);
-      try { await request('/api/config','PUT',body); message('機構設定を適用しました'); } catch(error) { message(error.message,true); }
+        async function saveSettings(path, fieldMap, successMessage) {
+            const body={}; for (const [name,id] of Object.entries(fieldMap)) body[name]=Number(document.querySelector(`#${id}`).value);
+            try { await request(path,'PUT',body); message(successMessage); } catch(error) { message(error.message,true); }
       await refresh();
-    });
+        }
+        document.querySelector('#save-stepper').addEventListener('click',()=>saveSettings('/api/config/stepper',stepperFields,'ステッパー設定を適用しました'));
+        document.querySelector('#save-servo').addEventListener('click',()=>saveSettings('/api/config/servo',servoFields,'サーボ設定を適用しました'));
+        document.querySelector('#save-recognition').addEventListener('click',async()=>{
+            await saveSettings('/api/config/recognition',recognitionFields,'判定設定を適用しました');
+            await loadColors();
+        });
     document.querySelector('#calibrate').addEventListener('click',async()=>{
       const color=document.querySelector('#calibration-color').value;
-      const slot=Number(document.querySelector('#calibration-slot').value);
-      try { await request('/api/calibrate','POST',{color,slot}); message(`${labels[color]}を校正しました`); } catch(error) { message(error.message,true); }
+            try { await request('/api/calibrate/color','POST',{color}); message(`${labels[color]}の基準RGBを校正しました`); await loadColors(); } catch(error) { message(error.message,true); }
       await refresh();
     });
+        document.querySelector('#save-slot').addEventListener('click',async()=>{
+            const color=document.querySelector('#slot-color').value;
+            const slot=Number(document.querySelector('#calibration-slot').value);
+            try { await request('/api/slots','PUT',{color,slot}); message(`${labels[color]}をスロット${slot}へ割り当てました`); await loadColors(); } catch(error) { message(error.message,true); }
+            await refresh();
+        });
+        document.querySelector('#slot-color').addEventListener('change',event=>{
+            const item=colors.find(color=>color.name===event.target.value);
+            if (item) document.querySelector('#calibration-slot').value=item.slot;
+        });
     async function loadColors() {
-      const colors=await request('/api/colors','GET'); const select=document.querySelector('#calibration-color');
-      colors.forEach(item=>select.add(new Option(`${item.label} / SLOT ${item.slot}`,item.name)));
-      select.addEventListener('change',()=>{ const item=colors.find(color=>color.name===select.value); document.querySelector('#calibration-slot').value=item.slot; });
+            colors=await request('/api/colors','GET');
+            const calibrationSelect=document.querySelector('#calibration-color');
+            const slotSelect=document.querySelector('#slot-color');
+            const previousCalibration=calibrationSelect.value;
+            const previousSlot=slotSelect.value;
+            calibrationSelect.replaceChildren(); slotSelect.replaceChildren();
+            const table=document.querySelector('#color-table-body'); table.replaceChildren();
+            colors.forEach(item=>{
+                calibrationSelect.add(new Option(item.label,item.name));
+                slotSelect.add(new Option(item.label,item.name));
+                const row=document.createElement('tr');
+                row.innerHTML=`<td><span class="color-chip" style="background:rgb(${item.rgb.join(',')})"></span>${item.label}</td><td class="threshold">${item.rgb.join(' / ')}</td><td class="threshold">R ${item.rgb_min[0]}–${item.rgb_max[0]}<br>G ${item.rgb_min[1]}–${item.rgb_max[1]}<br>B ${item.rgb_min[2]}–${item.rgb_max[2]}</td><td>${item.slot}</td>`;
+                table.append(row);
+            });
+            if (colors.some(item=>item.name===previousCalibration)) calibrationSelect.value=previousCalibration;
+            if (colors.some(item=>item.name===previousSlot)) slotSelect.value=previousSlot;
+            const selected=colors.find(item=>item.name===slotSelect.value);
+            if (selected) document.querySelector('#calibration-slot').value=selected.slot;
     }
-    loadColors().catch(error=>message(error.message,true)); refresh(); setInterval(refresh,750);
+        loadColors().catch(error=>message(error.message,true)); refresh(); setInterval(refresh,300);
   </script>
 </body>
 </html>

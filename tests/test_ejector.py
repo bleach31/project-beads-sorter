@@ -8,11 +8,49 @@ from beads_sorter.vision.color import ColorClassifier
 class FakePin:
     def __init__(self, number: int) -> None:
         self.number = number
-        self.value = 0
+        self._value = 0
+        self.history: list[int] = []
         self.closed = False
+
+    @property
+    def value(self) -> int:
+        return self._value
+
+    @value.setter
+    def value(self, value: int) -> None:
+        self._value = value
+        self.history.append(value)
 
     def close(self) -> None:
         self.closed = True
+
+
+def test_stepper_uses_dual_coil_full_step_sequence() -> None:
+    pins: list[FakePin] = []
+
+    def make_pin(number: int) -> FakePin:
+        pin = FakePin(number)
+        pins.append(pin)
+        return pin
+
+    stepper = StepperMotor(
+        travel_steps=4,
+        slot_count=2,
+        step_delay=0,
+        pin_factory=make_pin,
+        sleep=lambda _seconds: None,
+    )
+
+    stepper.move_to_slot(1)
+
+    patterns = list(zip(*(pin.history for pin in pins)))
+    assert patterns == [
+        (1, 1, 0, 0),
+        (0, 1, 1, 0),
+        (0, 0, 1, 1),
+        (1, 0, 0, 1),
+        (0, 0, 0, 0),
+    ]
 
 
 def test_stepper_stays_within_adjustable_bounded_travel() -> None:

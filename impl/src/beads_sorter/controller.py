@@ -1,6 +1,7 @@
 """Coordinate color recognition and bead-sorting hardware."""
 
 from dataclasses import dataclass
+from collections.abc import Callable
 from threading import Lock
 from typing import Protocol
 
@@ -52,7 +53,12 @@ class SortController:
     def sort(self, rgb: RGB) -> SortResult:
         return self.sort_match(self.recognize(rgb))
 
-    def sort_match(self, match: ColorMatch) -> SortResult:
+    def sort_match(
+        self,
+        match: ColorMatch,
+        *,
+        push_action: Callable[[], object] | None = None,
+    ) -> SortResult:
         """Sort a bead using a color recognized while the pusher was at rest."""
         with self._lock:
             if match.confidence < self.minimum_confidence:
@@ -66,7 +72,8 @@ class SortController:
                 raise ValueError(f"No sorting slot configured for {match.name}") from error
 
             steps = self.stepper.move_to_slot(slot)
-            self.pusher.push_and_return()
+            action = push_action or self.pusher.push_and_return
+            action()
             return SortResult(
                 color=match.name,
                 rgb=match.rgb,

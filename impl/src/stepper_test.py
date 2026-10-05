@@ -8,15 +8,11 @@ from gpiozero import OutputDevice
 # BCM GPIO番号
 GPIO_PINS = [17, 18, 27, 22]
 
-# 28BYJ-48 + ULN2003用ハーフステップ駆動
+# 28BYJ-48 + ULN2003用2相励磁フルステップ駆動
 SEQUENCE = [
-    [1, 0, 0, 0],
     [1, 1, 0, 0],
-    [0, 1, 0, 0],
     [0, 1, 1, 0],
-    [0, 0, 1, 0],
     [0, 0, 1, 1],
-    [0, 0, 0, 1],
     [1, 0, 0, 1],
 ]
 
@@ -32,20 +28,20 @@ def release(pins):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="28BYJ-48ステッピングモーター動作テスト"
+        description="28BYJ-48フルステップ動作テスト"
     )
 
     parser.add_argument(
         "steps",
         type=int,
-        help="ステップ数。正数は正転、負数は逆転"
+        help="フルステップ数。正数は正転、負数は逆転"
     )
 
     parser.add_argument(
         "--delay",
         type=float,
         default=0.004,
-        help="1ステップ間隔（秒）。初期値は0.004"
+        help="1フルステップ間隔（秒）。初期値は0.004"
     )
 
     args = parser.parse_args()

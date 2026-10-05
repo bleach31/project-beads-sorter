@@ -17,14 +17,10 @@ class DigitalOutput(Protocol):
     def close(self) -> None: ...
 
 
-HALF_STEP_SEQUENCE = (
-    (1, 0, 0, 0),
+FULL_STEP_SEQUENCE = (
     (1, 1, 0, 0),
-    (0, 1, 0, 0),
     (0, 1, 1, 0),
-    (0, 0, 1, 0),
     (0, 0, 1, 1),
-    (0, 0, 0, 1),
     (1, 0, 0, 1),
 )
 
@@ -40,13 +36,13 @@ def _gpio_output(pin_number: int) -> DigitalOutput:
 
 
 class StepperMotor:
-    """Drive a 28BYJ-48 and track its logical sorting-table position."""
+    """Drive a 28BYJ-48 in full-step mode and track the table position."""
 
     def __init__(
         self,
         pins: tuple[int, int, int, int] = (17, 18, 27, 22),
         *,
-        travel_steps: int = 3072,
+        travel_steps: int = 1536,
         slot_count: int = 10,
         step_delay: float = 0.004,
         pin_factory: Callable[[int], DigitalOutput] = _gpio_output,
@@ -99,8 +95,8 @@ class StepperMotor:
             return steps
 
     def _move_steps(self, steps: int) -> None:
-        sequence = HALF_STEP_SEQUENCE if steps >= 0 else tuple(
-            reversed(HALF_STEP_SEQUENCE)
+        sequence = FULL_STEP_SEQUENCE if steps >= 0 else tuple(
+            reversed(FULL_STEP_SEQUENCE)
         )
         try:
             for step in range(abs(steps)):
