@@ -61,12 +61,12 @@ GPIO19は物理ピン35にあり、PWM1を出力できる。
 
 .. code-block:: console
 
-   $ PWMCHIP=$(find /sys/class/pwm -maxdepth 1 -name 'pwmchip*' -print -quit)
-   $ test -n "$PWMCHIP" || { echo 'PWM device not found' >&2; exit 1; }
-   $ test -d "$PWMCHIP/pwm1" || echo 1 | sudo tee "$PWMCHIP/export"
-   $ echo 20000000 | sudo tee "$PWMCHIP/pwm1/period"
-   $ echo 1400000 | sudo tee "$PWMCHIP/pwm1/duty_cycle"
-   $ echo 1 | sudo tee "$PWMCHIP/pwm1/enable"
+PWMCHIP=$(find /sys/class/pwm -maxdepth 1 -name 'pwmchip*' -print -quit)
+test -n "$PWMCHIP" || { echo 'PWM device not found' >&2; exit 1; }
+test -d "$PWMCHIP/pwm1" || echo 1 | sudo tee "$PWMCHIP/export"
+echo 20000000 | sudo tee "$PWMCHIP/pwm1/period"
+echo 1400000 | sudo tee "$PWMCHIP/pwm1/duty_cycle"
+echo 1 | sudo tee "$PWMCHIP/pwm1/enable"
 
 PWMはコマンド終了後も出力されるため、サーボは指定角度を保持する。
 
