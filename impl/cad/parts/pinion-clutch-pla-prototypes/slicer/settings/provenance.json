@@ -1,0 +1,7 @@
+{
+  "slicer": "Bambu Studio 2.8.2.61",
+  "machine": "Bambu Lab P1S 0.4 nozzle",
+  "process_base": "0.16mm Optimal @BBL X1C",
+  "filament": "Generic PLA",
+  "method": "Resolve inherits and include recursively from the bundled official profiles; the resulting JSON has no unresolved inheritance."
+}

@@ -1,0 +1,4 @@
+numpy>=2.0
+trimesh>=4
+shapely>=2
+pillow>=10

@@ -1,0 +1,112 @@
+{
+  "source": "C:\\Users\\10001176180\\Documents\\BSP\\upper_base_v8\\parts\\upper-base_v8_print-friendly_original_pose.3mf",
+  "sha256": "3bc179806874a1e526e82076b16468c43bb4032a9887509048d824bc54beb000",
+  "axial_stop_sections": [
+    {
+      "z_mm": -4.328218,
+      "tube_OD8_overlap_area_mm2": 0.0,
+      "tube_ID6_obstruction_area_mm2": 0.0,
+      "tube_end_wall_supported_area_mm2": 0.0,
+      "v7_supported_area_mm2": 0.0,
+      "stop_material_difference_within_OD8_mm2": 0.0
+    },
+    {
+      "z_mm": -4.324218,
+      "tube_OD8_overlap_area_mm2": 10.137543658170316,
+      "tube_ID6_obstruction_area_mm2": 0.0,
+      "tube_end_wall_supported_area_mm2": 10.137543658170316,
+      "v7_supported_area_mm2": 10.137543176259193,
+      "stop_material_difference_within_OD8_mm2": 1.0363944861148325e-06
+    },
+    {
+      "z_mm": -4.306218,
+      "tube_OD8_overlap_area_mm2": 10.137543482153564,
+      "tube_ID6_obstruction_area_mm2": 0.0,
+      "tube_end_wall_supported_area_mm2": 10.137543482153564,
+      "v7_supported_area_mm2": 10.137543268324498,
+      "stop_material_difference_within_OD8_mm2": 1.214498502152402e-06
+    },
+    {
+      "z_mm": -4.126218,
+      "tube_OD8_overlap_area_mm2": 10.137543686636517,
+      "tube_ID6_obstruction_area_mm2": 0.0,
+      "tube_end_wall_supported_area_mm2": 10.137543686636517,
+      "v7_supported_area_mm2": 10.137543263006904,
+      "stop_material_difference_within_OD8_mm2": 1.1263974854609113e-06
+    },
+    {
+      "z_mm": -3.426218,
+      "tube_OD8_overlap_area_mm2": 10.137543296076032,
+      "tube_ID6_obstruction_area_mm2": 0.0,
+      "tube_end_wall_supported_area_mm2": 10.137543296076032,
+      "v7_supported_area_mm2": 10.13754322846578,
+      "stop_material_difference_within_OD8_mm2": 1.3804097252898957e-06
+    }
+  ],
+  "tube_end_wall_area_mm2": 21.99111407694014,
+  "cradle_sections": [
+    {
+      "z_mm": -18.5,
+      "lower_wall_intersections_y_mm": [
+        -11.517404556274414,
+        -12.767404556274414
+      ],
+      "lower_wall_thickness_mm": 1.25,
+      "locating_circle_nearby_supported_angle_deg": 175.75,
+      "negative_Y_locating_surface_present": true,
+      "negative_X_locating_surface_present": true,
+      "support_angle_is_geometric_only": true
+    },
+    {
+      "z_mm": -15.0,
+      "lower_wall_intersections_y_mm": [
+        -11.517404556274414,
+        -12.767404556274414
+      ],
+      "lower_wall_thickness_mm": 1.25,
+      "locating_circle_nearby_supported_angle_deg": 175.75,
+      "negative_Y_locating_surface_present": true,
+      "negative_X_locating_surface_present": true,
+      "support_angle_is_geometric_only": true
+    },
+    {
+      "z_mm": -10.0,
+      "lower_wall_intersections_y_mm": [
+        -11.517404556274414,
+        -12.767404556274414
+      ],
+      "lower_wall_thickness_mm": 1.25,
+      "locating_circle_nearby_supported_angle_deg": 175.75,
+      "negative_Y_locating_surface_present": true,
+      "negative_X_locating_surface_present": true,
+      "support_angle_is_geometric_only": true
+    },
+    {
+      "z_mm": -5.0,
+      "lower_wall_intersections_y_mm": [
+        -11.517404556274414,
+        -12.767404556274414
+      ],
+      "lower_wall_thickness_mm": 1.25,
+      "locating_circle_nearby_supported_angle_deg": 175.75,
+      "negative_Y_locating_surface_present": true,
+      "negative_X_locating_surface_present": true,
+      "support_angle_is_geometric_only": true
+    }
+  ],
+  "returning_lip_zone_remaining_volume_mm3": 0.0,
+  "checks": {
+    "OD8_tube_clear_before_stop": true,
+    "tube_end_stop_retained": true,
+    "stop_same_as_v7_in_tube_envelope": true,
+    "ID6_unobstructed_at_stop": true,
+    "negative_Y_saddle_wall_at_least_1p24mm": true,
+    "negative_X_and_Y_saddle_present": true,
+    "returning_lip_removed": true
+  },
+  "limits": [
+    "Open saddle is not a closed retaining ring. Radial fixing is provided by the separate axial region of the one-piece clamp.",
+    "Contact area and wall thickness are geometric checks, not force, stiffness, friction or flexible-tube deformation tests."
+  ],
+  "passed": true
+}

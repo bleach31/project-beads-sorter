@@ -1,0 +1,23 @@
+{
+  "chamfer_mm": 1.0,
+  "chamfer_deg": 45,
+  "remaining_leading_push_face_height_mm": 3.5,
+  "source_volume_mm3": 1636.6792607413745,
+  "result_volume_mm3": 1633.1758667035392,
+  "removed_volume_mm3": 3.5031498670578003,
+  "removed_bounds_mm": [
+    [
+      21.292207717895508,
+      -9.763222694396973,
+      -2.948448896408081
+    ],
+    [
+      22.292207717895508,
+      -2.756922960281372,
+      -1.948448896408081
+    ]
+  ],
+  "gear_and_guide_slot_unchanged": true,
+  "watertight": true,
+  "single_shell": true
+}

@@ -1,0 +1,296 @@
+{
+  "valid": true,
+  "plate": "outputs\\beads-motion-plus20-p1s-v1\\print\\01_motion_complete_plus20_P1S.3mf",
+  "plate_sha256": "119c1c06c83d39eec7ca97a593843557a9206ad59c5b00481fb5e8d3b0866a9b",
+  "source_files_unchanged": true,
+  "included_stl_byte_identical_to_originals": true,
+  "included_stl_sha256": {
+    "base_with_docking": "876803a8fade73d322a5080058fa4f6af4f6796c846cbbb1bfb922ccca07ccd1",
+    "02_motor_carrier": "71ae05412d19b20ccd45bb34d3921dc34a75c5d63becf97a7c2096b14f1abe5b",
+    "03_drive_gear_80t": "4beadd92e4e2e884f69f4c96e476df306c1f26cb4ac9b626b0bcd2342b542458",
+    "04_output_gear_20t_spindle": "421e12d0af3945ed79fe50251e040d4332b3e2068539617b643b38c09dead5dd",
+    "05_split_bearing_cap": "3c785d1fff3d84a5ecf6afb0bca293302c70839f2feccdf07a82b2fd3a6232a7",
+    "smooth_u_chute_plus20": "4c0af027c2eb442f9cf43ed051c4ca3a1066ee5425040cdef59ed7da66b593cd"
+  },
+  "scope": "Independent core 3MF expansion, six exact original meshes with only Rz and XY moves, conservative convex-hull footprints with 5 mm expansion. Slicing, actual supports and physical printing are not validated.",
+  "build_count": 6,
+  "root_model": "3D/3dmodel.model",
+  "archive_members": [
+    "3D/3dmodel.model",
+    "[Content_Types].xml",
+    "_rels/.rels"
+  ],
+  "parts": [
+    {
+      "name": "base_with_docking",
+      "source_file": "outputs\\beads-baskets-p1s-v5-central-integral\\stl\\base_with_docking.stl",
+      "source_sha256": "876803a8fade73d322a5080058fa4f6af4f6796c846cbbb1bfb922ccca07ccd1",
+      "triangle_count": 7640,
+      "centroid_matching_bijective": true,
+      "maximum_centroid_error_mm": 7.321934113715775e-07,
+      "maximum_triangle_coordinate_error_mm": 4.992065498754528e-07,
+      "identical_after_only_rz_xy_translation": true,
+      "bounds_mm": [
+        [
+          5.807762,
+          5.418663,
+          0.0
+        ],
+        [
+          178.192238,
+          170.581337,
+          90.0
+        ]
+      ],
+      "grounded": true,
+      "height_within_256mm": true,
+      "watertight": true,
+      "consistent_winding": true,
+      "connected_components": 1,
+      "degenerate_triangles": 0,
+      "volume_mm3": 75742.68587356615,
+      "footprint_plus5_within_bed": true,
+      "footprint_plus5_keepout_overlap_mm2": 0.0,
+      "minimum_footprint_edge_margin_mm": 5.418663
+    },
+    {
+      "name": "smooth_u_chute_plus20",
+      "source_file": "outputs\\beads-chute-plus20-v1\\stl\\smooth_u_chute_plus20.stl",
+      "source_sha256": "4c0af027c2eb442f9cf43ed051c4ca3a1066ee5425040cdef59ed7da66b593cd",
+      "triangle_count": 8898,
+      "centroid_matching_bijective": true,
+      "maximum_centroid_error_mm": 6.416182381682173e-07,
+      "maximum_triangle_coordinate_error_mm": 4.999389648929764e-07,
+      "identical_after_only_rz_xy_translation": true,
+      "bounds_mm": [
+        [
+          208.2,
+          94.903351,
+          0.0
+        ],
+        [
+          223.8,
+          237.096649,
+          16.180389
+        ]
+      ],
+      "grounded": true,
+      "height_within_256mm": true,
+      "watertight": true,
+      "consistent_winding": true,
+      "connected_components": 1,
+      "degenerate_triangles": 0,
+      "volume_mm3": 6084.408653076059,
+      "footprint_plus5_within_bed": true,
+      "footprint_plus5_keepout_overlap_mm2": 0.0,
+      "minimum_footprint_edge_margin_mm": 18.903350999999986
+    },
+    {
+      "name": "03_drive_gear_80t",
+      "source_file": "outputs\\beads-baskets-p1s-v5-central-integral\\optional_reprint_stl\\03_drive_gear_80t.stl",
+      "source_sha256": "4beadd92e4e2e884f69f4c96e476df306c1f26cb4ac9b626b0bcd2342b542458",
+      "triangle_count": 27428,
+      "centroid_matching_bijective": true,
+      "maximum_centroid_error_mm": 6.570847979335929e-07,
+      "maximum_triangle_coordinate_error_mm": 4.998779292719746e-07,
+      "identical_after_only_rz_xy_translation": true,
+      "bounds_mm": [
+        [
+          183.201099,
+          5.201099,
+          0.0
+        ],
+        [
+          248.798901,
+          70.798901,
+          14.0
+        ]
+      ],
+      "grounded": true,
+      "height_within_256mm": true,
+      "watertight": true,
+      "consistent_winding": true,
+      "connected_components": 1,
+      "degenerate_triangles": 0,
+      "volume_mm3": 13705.311286262042,
+      "footprint_plus5_within_bed": true,
+      "footprint_plus5_keepout_overlap_mm2": 0.0,
+      "minimum_footprint_edge_margin_mm": 5.201099
+    },
+    {
+      "name": "02_motor_carrier",
+      "source_file": "outputs\\beads-baskets-p1s-v5-central-integral\\optional_reprint_stl\\02_motor_carrier.stl",
+      "source_sha256": "71ae05412d19b20ccd45bb34d3921dc34a75c5d63becf97a7c2096b14f1abe5b",
+      "triangle_count": 2922,
+      "centroid_matching_bijective": true,
+      "maximum_centroid_error_mm": 5.12115115751839e-07,
+      "maximum_triangle_coordinate_error_mm": 4.898071210845956e-07,
+      "identical_after_only_rz_xy_translation": true,
+      "bounds_mm": [
+        [
+          23.0,
+          191.0,
+          0.0
+        ],
+        [
+          77.0,
+          229.0,
+          23.0
+        ]
+      ],
+      "grounded": true,
+      "height_within_256mm": true,
+      "watertight": true,
+      "consistent_winding": true,
+      "connected_components": 1,
+      "degenerate_triangles": 0,
+      "volume_mm3": 9988.64834686402,
+      "footprint_plus5_within_bed": true,
+      "footprint_plus5_keepout_overlap_mm2": 0.0,
+      "minimum_footprint_edge_margin_mm": 23.0
+    },
+    {
+      "name": "04_output_gear_20t_spindle",
+      "source_file": "outputs\\beads-baskets-p1s-v5-central-integral\\optional_reprint_stl\\04_output_gear_20t_spindle.stl",
+      "source_sha256": "421e12d0af3945ed79fe50251e040d4332b3e2068539617b643b38c09dead5dd",
+      "triangle_count": 7916,
+      "centroid_matching_bijective": true,
+      "maximum_centroid_error_mm": 5.847332173350694e-07,
+      "maximum_triangle_coordinate_error_mm": 4.987030024494743e-07,
+      "identical_after_only_rz_xy_translation": true,
+      "bounds_mm": [
+        [
+          93.276258,
+          203.276258,
+          0.0
+        ],
+        [
+          110.723742,
+          220.723742,
+          38.850002
+        ]
+      ],
+      "grounded": true,
+      "height_within_256mm": true,
+      "watertight": true,
+      "consistent_winding": true,
+      "connected_components": 1,
+      "degenerate_triangles": 0,
+      "volume_mm3": 2580.2677874475594,
+      "footprint_plus5_within_bed": true,
+      "footprint_plus5_keepout_overlap_mm2": 0.0,
+      "minimum_footprint_edge_margin_mm": 35.27625800000001
+    },
+    {
+      "name": "05_split_bearing_cap",
+      "source_file": "outputs\\beads-baskets-p1s-v5-central-integral\\optional_reprint_stl\\05_split_bearing_cap.stl",
+      "source_sha256": "3c785d1fff3d84a5ecf6afb0bca293302c70839f2feccdf07a82b2fd3a6232a7",
+      "triangle_count": 1832,
+      "centroid_matching_bijective": true,
+      "maximum_centroid_error_mm": 6.120478828940519e-07,
+      "maximum_triangle_coordinate_error_mm": 4.992616879917477e-07,
+      "identical_after_only_rz_xy_translation": true,
+      "bounds_mm": [
+        [
+          130.885452,
+          202.984937,
+          0.0
+        ],
+        [
+          157.614548,
+          221.881089,
+          24.0
+        ]
+      ],
+      "grounded": true,
+      "height_within_256mm": true,
+      "watertight": true,
+      "consistent_winding": true,
+      "connected_components": 1,
+      "degenerate_triangles": 0,
+      "volume_mm3": 2193.918870583082,
+      "footprint_plus5_within_bed": true,
+      "footprint_plus5_keepout_overlap_mm2": 0.0,
+      "minimum_footprint_edge_margin_mm": 34.118911
+    }
+  ],
+  "pairs": [
+    {
+      "a": "base_with_docking",
+      "b": "smooth_u_chute_plus20",
+      "convex_hull_gap_mm": 30.007761999999985
+    },
+    {
+      "a": "base_with_docking",
+      "b": "03_drive_gear_80t",
+      "convex_hull_gap_mm": 11.828635621740661
+    },
+    {
+      "a": "base_with_docking",
+      "b": "02_motor_carrier",
+      "convex_hull_gap_mm": 38.81360774251846
+    },
+    {
+      "a": "base_with_docking",
+      "b": "04_output_gear_20t_spindle",
+      "convex_hull_gap_mm": 44.9366026295827
+    },
+    {
+      "a": "base_with_docking",
+      "b": "05_split_bearing_cap",
+      "convex_hull_gap_mm": 34.1936692660869
+    },
+    {
+      "a": "smooth_u_chute_plus20",
+      "b": "03_drive_gear_80t",
+      "convex_hull_gap_mm": 24.10445
+    },
+    {
+      "a": "smooth_u_chute_plus20",
+      "b": "02_motor_carrier",
+      "convex_hull_gap_mm": 131.2
+    },
+    {
+      "a": "smooth_u_chute_plus20",
+      "b": "04_output_gear_20t_spindle",
+      "convex_hull_gap_mm": 97.47625799999999
+    },
+    {
+      "a": "smooth_u_chute_plus20",
+      "b": "05_split_bearing_cap",
+      "convex_hull_gap_mm": 50.585451999999975
+    },
+    {
+      "a": "03_drive_gear_80t",
+      "b": "02_motor_carrier",
+      "convex_hull_gap_mm": 175.16364810612995
+    },
+    {
+      "a": "03_drive_gear_80t",
+      "b": "04_output_gear_20t_spindle",
+      "convex_hull_gap_mm": 166.46417657712905
+    },
+    {
+      "a": "03_drive_gear_80t",
+      "b": "05_split_bearing_cap",
+      "convex_hull_gap_mm": 143.24983947548748
+    },
+    {
+      "a": "02_motor_carrier",
+      "b": "04_output_gear_20t_spindle",
+      "convex_hull_gap_mm": 16.276258
+    },
+    {
+      "a": "02_motor_carrier",
+      "b": "05_split_bearing_cap",
+      "convex_hull_gap_mm": 53.88545199999999
+    },
+    {
+      "a": "04_output_gear_20t_spindle",
+      "b": "05_split_bearing_cap",
+      "convex_hull_gap_mm": 20.462998104090055
+    }
+  ],
+  "minimum_pair_gap_mm": 11.828635621740661,
+  "minimum_bed_edge_margin_mm": 5.201099
+}

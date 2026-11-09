@@ -1,0 +1,125 @@
+{
+  "source_mesh_sha256": "47d1d31bcbde6022e54c9bd9cb205aafbe7ad8d9d112d877e9714c72ae09a377",
+  "reference_project_sha256": "91f8e05623152d549529269a158f45c85b34824520a6b1d8ef8a06faa9be04b3",
+  "reference_project": "C:\\Users\\10001176180\\Documents\\BSP\\upper_base_v8\\print_review\\final\\selective_support_v2\\projects\\upper-base_v8_P1S_PLA_selective_reference.3mf",
+  "case": "C:\\Users\\10001176180\\Documents\\BSP\\upper_base_v8\\print_review\\final\\selective_support_v2",
+  "gcode_sha256": "a5b341221060e7d90f14ea13bfb023037b7235463bd88a47807c2a5581090a54",
+  "no_fully_unsupported_islands_detected": true,
+  "model_layers_checked": 278,
+  "unsupported_islands": 0,
+  "marginal_contacts": 0,
+  "registration": {
+    "offset_settings_source": "C:\\Users\\10001176180\\Documents\\BSP\\upper_base_v8\\print_review\\final\\selective_support_v2\\logs\\effective_settings.json",
+    "offsets_mm": [
+      [
+        0.0,
+        2.0,
+        0.0
+      ]
+    ],
+    "layers": [
+      {
+        "layer_top_print_Z_mm": 2.28,
+        "section_Z_mm": 2.1999999999999997,
+        "sample_points": 622,
+        "median_line_width_mm": 0.42,
+        "mean_clipped_registration_error_mm": 0.0019149758080087948,
+        "best_additional_X_mm": 7.799368595499923e-05,
+        "best_additional_Y_mm": -0.000179774207172065
+      },
+      {
+        "layer_top_print_Z_mm": 22.28,
+        "section_Z_mm": 22.200000000000003,
+        "sample_points": 617,
+        "median_line_width_mm": 0.42,
+        "mean_clipped_registration_error_mm": 0.0019656287418696374,
+        "best_additional_X_mm": 0.00018013313074029242,
+        "best_additional_Y_mm": 0.00014698983803339654
+      },
+      {
+        "layer_top_print_Z_mm": 42.6,
+        "section_Z_mm": 42.52,
+        "sample_points": 331,
+        "median_line_width_mm": 0.42,
+        "mean_clipped_registration_error_mm": 0.0019725920989022115,
+        "best_additional_X_mm": -0.0004689633071828167,
+        "best_additional_Y_mm": 0.00014702935899329892
+      }
+    ],
+    "registration_passed": true,
+    "method": "Applied machine nozzle offsets; checked three actual Outer wall layers against inward-offset CAD section."
+  },
+  "SG90_main_plane_supported": true,
+  "SG90_main_plane_support": {
+    "support_under_main_face": true,
+    "support_segments_near_main_face": 63,
+    "highest_support_top_original_X_mm": 20.13968101501465,
+    "CAD_face_X_mm": 20.3,
+    "vertical_gap_to_CAD_face_mm": 0.16031898498535213,
+    "top_interface_overlap_area_mm2": 49.458184327411935,
+    "main_face_rectangle_area_mm2": 107.10364544999997,
+    "max_in_plane_distance_to_interface_mm": 0.7846938550484419,
+    "support_is_accessible_from_open_holder_side": true,
+    "actual_removal_force_not_tested": true
+  },
+  "bead_floor_support_intrusion": false,
+  "clamp_split_support_intrusion": false,
+  "tube_socket_support_intrusion": false,
+  "floor_support": {
+    "minimum_centreline_distance_mm": 12.987293041257113,
+    "conservative_filament_clearance_mm": 12.68657099071467,
+    "closest_conservative_sample_original_xyz_mm": [
+      19.89968101501465,
+      -13.310552017211918,
+      -16.481687270164485
+    ],
+    "surface_sampling_allowance_mm": 0.036,
+    "path_sampling_allowance_mm": 0.04,
+    "filament_envelope": "Per-command sqrt((line_width/2)^2 + layer_height^2)",
+    "support_touches_protected_floor": false
+  },
+  "clamp_split": {
+    "split_bounds_original_mm": [
+      [
+        27.0,
+        -8.0174045,
+        -30.875218
+      ],
+      [
+        39.5,
+        -6.8174045,
+        -18.825218
+      ]
+    ],
+    "support_centreline_samples_inside_gap": 0,
+    "minimum_support_centreline_distance_mm": 7.180318984985352,
+    "conservative_support_clearance_mm": 6.87631140933647,
+    "support_intrusion_possible": false,
+    "nominal_gap_width_mm": 1.2,
+    "commanded_lower_Y_edge_mm": -8.017552017211905,
+    "commanded_upper_Y_edge_mm": -6.817552017211901,
+    "conservative_projected_commanded_open_width_mm": 1.2000000000000037,
+    "actual_material_spreading_not_modelled": true
+  },
+  "tube_socket_support": {
+    "nominal_socket_diameter_mm": 8.2,
+    "support_samples_inside_bore": 0,
+    "minimum_support_centreline_distance_mm": 3.080318996118768,
+    "conservative_support_clearance_mm": 2.776311420469886,
+    "support_intrusion_possible": false
+  },
+  "continuous_surface_runs_report": "C:\\Users\\10001176180\\Documents\\BSP\\upper_base_v8\\print_review\\final\\manufacturability_selected_v2\\surface_runs.json",
+  "support_policy": "normal(auto), model and build plate; tube, clamp and bead path excluded with non-printing support blocker",
+  "reference_printer": "Bambu Lab P1S 0.4 nozzle",
+  "reference_material": "Generic PLA",
+  "layer_height_mm": 0.16,
+  "gcode_in_editable_project": false,
+  "physical_print_tested": false,
+  "scope": "Toolpath/mesh checks do not establish real sag, adhesion, support-removal force, tube fit or clamping force.",
+  "significant_unsupported_contiguous_runs": 0,
+  "continuous_surface_run_layers_reviewed": [
+    35.72,
+    35.88,
+    36.04
+  ]
+}
