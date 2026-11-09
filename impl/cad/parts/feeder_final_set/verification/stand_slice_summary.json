@@ -1,0 +1,609 @@
+{
+  "stage": "final",
+  "slicer": "Bambu Studio 2.8.2.61",
+  "printer": "Bambu Lab P1S 0.4 nozzle",
+  "filament": "Generic PLA",
+  "nozzle_temperature_c": 220,
+  "bed": "Textured PEI Plate",
+  "bed_temperature_c": 55,
+  "layer_height_mm": 0.2,
+  "initial_layer_height_mm": 0.2,
+  "wall_loops": 4,
+  "infill": "40% gyroid",
+  "top_bottom_layers": 5,
+  "print_sequence": "by layer",
+  "support_enabled": false,
+  "raft_layers": 0,
+  "part_count": 25,
+  "rod_brim_width_mm": 0,
+  "other_brim_width_mm": 0,
+  "initial_layer_speed_mm_s": 25,
+  "initial_layer_infill_speed_mm_s": 50,
+  "object_overrides": {
+    "01_leg_segment_01": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "01_leg_segment_02": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "01_leg_segment_03": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "01_leg_segment_04": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "01_leg_segment_05": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "01_leg_segment_06": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "01_leg_segment_07": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "01_leg_segment_08": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "01_leg_segment_09": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "01_leg_segment_10": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "01_leg_segment_11": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "01_leg_segment_12": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "05_ballast_tray": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "03_foot_01": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "03_foot_02": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "03_foot_03": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "03_foot_04": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "02_base_spoke_01": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "02_base_spoke_02": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "02_base_spoke_03": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "02_base_spoke_04": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "04_top_saddle_01": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "04_top_saddle_02": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "04_top_saddle_03": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    },
+    "04_top_saddle_04": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "no_brim",
+      "brim_width": "0"
+    }
+  },
+  "input_snapshot": "slicer\\logs\\light_stand_input.3mf",
+  "input_original": "plates\\light_stand_one_plate.3mf",
+  "input_sha256": "6309080998781b45b9652d9f9a3a95a2e66ae24bdc6d76abeda964e588c336c4",
+  "input_model_xml_sha256": "4029b7fb2d4936083f7f9d35095da380050f6dbd8e8e67106ebc8d9d41e7c8c7",
+  "source_stl_hashes_current_at_capture": {
+    "01_leg_segment": true,
+    "05_ballast_tray": true,
+    "03_foot": true,
+    "02_base_spoke": true,
+    "04_top_saddle": true
+  },
+  "configured_project": "slicer\\projects\\feeder_v11_light_stand_P1S_PLA.3mf",
+  "sliced_project": "slicer\\projects\\feeder_v11_light_stand_P1S_PLA_sliced.3mf",
+  "returncode": 0,
+  "result": {
+    "error_string": "Success.",
+    "export_time": 967,
+    "layer_height": 0.20000000298023224,
+    "plate_index": 0,
+    "prepare_time": 296,
+    "return_code": 0,
+    "sliced_plates": [
+      {
+        "feature_type_times": {
+          "Bottom surface": 1809.681884765625,
+          "Bridge": 810.6189575195312,
+          "Custom": 363.0526428222656,
+          "Flush": 29.0,
+          "Gap infill": 1645.27783203125,
+          "Inner wall": 12270.306640625,
+          "Internal solid infill": 6038.8896484375,
+          "Outer wall": 8550.482421875,
+          "Overhang wall": 81.75032043457031,
+          "Sparse infill": 3275.46875,
+          "Top surface": 1515.47314453125,
+          "Travel": 3743.830078125,
+          "Undefined": 3728.117919921875
+        },
+        "filament_change_times": 0,
+        "filaments": [
+          {
+            "filament_id": "GFL99",
+            "id": 1,
+            "main_used_g": 340.1256408691406,
+            "total_used_g": 340.1256408691406
+          }
+        ],
+        "generate_support_material_time": 110,
+        "id": 1,
+        "infill_time": 1579,
+        "layer_filament_change": 0,
+        "main_predication": 39719.78515625,
+        "make_perimeters_time": 768,
+        "obj_cached_cnt": 0,
+        "objects": [
+          {
+            "bbox": {
+              "depth": 14.0,
+              "height": 15.0,
+              "width": 199.77037048339844,
+              "x": 1.999999761581421,
+              "y": 112.0,
+              "z": 0.0
+            },
+            "id": 5,
+            "name": "01_leg_segment_01",
+            "triangle_count": 1408
+          },
+          {
+            "bbox": {
+              "depth": 14.0,
+              "height": 15.0,
+              "width": 199.77037048339844,
+              "x": 1.999999761581421,
+              "y": 128.0,
+              "z": 0.0
+            },
+            "id": 9,
+            "name": "01_leg_segment_02",
+            "triangle_count": 1408
+          },
+          {
+            "bbox": {
+              "depth": 14.0,
+              "height": 15.0,
+              "width": 199.77037048339844,
+              "x": 1.999999761581421,
+              "y": 144.0,
+              "z": 0.0
+            },
+            "id": 13,
+            "name": "01_leg_segment_03",
+            "triangle_count": 1408
+          },
+          {
+            "bbox": {
+              "depth": 14.0,
+              "height": 15.0,
+              "width": 199.77037048339844,
+              "x": 1.999999761581421,
+              "y": 160.0,
+              "z": 0.0
+            },
+            "id": 17,
+            "name": "01_leg_segment_04",
+            "triangle_count": 1408
+          },
+          {
+            "bbox": {
+              "depth": 14.0,
+              "height": 15.0,
+              "width": 199.77037048339844,
+              "x": 1.999999761581421,
+              "y": 176.0,
+              "z": 0.0
+            },
+            "id": 21,
+            "name": "01_leg_segment_05",
+            "triangle_count": 1408
+          },
+          {
+            "bbox": {
+              "depth": 14.0,
+              "height": 15.0,
+              "width": 199.77037048339844,
+              "x": 1.999999761581421,
+              "y": 192.0,
+              "z": 0.0
+            },
+            "id": 25,
+            "name": "01_leg_segment_06",
+            "triangle_count": 1408
+          },
+          {
+            "bbox": {
+              "depth": 14.0,
+              "height": 15.0,
+              "width": 199.77037048339844,
+              "x": 1.999999761581421,
+              "y": 208.0,
+              "z": 0.0
+            },
+            "id": 29,
+            "name": "01_leg_segment_07",
+            "triangle_count": 1408
+          },
+          {
+            "bbox": {
+              "depth": 14.0,
+              "height": 15.0,
+              "width": 199.77037048339844,
+              "x": 1.999999761581421,
+              "y": 224.0,
+              "z": 0.0
+            },
+            "id": 33,
+            "name": "01_leg_segment_08",
+            "triangle_count": 1408
+          },
+          {
+            "bbox": {
+              "depth": 14.0,
+              "height": 15.0,
+              "width": 199.77037048339844,
+              "x": 1.999999761581421,
+              "y": 240.0,
+              "z": 0.0
+            },
+            "id": 37,
+            "name": "01_leg_segment_09",
+            "triangle_count": 1408
+          },
+          {
+            "bbox": {
+              "depth": 199.77037048339844,
+              "height": 15.0,
+              "width": 14.0,
+              "x": 204.0,
+              "y": 53.99999237060547,
+              "z": 0.0
+            },
+            "id": 41,
+            "name": "01_leg_segment_10",
+            "triangle_count": 1408
+          },
+          {
+            "bbox": {
+              "depth": 199.77037048339844,
+              "height": 15.0,
+              "width": 14.0,
+              "x": 220.0,
+              "y": 53.99999237060547,
+              "z": 0.0
+            },
+            "id": 45,
+            "name": "01_leg_segment_11",
+            "triangle_count": 1408
+          },
+          {
+            "bbox": {
+              "depth": 199.77037048339844,
+              "height": 15.0,
+              "width": 14.0,
+              "x": 236.0,
+              "y": 53.99999237060547,
+              "z": 0.0
+            },
+            "id": 49,
+            "name": "01_leg_segment_12",
+            "triangle_count": 1408
+          },
+          {
+            "bbox": {
+              "depth": 73.53910827636719,
+              "height": 11.0,
+              "width": 73.53910827636719,
+              "x": 2.0,
+              "y": 30.0,
+              "z": 0.0
+            },
+            "id": 53,
+            "name": "05_ballast_tray",
+            "triangle_count": 11260
+          },
+          {
+            "bbox": {
+              "depth": 36.0,
+              "height": 36.70786666870117,
+              "width": 42.0,
+              "x": 77.53910827636719,
+              "y": 16.0,
+              "z": -3.435058459899665e-08
+            },
+            "id": 57,
+            "name": "03_foot_01",
+            "triangle_count": 3636
+          },
+          {
+            "bbox": {
+              "depth": 36.0,
+              "height": 36.70786666870117,
+              "width": 42.0,
+              "x": 121.53910827636719,
+              "y": 16.0,
+              "z": -3.435058459899665e-08
+            },
+            "id": 61,
+            "name": "03_foot_02",
+            "triangle_count": 3636
+          },
+          {
+            "bbox": {
+              "depth": 36.0,
+              "height": 36.70786666870117,
+              "width": 42.0,
+              "x": 165.5391082763672,
+              "y": 16.0,
+              "z": -3.435058459899665e-08
+            },
+            "id": 65,
+            "name": "03_foot_03",
+            "triangle_count": 3636
+          },
+          {
+            "bbox": {
+              "depth": 36.0,
+              "height": 36.70786666870117,
+              "width": 42.0,
+              "x": 209.5391082763672,
+              "y": 16.0,
+              "z": -3.435058459899665e-08
+            },
+            "id": 69,
+            "name": "03_foot_04",
+            "triangle_count": 3636
+          },
+          {
+            "bbox": {
+              "depth": 12.0,
+              "height": 8.0,
+              "width": 116.0,
+              "x": 20.0,
+              "y": 2.0,
+              "z": 0.0
+            },
+            "id": 73,
+            "name": "02_base_spoke_01",
+            "triangle_count": 1510
+          },
+          {
+            "bbox": {
+              "depth": 12.0,
+              "height": 8.0,
+              "width": 116.0,
+              "x": 138.0,
+              "y": 2.0,
+              "z": 0.0
+            },
+            "id": 77,
+            "name": "02_base_spoke_02",
+            "triangle_count": 1510
+          },
+          {
+            "bbox": {
+              "depth": 12.0,
+              "height": 8.0,
+              "width": 116.0,
+              "x": 77.53910827636719,
+              "y": 54.0,
+              "z": 0.0
+            },
+            "id": 81,
+            "name": "02_base_spoke_03",
+            "triangle_count": 1510
+          },
+          {
+            "bbox": {
+              "depth": 12.0,
+              "height": 8.0,
+              "width": 116.0,
+              "x": 77.53910827636719,
+              "y": 68.0,
+              "z": 0.0
+            },
+            "id": 85,
+            "name": "02_base_spoke_04",
+            "triangle_count": 1510
+          },
+          {
+            "bbox": {
+              "depth": 24.910385131835938,
+              "height": 20.0,
+              "width": 26.707866668701172,
+              "x": 77.53910827636719,
+              "y": 84.0,
+              "z": 0.0
+            },
+            "id": 89,
+            "name": "04_top_saddle_01",
+            "triangle_count": 1700
+          },
+          {
+            "bbox": {
+              "depth": 24.910385131835938,
+              "height": 20.0,
+              "width": 26.707881927490234,
+              "x": 106.2469711303711,
+              "y": 84.0,
+              "z": 0.0
+            },
+            "id": 93,
+            "name": "04_top_saddle_02",
+            "triangle_count": 1700
+          },
+          {
+            "bbox": {
+              "depth": 24.910385131835938,
+              "height": 20.0,
+              "width": 26.707855224609375,
+              "x": 134.95484924316406,
+              "y": 84.0,
+              "z": 0.0
+            },
+            "id": 97,
+            "name": "04_top_saddle_03",
+            "triangle_count": 1700
+          },
+          {
+            "bbox": {
+              "depth": 24.910385131835938,
+              "height": 20.0,
+              "width": 26.707862854003906,
+              "x": 163.6627197265625,
+              "y": 84.0,
+              "z": 0.0
+            },
+            "id": 101,
+            "name": "04_top_saddle_04",
+            "triangle_count": 1700
+          }
+        ],
+        "sliced_time": 10631,
+        "sliced_time_with_cache": 7408,
+        "total_predication": 40125.09375,
+        "triangle_count": 55540,
+        "warning_message": ""
+      }
+    ],
+    "sparse_infill_density": 40.0,
+    "upward_compatible_machine": [
+      "Bambu Lab P1P 0.4 nozzle",
+      "Bambu Lab X1 0.4 nozzle",
+      "Bambu Lab X1 Carbon 0.4 nozzle",
+      "Bambu Lab X1E 0.4 nozzle",
+      "Bambu Lab A1 0.4 nozzle",
+      "Bambu Lab H2D 0.4 nozzle",
+      "Bambu Lab H2D Pro 0.4 nozzle",
+      "Bambu Lab H2S 0.4 nozzle",
+      "Bambu Lab P2S 0.4 nozzle",
+      "Bambu Lab H2C 0.4 nozzle",
+      "Bambu Lab X2D 0.4 nozzle",
+      "Bambu Lab A2L 0.4 nozzle"
+    ],
+    "wall_loops": 4
+  },
+  "elapsed_s": 12.344,
+  "isolated_runtime": "C:\\Users\\10001176180\\Documents\\BSP\\.tools\\feeder_v11_slicer_runtime",
+  "printer_transmission_performed": false,
+  "command": [
+    "--debug",
+    "3",
+    "--load-settings",
+    "C:\\Users\\10001176180\\Documents\\BSP\\feeder_v11_light_stand\\slicer\\draft\\settings\\machine.json;C:\\Users\\10001176180\\Documents\\BSP\\feeder_v11_light_stand\\slicer\\draft\\settings\\process_stand.json",
+    "--load-filaments",
+    "C:\\Users\\10001176180\\Documents\\BSP\\feeder_v11_light_stand\\slicer\\draft\\settings\\filament_pla.json",
+    "--curr-bed-type",
+    "Textured PEI Plate",
+    "--arrange",
+    "0",
+    "--orient",
+    "0",
+    "--outputdir",
+    "C:\\Users\\10001176180\\Documents\\BSP\\feeder_v11_light_stand\\slicer\\draft\\logs",
+    "--slice",
+    "0",
+    "--export-3mf",
+    "feeder_v11_light_stand_P1S_PLA_sliced.3mf",
+    "--export-settings",
+    "C:\\Users\\10001176180\\Documents\\BSP\\feeder_v11_light_stand\\slicer\\draft\\logs\\effective_global_settings.json",
+    "C:\\Users\\10001176180\\Documents\\BSP\\feeder_v11_light_stand\\slicer\\draft\\projects\\feeder_v11_light_stand_P1S_PLA.3mf"
+  ],
+  "object_settings_preserved": true,
+  "single_PLA_filament": true,
+  "promoted_from": "slicer/draft",
+  "re_sliced_for_promotion": false
+}

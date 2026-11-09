@@ -1,0 +1,314 @@
+{
+  "units": "mm",
+  "parts": [
+    {
+      "name": "01_funnel",
+      "source": "parts\\body\\01_funnel.stl",
+      "source_sha256": "25d604cf3b0fcee411bc4f0aa1b8a81ec3f6b3d887b85e98c37adb165b03a2b6",
+      "x": 72,
+      "y": 72,
+      "angle_deg": 0,
+      "bounds": [
+        [
+          8.5,
+          8.519737243652344,
+          0.0
+        ],
+        [
+          135.5,
+          135.48026275634766,
+          79.0
+        ]
+      ],
+      "triangles": 7680,
+      "source_version": "feeder_v7_short_m3"
+    },
+    {
+      "name": "04_bearing_cartridge",
+      "source": "parts\\body\\04_bearing_cartridge.stl",
+      "source_sha256": "a06ec95056d68b175917766cf67c20b1eac9dd1d9b06fa3b07ad1729044ed890",
+      "x": 26.0,
+      "y": 201.0,
+      "angle_deg": 0,
+      "bounds": [
+        [
+          6.277837753295898,
+          183.0,
+          0.0
+        ],
+        [
+          45.7221622467041,
+          219.0,
+          21.0
+        ]
+      ],
+      "triangles": 9042,
+      "source_version": "feeder_v7_short_m3"
+    },
+    {
+      "name": "05_lower_cap",
+      "source": "parts\\body\\05_lower_cap.stl",
+      "source_sha256": "96e40dddc97adfef2ea34be60add3486622bf5d5525e57809a932d704b6c00b1",
+      "x": 28.0,
+      "y": 154.0,
+      "angle_deg": 0,
+      "bounds": [
+        [
+          6.0,
+          132.00683784484863,
+          0.0
+        ],
+        [
+          50.0,
+          175.99316215515137,
+          4.000000000000003
+        ]
+      ],
+      "triangles": 2532,
+      "source_version": "feeder_v7_short_m3"
+    },
+    {
+      "name": "06_upper_cap",
+      "source": "parts\\body\\06_upper_cap.stl",
+      "source_sha256": "b87727ac6e06e166a5e5412c6f74310155997e4df5fcd653170ce5512443e157",
+      "x": 226.0,
+      "y": 28.0,
+      "angle_deg": 0,
+      "bounds": [
+        [
+          204.0,
+          6.006837844848633,
+          0.0
+        ],
+        [
+          248.0,
+          49.99316215515137,
+          3.0
+        ]
+      ],
+      "triangles": 2532,
+      "source_version": "feeder_v7_short_m3"
+    },
+    {
+      "name": "07_shaft_collar",
+      "source": "parts\\body\\07_shaft_collar.stl",
+      "source_sha256": "c3f57e468a8f797aa385f38c6b70668b7929caad6ae82fd246264a897ec042d4",
+      "x": 222.0,
+      "y": 114.0,
+      "angle_deg": 0,
+      "bounds": [
+        [
+          213.0,
+          105.00279712677002,
+          0.0
+        ],
+        [
+          231.0,
+          122.99720287322998,
+          9.899999618530275
+        ]
+      ],
+      "triangles": 2704,
+      "source_version": "feeder_v7_short_m3"
+    },
+    {
+      "name": "08_motor_cradle",
+      "source": "parts\\body\\08_motor_cradle.stl",
+      "source_sha256": "7c608b00431c8ac754176977491d802d0511c59f1003149e2e4e34d260c60789",
+      "x": 216.0,
+      "y": 80.0,
+      "angle_deg": 0,
+      "bounds": [
+        [
+          183.0,
+          63.0,
+          0.0
+        ],
+        [
+          249.0,
+          97.0,
+          22.0
+        ]
+      ],
+      "triangles": 1656,
+      "source_version": "feeder_v7_short_m3"
+    },
+    {
+      "name": "09_motor_spacer_left",
+      "source": "parts\\body\\09_motor_spacer_left.stl",
+      "source_sha256": "6b3b2e01360f7a0565587044514aeb1e15d9829458a094c62aee0bc091e73b6b",
+      "x": 29.0,
+      "y": 11.0,
+      "angle_deg": 0,
+      "bounds": [
+        [
+          24.0,
+          6.001554012298584,
+          0.0
+        ],
+        [
+          34.0,
+          15.998445987701416,
+          13.0
+        ]
+      ],
+      "triangles": 2296,
+      "source_version": "feeder_v7_short_m3"
+    },
+    {
+      "name": "10_motor_spacer_right",
+      "source": "parts\\body\\10_motor_spacer_right.stl",
+      "source_sha256": "b41e420a2f0c4c8e9c33b82ab720c54cbbbddecc11749bff98e1a550aa58e43d",
+      "x": 116.0,
+      "y": 11.0,
+      "angle_deg": 0,
+      "bounds": [
+        [
+          111.0,
+          6.001554012298584,
+          0.0
+        ],
+        [
+          121.0,
+          15.998445987701416,
+          13.0
+        ]
+      ],
+      "triangles": 2296,
+      "source_version": "feeder_v7_short_m3"
+    },
+    {
+      "name": "C_curved_rod",
+      "source": "parts\\rotor\\C_curved_rod.stl",
+      "source_sha256": "85037105fbeab5b768a5fa96c4b45cc618ad91e3f0cfbc1403c3b990dd646cb2",
+      "x": 158.0,
+      "y": 89.0,
+      "angle_deg": 0,
+      "bounds": [
+        [
+          149.67500019073486,
+          84.10152292251587,
+          0.0
+        ],
+        [
+          166.32499980926514,
+          93.89847707748413,
+          80.25
+        ]
+      ],
+      "triangles": 19408,
+      "source_version": "feeder_v8_rotor_trials"
+    },
+    {
+      "name": "01_fixed_frame",
+      "source": "parts\\height_adjust\\01_fixed_frame.stl",
+      "source_sha256": "82daff5ae69aa4808cfccd7b66e9f4f975fe2ffeb03cfe118a5c8591af31e9a3",
+      "x": 184,
+      "y": 184,
+      "angle_deg": 0,
+      "bounds": [
+        [
+          120.5,
+          120.51973724365234,
+          0.0
+        ],
+        [
+          247.5,
+          247.48026275634766,
+          18.200000762939453
+        ]
+      ],
+      "triangles": 6232,
+      "source_version": "feeder_v9_height_adjust"
+    },
+    {
+      "name": "02_moving_bridge",
+      "source": "parts\\height_adjust\\02_moving_bridge.stl",
+      "source_sha256": "750a63ae98b081f59a8d2cc1634f1ae2663da03b4d12a9d1afcff8034e9ea4ac",
+      "x": 165.0,
+      "y": 36.0,
+      "angle_deg": 0,
+      "bounds": [
+        [
+          132.0,
+          6.399999618530273,
+          0.0
+        ],
+        [
+          198.0,
+          65.60000038146973,
+          8.000000000000002
+        ]
+      ],
+      "triangles": 6804,
+      "source_version": "feeder_v9_height_adjust"
+    },
+    {
+      "name": "03_guide_shoe",
+      "source": "parts\\height_adjust\\03_guide_shoe.stl",
+      "source_sha256": "e3ee6960b8999c09680d8600015a438bdbbfda0de7ae2bf2e75ebc55c2c246e7",
+      "x": 70.0,
+      "y": 205.0,
+      "angle_deg": 0,
+      "bounds": [
+        [
+          51.0,
+          195.0,
+          0.0
+        ],
+        [
+          89.0,
+          215.0,
+          15.699999809265137
+        ]
+      ],
+      "triangles": 3140,
+      "source_version": "feeder_v9_height_adjust"
+    },
+    {
+      "name": "04_screw_bridge",
+      "source": "parts\\height_adjust\\04_screw_bridge.stl",
+      "source_sha256": "6806c474e548a11df23e6c749bba7dab96162e8485667551f92a3c665cf63fab",
+      "x": 88.0,
+      "y": 149.0,
+      "angle_deg": 0,
+      "bounds": [
+        [
+          57.5,
+          141.75,
+          0.0
+        ],
+        [
+          118.5,
+          156.25,
+          4.0
+        ]
+      ],
+      "triangles": 1536,
+      "source_version": "feeder_v9_height_adjust"
+    },
+    {
+      "name": "05_head_keeper",
+      "source": "parts\\height_adjust\\05_head_keeper.stl",
+      "source_sha256": "68c45c14f09ab0fc0ca5dc7a5a14981bd2f935d29047044f23e1ce390a2fbf03",
+      "x": 82.0,
+      "y": 179.0,
+      "angle_deg": 0,
+      "bounds": [
+        [
+          51.5,
+          171.75,
+          0.0
+        ],
+        [
+          112.5,
+          186.25,
+          5.300000190734863
+        ]
+      ],
+      "triangles": 2040,
+      "source_version": "feeder_v9_height_adjust"
+    }
+  ],
+  "packing_clearance": "Convex model projections offset 3 mm; C reserved radius 20 mm; edge margin 3 mm; excluded area expanded to 20 x 30 mm."
+}

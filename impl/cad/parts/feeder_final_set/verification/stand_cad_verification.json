@@ -1,0 +1,546 @@
+{
+  "all_checks_passed": true,
+  "issues": [],
+  "observations": [
+    "base_outer_1_nut_1: the installed leg obstructs later insertion; assemble base joints before legs."
+  ],
+  "parameters": {
+    "outlet_height": 500.0,
+    "feet_radius": 130.0,
+    "foot_joint_z": 24.0,
+    "top_joint_radius": 71.0,
+    "top_joint_z": 548.0,
+    "spoke_inner_joint": 28.0,
+    "spoke_outer_joint": 120.0,
+    "spoke_bottom_z": 2.0,
+    "lap": 24.0,
+    "leg_width": 14.0,
+    "leg_depth": 15.0,
+    "joint_width": 12.0,
+    "joint_depth": 14.0,
+    "leg_outer_wall_top": 8.0,
+    "leg_inner_half_width": 5.2,
+    "leg_inner_floor": 1.8,
+    "leg_inner_wall_top": 7.0,
+    "leg_inner_apex": 12.2,
+    "spoke_width": 12.0,
+    "spoke_depth": 8.0,
+    "tray_width": 80.0,
+    "tray_corner_cut": 28.0,
+    "tray_bottom": 2.0,
+    "tray_floor_top": 4.4,
+    "tray_support_top": 10.0,
+    "tray_rim_top": 13.0,
+    "assumed_feeder_load_kg": 0.5,
+    "minimum_ballast_kg": 0.5,
+    "leg_joint_length": 527.3111036191065,
+    "leg_pitch": 175.7703678730355,
+    "leg_module_length": 199.7703678730355,
+    "leg_angle_deg": 6.42418549863939,
+    "spoke_pitch": 92.0,
+    "spoke_length": 116.0
+  },
+  "source_sha256": "8476a6b9fe9e6ddc69f0724950d691f3aaefa0649bde128e5bdd8eeaf3b916c6",
+  "unique_parts": {
+    "01_leg_segment": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 16342.317654534743
+    },
+    "02_base_spoke": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 5731.388242370791
+    },
+    "03_foot": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 11454.908889805536
+    },
+    "04_top_saddle": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 4118.803252722091
+    },
+    "05_ballast_tray": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 19171.31777534989
+    }
+  },
+  "stand_intersections": [],
+  "metal_intersections": [],
+  "feeder_interface": [],
+  "tools": {
+    "leg_joint_1_0_screw_1": {},
+    "leg_joint_1_1_screw_1": {},
+    "leg_joint_1_2_screw_1": {},
+    "leg_joint_1_3_screw_1": {},
+    "base_outer_1_screw_1": {},
+    "base_inner_1_screw_1": {},
+    "base_inner_2_screw_1": {},
+    "base_inner_3_screw_1": {},
+    "base_inner_4_screw_1": {},
+    "rim_screw_1": {},
+    "rim_screw_2": {},
+    "rim_screw_3": {},
+    "rim_screw_4": {}
+  },
+  "nut_insertion": {
+    "leg_joint_1_0_nut_1": 0.0,
+    "leg_joint_1_1_nut_1": 0.0,
+    "leg_joint_1_2_nut_1": 0.0,
+    "leg_joint_1_3_nut_1": 0.0,
+    "base_outer_1_nut_1": 0.8551419814747816,
+    "base_inner_1_nut_1": 0.0,
+    "base_inner_2_nut_1": 0.0,
+    "base_inner_3_nut_1": 0.0,
+    "base_inner_4_nut_1": 0.0
+  },
+  "assembly_order_checks": {
+    "base_outer_1_nut_1": {
+      "final_assembly_path_intersection_mm3": 0.8551419814747816,
+      "before_legs_path_intersection_mm3": 0.0,
+      "required_order": "Install and tighten foot/spoke nuts before fitting the legs."
+    }
+  },
+  "bed_contact": {
+    "01_leg_segment": {
+      "first_layer_material_solids": 1,
+      "average_first_layer_area_mm2": 2412.167096933083,
+      "method": "CAD first 0.2 mm layer; not an adhesion guarantee."
+    },
+    "02_base_spoke": {
+      "first_layer_material_solids": 1,
+      "average_first_layer_area_mm2": 1103.3819467105848,
+      "method": "CAD first 0.2 mm layer; not an adhesion guarantee."
+    },
+    "03_foot": {
+      "first_layer_material_solids": 1,
+      "average_first_layer_area_mm2": 1504.274333882308,
+      "method": "CAD first 0.2 mm layer; not an adhesion guarantee."
+    },
+    "04_top_saddle": {
+      "first_layer_material_solids": 1,
+      "average_first_layer_area_mm2": 384.14278987437973,
+      "method": "CAD first 0.2 mm layer; not an adhesion guarantee."
+    },
+    "05_ballast_tray": {
+      "first_layer_material_solids": 1,
+      "average_first_layer_area_mm2": 4063.181959974095,
+      "method": "CAD first 0.2 mm layer; not an adhesion guarantee."
+    }
+  },
+  "large_key_checks": {
+    "8": {
+      "male_material_solids": 1,
+      "female_material_solids": 1,
+      "matched_intersection_mm3": 0.0,
+      "unclamped_pivot_intersection_mm3": {
+        "-5": 2.7153042979215885,
+        "-2": 0.11043137347114013,
+        "-1": 0.0,
+        "1": 0.0,
+        "2": 0.11043145450643559,
+        "5": 2.7153042754486023
+      },
+      "interpretation": "Rigid-body geometric blocking only; no proof of clamped stiffness or load capacity."
+    },
+    "14": {
+      "male_material_solids": 1,
+      "female_material_solids": 1,
+      "matched_intersection_mm3": 0.0,
+      "unclamped_pivot_intersection_mm3": {
+        "-5": 3.800683064239522,
+        "-2": 0.15135305977260277,
+        "-1": 0.0,
+        "1": 0.0,
+        "2": 0.15135312313590157,
+        "5": 3.800682815144144
+      },
+      "interpretation": "Rigid-body geometric blocking only; no proof of clamped stiffness or load capacity."
+    }
+  },
+  "symmetry_scope": {
+    "representative_metal_names": [
+      "leg_joint_1_0_screw_1",
+      "leg_joint_1_0_nut_1",
+      "leg_joint_1_1_screw_1",
+      "leg_joint_1_1_nut_1",
+      "leg_joint_1_2_screw_1",
+      "leg_joint_1_2_nut_1",
+      "leg_joint_1_3_screw_1",
+      "leg_joint_1_3_nut_1",
+      "base_inner_1_screw_1",
+      "base_inner_1_nut_1",
+      "base_outer_1_screw_1",
+      "base_outer_1_nut_1",
+      "rim_screw_1",
+      "rim_nut_1",
+      "base_inner_2_screw_1",
+      "base_inner_2_nut_1",
+      "rim_screw_2",
+      "rim_nut_2",
+      "base_inner_3_screw_1",
+      "base_inner_3_nut_1",
+      "rim_screw_3",
+      "rim_nut_3",
+      "base_inner_4_screw_1",
+      "base_inner_4_nut_1",
+      "rim_screw_4",
+      "rim_nut_4"
+    ],
+    "reason": "Legs, their joints, feet and saddles are identical copies rotated by 90 degrees. All four hub orientations and both tray join screws are checked separately.",
+    "all_printed_pair_count": 300,
+    "metal_pairs_checked": 1092
+  },
+  "dimensions": {
+    "max_joint_centre_error_mm": 1.1457157353758233e-13,
+    "foot_bounds_mm": [
+      [
+        -150.0,
+        -150.0,
+        0.0
+      ],
+      [
+        150.0,
+        150.0,
+        36.707868190161136
+      ]
+    ],
+    "actual_leg_centre_length_mm": 527.3111036191065,
+    "assembled_leg_endpoint_centre_length_mm": 527.3111036191065,
+    "outlet_height_mm": 500.0,
+    "saddle_seat_height_mm": 562
+  },
+  "fasteners": {
+    "leg_joint_1_0_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "leg_joint_1_1_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "leg_joint_1_2_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "leg_joint_1_3_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "base_inner_1_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "base_outer_1_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "rim_screw_1": {
+      "length_mm": 20.0,
+      "nut_engagement_mm": 2.3999999999999773
+    },
+    "leg_joint_2_0_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "leg_joint_2_1_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "leg_joint_2_2_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "leg_joint_2_3_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "base_inner_2_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "base_outer_2_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "rim_screw_2": {
+      "length_mm": 20.0,
+      "nut_engagement_mm": 2.3999999999999773
+    },
+    "leg_joint_3_0_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "leg_joint_3_1_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "leg_joint_3_2_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "leg_joint_3_3_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "base_inner_3_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "base_outer_3_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "rim_screw_3": {
+      "length_mm": 20.0,
+      "nut_engagement_mm": 2.3999999999999773
+    },
+    "leg_joint_4_0_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "leg_joint_4_1_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "leg_joint_4_2_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "leg_joint_4_3_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "base_inner_4_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "base_outer_4_screw_1": {
+      "length_mm": 15.0,
+      "nut_engagement_mm": 2.4
+    },
+    "rim_screw_4": {
+      "length_mm": 20.0,
+      "nut_engagement_mm": 2.3999999999999773
+    }
+  },
+  "saddle_body_clearance_mm": 0.29999999999999494,
+  "ballast_support": {
+    "test_footprint_diameter_mm": 60,
+    "support_height_mm": 10,
+    "approximate_horizontal_support_area_mm2": 810.690170803737,
+    "support_polygon_inradius_mm": 28.977774788672047,
+    "central_tube_clear_diameter_mm": 14,
+    "requirement": "Geometry screen for a broad flat ballast footprint. Not a strength or load rating; keep the optional tube passage clear.",
+    "octagonal_inner_minimum_radius_mm": 34.76955262170047
+  },
+  "static_indicator": {
+    "assumed_feeder_load_kg": 0.5,
+    "assumed_ballast_kg": 0.5,
+    "stand_weight_credited": false,
+    "conservative_support_inradius_mm": 91.92388155425117,
+    "force_application_height_mm": 600,
+    "theoretical_horizontal_tipping_force_N": 1.5029554634120068,
+    "disclaimer": "Static indicator only: no material strength, joint stiffness, floor friction or impact validation."
+  },
+  "unchanged_v9_source": {
+    "copied_sha256": "85a6dc051aa1af4932f9c55618ea0e4ce36f87c5105cf37f1bf3f84ca9cf5c4a",
+    "original_sha256": "85a6dc051aa1af4932f9c55618ea0e4ce36f87c5105cf37f1bf3f84ca9cf5c4a"
+  },
+  "readback": {
+    "01_leg_segment": {
+      "valid": true,
+      "STEP_difference_mm3": 0.0,
+      "mesh_vertex_error_mm": 3.85448012539504e-06,
+      "mesh_watertight": true
+    },
+    "02_base_spoke": {
+      "valid": true,
+      "STEP_difference_mm3": 0.0,
+      "mesh_vertex_error_mm": 2.3052583267403754e-06,
+      "mesh_watertight": true
+    },
+    "03_foot": {
+      "valid": true,
+      "STEP_difference_mm3": 0.0,
+      "mesh_vertex_error_mm": 1.3864811480436019e-06,
+      "mesh_watertight": true
+    },
+    "04_top_saddle": {
+      "valid": true,
+      "STEP_difference_mm3": 0.0,
+      "mesh_vertex_error_mm": 1.207172973904766e-06,
+      "mesh_watertight": true
+    },
+    "05_ballast_tray": {
+      "valid": true,
+      "STEP_difference_mm3": 0.0,
+      "mesh_vertex_error_mm": 1.9211309331279176e-06,
+      "mesh_watertight": true
+    }
+  },
+  "incremental_foot_update": {
+    "all_checks_passed": true,
+    "baseline_source_sha256": "e14a7cfcb58c028fc96a49433e0c552137009f74fd4115a5c621d0add0d52e4e",
+    "source_sha256": "d7a8e3128f120b78b2128e6b038f491085137c2538af8a6bdc846b7af3712164",
+    "changed_functions": [
+      "foot"
+    ],
+    "parts": {
+      "01_leg_segment": {
+        "material_added_mm3": 0.0,
+        "material_removed_mm3": 0.0,
+        "volume_mm3": 16342.317654534743,
+        "STEP_difference_mm3": 0.0,
+        "mesh_watertight": true,
+        "STL_3MF_vertex_error_mm": 3.85448012539504e-06,
+        "source_print_mesh_vertex_error_mm": 3.802966202257265e-06,
+        "first_layer_material_solids": 1,
+        "first_layer_average_area_mm2": 2412.167096933083
+      },
+      "02_base_spoke": {
+        "material_added_mm3": 0.0,
+        "material_removed_mm3": 0.0,
+        "volume_mm3": 5731.388242370791,
+        "STEP_difference_mm3": 0.0,
+        "mesh_watertight": true,
+        "STL_3MF_vertex_error_mm": 2.3052583267403754e-06,
+        "source_print_mesh_vertex_error_mm": 1.9018198853083486e-06,
+        "first_layer_material_solids": 1,
+        "first_layer_average_area_mm2": 1103.3819467105848
+      },
+      "03_foot": {
+        "material_added_mm3": 235.95999999999998,
+        "material_removed_mm3": 0.0,
+        "volume_mm3": 11454.908889805536,
+        "STEP_difference_mm3": 0.0,
+        "mesh_watertight": true,
+        "STL_3MF_vertex_error_mm": 1.3864811480436019e-06,
+        "source_print_mesh_vertex_error_mm": 1.5317955923742554e-06,
+        "first_layer_material_solids": 1,
+        "first_layer_average_area_mm2": 1504.274333882308
+      },
+      "04_top_saddle": {
+        "material_added_mm3": 0.0,
+        "material_removed_mm3": 0.0,
+        "volume_mm3": 4118.803252722091,
+        "STEP_difference_mm3": 0.0,
+        "mesh_watertight": true,
+        "STL_3MF_vertex_error_mm": 1.207172973904766e-06,
+        "source_print_mesh_vertex_error_mm": 7.901366971163809e-07,
+        "first_layer_material_solids": 1,
+        "first_layer_average_area_mm2": 384.14278987437973
+      },
+      "05_ballast_tray": {
+        "material_added_mm3": 0.0,
+        "material_removed_mm3": 0.0,
+        "volume_mm3": 24342.458535357993,
+        "STEP_difference_mm3": 0.0,
+        "mesh_watertight": true,
+        "STL_3MF_vertex_error_mm": 2.8435305216275833e-06,
+        "source_print_mesh_vertex_error_mm": 2.3802151830054835e-06,
+        "first_layer_material_solids": 1,
+        "first_layer_average_area_mm2": 5617.447442431532
+      }
+    },
+    "representative_new_foot_intersections": {},
+    "fourfold_equivalence": "The other feet are identical quarter-turn copies; no feeder interface lies near the changed Z0..4 region.",
+    "first_layer_area_added_mm2": 71.99999999999977
+  },
+  "incremental_octagonal_update": {
+    "all_checks_passed": true,
+    "baseline_source_sha256": "d7a8e3128f120b78b2128e6b038f491085137c2538af8a6bdc846b7af3712164",
+    "source_sha256": "8476a6b9fe9e6ddc69f0724950d691f3aaefa0649bde128e5bdd8eeaf3b916c6",
+    "changed_functions": [
+      "hub_raw"
+    ],
+    "parts": {
+      "01_leg_segment": {
+        "material_added_mm3": 0.0,
+        "material_removed_mm3": 0.0,
+        "volume_mm3": 16342.317654534743,
+        "STEP_difference_mm3": 0.0,
+        "STL_3MF_vertex_error_mm": 3.85448012539504e-06,
+        "source_print_mesh_error_mm": 3.802966202257265e-06,
+        "mesh_watertight": true,
+        "first_layer_material_solids": 1,
+        "first_layer_average_area_mm2": 2412.167096933083
+      },
+      "02_base_spoke": {
+        "material_added_mm3": 0.0,
+        "material_removed_mm3": 0.0,
+        "volume_mm3": 5731.388242370791,
+        "STEP_difference_mm3": 0.0,
+        "STL_3MF_vertex_error_mm": 2.3052583267403754e-06,
+        "source_print_mesh_error_mm": 1.9018198853083486e-06,
+        "mesh_watertight": true,
+        "first_layer_material_solids": 1,
+        "first_layer_average_area_mm2": 1103.3819467105848
+      },
+      "03_foot": {
+        "material_added_mm3": 0.0,
+        "material_removed_mm3": 0.0,
+        "volume_mm3": 11454.908889805536,
+        "STEP_difference_mm3": 0.0,
+        "STL_3MF_vertex_error_mm": 1.3864811480436019e-06,
+        "source_print_mesh_error_mm": 1.5317955923742554e-06,
+        "mesh_watertight": true,
+        "first_layer_material_solids": 1,
+        "first_layer_average_area_mm2": 1504.274333882308
+      },
+      "04_top_saddle": {
+        "material_added_mm3": 0.0,
+        "material_removed_mm3": 0.0,
+        "volume_mm3": 4118.803252722091,
+        "STEP_difference_mm3": 0.0,
+        "STL_3MF_vertex_error_mm": 1.207172973904766e-06,
+        "source_print_mesh_error_mm": 7.901366971163809e-07,
+        "mesh_watertight": true,
+        "first_layer_material_solids": 1,
+        "first_layer_average_area_mm2": 384.14278987437973
+      },
+      "05_ballast_tray": {
+        "material_added_mm3": 1867.986077382211,
+        "material_removed_mm3": 7039.12685114954,
+        "volume_mm3": 19171.31777534989,
+        "STEP_difference_mm3": 0.0,
+        "STL_3MF_vertex_error_mm": 1.9211309331279176e-06,
+        "source_print_mesh_error_mm": 1.3443088700485187e-06,
+        "mesh_watertight": true,
+        "first_layer_material_solids": 1,
+        "first_layer_average_area_mm2": 4063.181959974095
+      }
+    },
+    "protected_joints": {
+      "0": 0.0,
+      "90": 0.0,
+      "180": 0.0,
+      "270": 0.0
+    },
+    "intersections": {},
+    "tool_access": {
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0,
+      "4": 0.0
+    },
+    "nut_access": {
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0,
+      "4": 0.0
+    },
+    "central_60mm_support_geometry_difference_mm3": 0.0,
+    "packing_dimensions": {
+      "rotated_45_span_xy_mm": [
+        73.53910524340095,
+        73.53910524340095
+      ],
+      "inner_minimum_radius_mm": 34.76955262170047,
+      "axis_aligned_square_inside_inner_rim_mm": 49.17157287525381
+    }
+  }
+}

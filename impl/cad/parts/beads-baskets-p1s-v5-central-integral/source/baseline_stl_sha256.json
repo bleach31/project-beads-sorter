@@ -1,0 +1,17 @@
+{
+  "stl/base_with_docking.stl": "876803a8fade73d322a5080058fa4f6af4f6796c846cbbb1bfb922ccca07ccd1",
+  "stl/central_lid.stl": "0fae9ec923b5ee12b9dffe58a0e989f0491f314604582d6db7fb64a31b52650f",
+  "stl/dock_fit_pins.stl": "765a6cb7c160b5fd7a7792911a9fd04582130957daa1dc177b64ef0200596c55",
+  "stl/dock_fit_socket.stl": "5b96a06e1c75ed726461640dcb3313fedc8b3d3c5787b2cb975cbd8938050e4c",
+  "stl/joint_fit_female.stl": "2a64e3e4dcaec3cf4b04ff54aaa020d291a58b2a048b1cea40fdbb0896876da5",
+  "stl/joint_fit_male.stl": "30bfaa3b6b648d416d6536e384abd542d79e299714b4bdbf47dcaa3d366a3583",
+  "stl/lid_27.stl": "13312397e15a8f0461bc4f3ec571d99289a05ae1be5ace94a261483393496f2c",
+  "stl/lid_90.stl": "4042c64a70ded6b7d160e1c0cdb406e0650fc751b93461fe35066a6ecfd61aa7",
+  "stl/lid_fit_cup.stl": "0d379b2143183a5eb09397b4bed8b4d2d1802075f2fffb1502c21fe86a1bfebe",
+  "stl/lid_fit_lid.stl": "6485d2d29f1915ab8805ed577b00f5b06ac798ba040bb59cf8cbf803852a58a8",
+  "stl/smooth_u_chute.stl": "3f0d0e9b9abcf5f4b9de3ef3e92cb5ae7151d7726a2ce38810a8434c7a563594",
+  "optional_reprint_stl/02_motor_carrier.stl": "71ae05412d19b20ccd45bb34d3921dc34a75c5d63becf97a7c2096b14f1abe5b",
+  "optional_reprint_stl/03_drive_gear_80t.stl": "4beadd92e4e2e884f69f4c96e476df306c1f26cb4ac9b626b0bcd2342b542458",
+  "optional_reprint_stl/04_output_gear_20t_spindle.stl": "421e12d0af3945ed79fe50251e040d4332b3e2068539617b643b38c09dead5dd",
+  "optional_reprint_stl/05_split_bearing_cap.stl": "3c785d1fff3d84a5ecf6afb0bca293302c70839f2feccdf07a82b2fd3a6232a7"
+}

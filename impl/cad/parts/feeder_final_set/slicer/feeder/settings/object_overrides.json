@@ -1,0 +1,104 @@
+{
+  "01_funnel": {
+    "enable_support": "0",
+    "raft_layers": "0",
+    "brim_type": "outer_only",
+    "brim_width": "2",
+    "elefant_foot_compensation": "0.15"
+  },
+  "04_bearing_cartridge": {
+    "enable_support": "0",
+    "raft_layers": "0",
+    "brim_type": "outer_only",
+    "brim_width": "2",
+    "elefant_foot_compensation": "0.15"
+  },
+  "05_lower_cap": {
+    "enable_support": "0",
+    "raft_layers": "0",
+    "brim_type": "outer_only",
+    "brim_width": "2",
+    "elefant_foot_compensation": "0.15"
+  },
+  "06_upper_cap": {
+    "enable_support": "0",
+    "raft_layers": "0",
+    "brim_type": "outer_only",
+    "brim_width": "2",
+    "elefant_foot_compensation": "0.15"
+  },
+  "07_shaft_collar": {
+    "enable_support": "0",
+    "raft_layers": "0",
+    "brim_type": "outer_only",
+    "brim_width": "2",
+    "elefant_foot_compensation": "0.15"
+  },
+  "08_motor_cradle": {
+    "enable_support": "0",
+    "raft_layers": "0",
+    "brim_type": "outer_only",
+    "brim_width": "2",
+    "elefant_foot_compensation": "0.15"
+  },
+  "09_motor_spacer_left": {
+    "enable_support": "0",
+    "raft_layers": "0",
+    "brim_type": "outer_only",
+    "brim_width": "2",
+    "elefant_foot_compensation": "0.15"
+  },
+  "10_motor_spacer_right": {
+    "enable_support": "0",
+    "raft_layers": "0",
+    "brim_type": "outer_only",
+    "brim_width": "2",
+    "elefant_foot_compensation": "0.15"
+  },
+  "C_curved_rod": {
+    "enable_support": "1",
+    "support_type": "tree(auto)",
+    "support_on_build_plate_only": "1",
+    "brim_type": "no_brim",
+    "brim_width": "0",
+    "raft_layers": "2",
+    "raft_expansion": "8",
+    "raft_contact_distance": "0.1",
+    "elefant_foot_compensation": "0"
+  },
+  "01_fixed_frame": {
+    "enable_support": "0",
+    "raft_layers": "0",
+    "brim_type": "outer_only",
+    "brim_width": "2",
+    "elefant_foot_compensation": "0.15"
+  },
+  "02_moving_bridge": {
+    "enable_support": "0",
+    "raft_layers": "0",
+    "brim_type": "outer_only",
+    "brim_width": "2",
+    "elefant_foot_compensation": "0.15"
+  },
+  "03_guide_shoe": {
+    "enable_support": "0",
+    "raft_layers": "0",
+    "brim_type": "outer_only",
+    "brim_width": "2",
+    "elefant_foot_compensation": "0.15"
+  },
+  "04_screw_bridge": {
+    "enable_support": "0",
+    "raft_layers": "0",
+    "brim_type": "outer_only",
+    "brim_width": "2",
+    "elefant_foot_compensation": "0.15"
+  },
+  "05_head_keeper": {
+    "enable_support": "0",
+    "raft_layers": "0",
+    "brim_type": "outer_only",
+    "brim_width": "2",
+    "elefant_foot_compensation": "0.15"
+  }
+}

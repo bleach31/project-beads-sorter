@@ -1,0 +1,164 @@
+{
+  "unchanged_source_files_verified": 71,
+  "unique_print_meshes": [
+    {
+      "name": "01_funnel",
+      "quantity": 1,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 47216.0915841687,
+      "bottom_z_mm": -2.0812524632835239e-16
+    },
+    {
+      "name": "04_bearing_cartridge",
+      "quantity": 1,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 10373.525448848419,
+      "bottom_z_mm": -1.6331926012047495e-15
+    },
+    {
+      "name": "05_lower_cap",
+      "quantity": 1,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 5166.783346819581,
+      "bottom_z_mm": -2.6933856248003308e-15
+    },
+    {
+      "name": "06_upper_cap",
+      "quantity": 1,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 3875.087510114686,
+      "bottom_z_mm": 0.0
+    },
+    {
+      "name": "07_shaft_collar",
+      "quantity": 1,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 1297.2782148283334,
+      "bottom_z_mm": -1.1018395160297071e-15
+    },
+    {
+      "name": "08_motor_cradle",
+      "quantity": 1,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 9856.759498488336,
+      "bottom_z_mm": 0.0
+    },
+    {
+      "name": "09_motor_spacer_left",
+      "quantity": 1,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 732.7171357900676,
+      "bottom_z_mm": 0.0
+    },
+    {
+      "name": "10_motor_spacer_right",
+      "quantity": 1,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 732.7171357900676,
+      "bottom_z_mm": 0.0
+    },
+    {
+      "name": "C_curved_rod",
+      "quantity": 1,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 3071.644868809835,
+      "bottom_z_mm": 0.0
+    },
+    {
+      "name": "01_fixed_frame",
+      "quantity": 1,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 39746.25885091922,
+      "bottom_z_mm": 0.0
+    },
+    {
+      "name": "02_moving_bridge",
+      "quantity": 1,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 10931.16460623921,
+      "bottom_z_mm": -2.4021278401727825e-15
+    },
+    {
+      "name": "03_guide_shoe",
+      "quantity": 1,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 5522.808048777638,
+      "bottom_z_mm": -3.3306690738754696e-16
+    },
+    {
+      "name": "04_screw_bridge",
+      "quantity": 1,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 3398.9479118919858,
+      "bottom_z_mm": 0.0
+    },
+    {
+      "name": "05_head_keeper",
+      "quantity": 1,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 4405.833185634584,
+      "bottom_z_mm": -2.9382387094125523e-16
+    },
+    {
+      "name": "01_leg_segment",
+      "quantity": 12,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 16342.339877028886,
+      "bottom_z_mm": 0.0
+    },
+    {
+      "name": "02_base_spoke",
+      "quantity": 4,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 5731.40577725174,
+      "bottom_z_mm": 0.0
+    },
+    {
+      "name": "03_foot",
+      "quantity": 4,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 11454.832871227709,
+      "bottom_z_mm": 0.0
+    },
+    {
+      "name": "04_top_saddle",
+      "quantity": 4,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 4120.02799826319,
+      "bottom_z_mm": 0.0
+    },
+    {
+      "name": "05_ballast_tray",
+      "quantity": 1,
+      "closed": true,
+      "winding_consistent": true,
+      "volume_mm3": 19171.89386981819,
+      "bottom_z_mm": 0.0
+    }
+  ],
+  "total_printed_parts": 39,
+  "hardware_screws": 46,
+  "hardware_nuts": 46,
+  "document_links_valid": true,
+  "final_feeder_and_rotor_toolpath_reports_passed": true,
+  "all_six_print_projects_valid_zip": true,
+  "all_three_sliced_projects_contain_gcode": true
+}

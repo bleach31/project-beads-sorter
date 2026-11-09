@@ -1,0 +1,134 @@
+{
+  "slicer": "Bambu Studio 2.8.2.61",
+  "printer": "Bambu Lab P1S 0.4 nozzle",
+  "filament": "Generic PLA",
+  "layer_height_mm": 0.16,
+  "initial_layer_height_mm": 0.2,
+  "wall_loops": 4,
+  "infill": "40% gyroid",
+  "top_bottom_layers": 6,
+  "source": "plates\\optional_rotor_C_geometry.3mf",
+  "source_sha256": "879a38017f5750e0fcff61ac4b61dc6c818377bf75106bdb7670b5c39e4eeb72",
+  "object_overrides": {
+    "C_curved_rod": {
+      "enable_support": "1",
+      "support_type": "tree(auto)",
+      "support_on_build_plate_only": "1",
+      "brim_type": "no_brim",
+      "brim_width": "0",
+      "raft_layers": "2",
+      "raft_expansion": "8",
+      "raft_contact_distance": "0.1",
+      "elefant_foot_compensation": "0"
+    }
+  },
+  "configured_project": "print\\optional_rotor_C_P1S_PLA.3mf",
+  "sliced_project": "print\\optional_rotor_C_P1S_PLA_sliced.3mf",
+  "returncode": 0,
+  "result": {
+    "error_string": "Success.",
+    "export_time": 233,
+    "layer_height": 0.1599999964237213,
+    "plate_index": 0,
+    "prepare_time": 483,
+    "return_code": 0,
+    "sliced_plates": [
+      {
+        "feature_type_times": {
+          "Bridge": 2.508012294769287,
+          "Custom": 362.4112243652344,
+          "Flush": 29.0,
+          "Gap infill": 4.744263648986816,
+          "Inner wall": 1211.7484130859375,
+          "Internal solid infill": 162.66607666015625,
+          "Outer wall": 607.2388305664062,
+          "Overhang wall": 0.02479180321097374,
+          "Sparse infill": 209.07127380371094,
+          "Support": 29.60544776916504,
+          "Support interface": 4.330343246459961,
+          "Top surface": 11.0746488571167,
+          "Travel": 208.42124938964844,
+          "Undefined": 193.10008239746094
+        },
+        "filament_change_times": 0,
+        "filaments": [
+          {
+            "filament_id": "GFL99",
+            "id": 1,
+            "main_used_g": 3.6182119846343994,
+            "total_used_g": 3.6182122230529785
+          }
+        ],
+        "generate_support_material_time": 144,
+        "id": 1,
+        "infill_time": 121,
+        "layer_filament_change": 0,
+        "main_predication": 2422.4111328125,
+        "make_perimeters_time": 230,
+        "obj_cached_cnt": 0,
+        "objects": [
+          {
+            "bbox": {
+              "depth": 9.796955108642578,
+              "height": 80.25,
+              "width": 16.649993896484375,
+              "x": 119.67500305175781,
+              "y": 123.10153198242188,
+              "z": 0.0
+            },
+            "id": 5,
+            "name": "C_curved_rod",
+            "triangle_count": 19408
+          }
+        ],
+        "sliced_time": 1472,
+        "sliced_time_with_cache": 850,
+        "total_predication": 2827.470458984375,
+        "triangle_count": 19408,
+        "warning_message": ""
+      }
+    ],
+    "sparse_infill_density": 40.0,
+    "upward_compatible_machine": [
+      "Bambu Lab P1P 0.4 nozzle",
+      "Bambu Lab X1 0.4 nozzle",
+      "Bambu Lab X1 Carbon 0.4 nozzle",
+      "Bambu Lab X1E 0.4 nozzle",
+      "Bambu Lab A1 0.4 nozzle",
+      "Bambu Lab H2D 0.4 nozzle",
+      "Bambu Lab H2D Pro 0.4 nozzle",
+      "Bambu Lab H2S 0.4 nozzle",
+      "Bambu Lab P2S 0.4 nozzle",
+      "Bambu Lab H2C 0.4 nozzle",
+      "Bambu Lab X2D 0.4 nozzle",
+      "Bambu Lab A2L 0.4 nozzle"
+    ],
+    "wall_loops": 4
+  },
+  "elapsed_seconds": 2.6570000000065193,
+  "settings_preserved": true,
+  "printer_transmission_performed": false,
+  "command": [
+    "--debug",
+    "3",
+    "--load-settings",
+    "C:\\Users\\10001176180\\Documents\\BSP\\feeder_final_set\\slicer\\rotor\\settings\\machine.json;C:\\Users\\10001176180\\Documents\\BSP\\feeder_final_set\\slicer\\rotor\\settings\\process.json",
+    "--load-filaments",
+    "C:\\Users\\10001176180\\Documents\\BSP\\feeder_final_set\\slicer\\rotor\\settings\\filament_pla.json",
+    "--curr-bed-type",
+    "Textured PEI Plate",
+    "--arrange",
+    "0",
+    "--orient",
+    "0",
+    "--outputdir",
+    "C:\\Users\\10001176180\\Documents\\BSP\\feeder_final_set\\slicer\\rotor\\logs",
+    "--slice",
+    "0",
+    "--export-3mf",
+    "optional_rotor_C_P1S_PLA_sliced.3mf",
+    "--export-settings",
+    "C:\\Users\\10001176180\\Documents\\BSP\\feeder_final_set\\slicer\\rotor\\logs\\effective_global_settings.json",
+    "C:\\Users\\10001176180\\Documents\\BSP\\feeder_final_set\\print\\optional_rotor_C_P1S_PLA.3mf"
+  ]
+}

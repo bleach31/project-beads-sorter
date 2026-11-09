@@ -1,0 +1,13 @@
+{
+  "C_curved_rod": {
+    "enable_support": "1",
+    "support_type": "tree(auto)",
+    "support_on_build_plate_only": "1",
+    "brim_type": "no_brim",
+    "brim_width": "0",
+    "raft_layers": "2",
+    "raft_expansion": "8",
+    "raft_contact_distance": "0.1",
+    "elefant_foot_compensation": "0"
+  }
+}

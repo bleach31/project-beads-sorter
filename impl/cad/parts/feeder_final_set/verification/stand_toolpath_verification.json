@@ -1,0 +1,239 @@
+{
+  "stage": "final",
+  "slicer": "Bambu Studio 2.8.2.61",
+  "printer": "Bambu Lab P1S 0.4 nozzle",
+  "main_layer_height_mm": 0.2,
+  "initial_layer_height_mm": 0.2,
+  "initial_layer_speed_mm_s": 25,
+  "initial_layer_infill_speed_mm_s": 50,
+  "single_PLA_filament": true,
+  "filament_changes": 0,
+  "plate_count": 1,
+  "object_count": 25,
+  "unique_part_types": 5,
+  "geometry_and_layout_preserved": true,
+  "max_project_vertex_deviation_mm": 1.757287113234628e-05,
+  "all_model_objects_start_at_z0": true,
+  "source_snapshot_matches_current_plate_and_STLs": true,
+  "actual_support_or_raft_segments": 0,
+  "brim_segments": 0,
+  "warning_message": "",
+  "estimated_seconds": 40125.09375,
+  "estimated_filament_g": 340.1256408691406,
+  "extrusion_bounds_in_nozzle_bed_coordinates_mm": [
+    [
+      2.21,
+      2.21,
+      0.2
+    ],
+    [
+      253.79,
+      253.79,
+      36.6
+    ]
+  ],
+  "official_nozzle_offset_xy_mm": [
+    0.0,
+    2.0
+  ],
+  "all_print_paths_inside_bed": true,
+  "excluded_rectangle_intersections": 0,
+  "part_observations": {
+    "01_leg_segment_01": {
+      "initial_layer_model_segments": 751,
+      "initial_layer_deposited_volume_mm3": 463.9075331051393,
+      "initial_layer_extrusion_equivalent_area_mm2": 2319.5376655256964,
+      "model_bounds_preserved": true
+    },
+    "01_leg_segment_02": {
+      "initial_layer_model_segments": 752,
+      "initial_layer_deposited_volume_mm3": 463.9074128410455,
+      "initial_layer_extrusion_equivalent_area_mm2": 2319.5370642052276,
+      "model_bounds_preserved": true
+    },
+    "01_leg_segment_03": {
+      "initial_layer_model_segments": 752,
+      "initial_layer_deposited_volume_mm3": 463.9074128410455,
+      "initial_layer_extrusion_equivalent_area_mm2": 2319.5370642052276,
+      "model_bounds_preserved": true
+    },
+    "01_leg_segment_04": {
+      "initial_layer_model_segments": 752,
+      "initial_layer_deposited_volume_mm3": 463.9074128410455,
+      "initial_layer_extrusion_equivalent_area_mm2": 2319.5370642052276,
+      "model_bounds_preserved": true
+    },
+    "01_leg_segment_05": {
+      "initial_layer_model_segments": 752,
+      "initial_layer_deposited_volume_mm3": 463.9074128410455,
+      "initial_layer_extrusion_equivalent_area_mm2": 2319.5370642052276,
+      "model_bounds_preserved": true
+    },
+    "01_leg_segment_06": {
+      "initial_layer_model_segments": 752,
+      "initial_layer_deposited_volume_mm3": 463.9074128410455,
+      "initial_layer_extrusion_equivalent_area_mm2": 2319.5370642052276,
+      "model_bounds_preserved": true
+    },
+    "01_leg_segment_07": {
+      "initial_layer_model_segments": 752,
+      "initial_layer_deposited_volume_mm3": 463.9074128410455,
+      "initial_layer_extrusion_equivalent_area_mm2": 2319.5370642052276,
+      "model_bounds_preserved": true
+    },
+    "01_leg_segment_08": {
+      "initial_layer_model_segments": 752,
+      "initial_layer_deposited_volume_mm3": 463.9074128410455,
+      "initial_layer_extrusion_equivalent_area_mm2": 2319.5370642052276,
+      "model_bounds_preserved": true
+    },
+    "01_leg_segment_09": {
+      "initial_layer_model_segments": 752,
+      "initial_layer_deposited_volume_mm3": 463.9074128410455,
+      "initial_layer_extrusion_equivalent_area_mm2": 2319.5370642052276,
+      "model_bounds_preserved": true
+    },
+    "01_leg_segment_10": {
+      "initial_layer_model_segments": 753,
+      "initial_layer_deposited_volume_mm3": 463.8354227545146,
+      "initial_layer_extrusion_equivalent_area_mm2": 2319.1771137725727,
+      "model_bounds_preserved": true
+    },
+    "01_leg_segment_11": {
+      "initial_layer_model_segments": 753,
+      "initial_layer_deposited_volume_mm3": 463.8354227545146,
+      "initial_layer_extrusion_equivalent_area_mm2": 2319.1771137725727,
+      "model_bounds_preserved": true
+    },
+    "01_leg_segment_12": {
+      "initial_layer_model_segments": 753,
+      "initial_layer_deposited_volume_mm3": 463.8354227545146,
+      "initial_layer_extrusion_equivalent_area_mm2": 2319.1771137725727,
+      "model_bounds_preserved": true
+    },
+    "05_ballast_tray": {
+      "initial_layer_model_segments": 1151,
+      "initial_layer_deposited_volume_mm3": 786.9200760516794,
+      "initial_layer_extrusion_equivalent_area_mm2": 3934.600380258397,
+      "model_bounds_preserved": true
+    },
+    "03_foot_01": {
+      "initial_layer_model_segments": 572,
+      "initial_layer_deposited_volume_mm3": 291.6708542085419,
+      "initial_layer_extrusion_equivalent_area_mm2": 1458.3542710427096,
+      "model_bounds_preserved": true
+    },
+    "03_foot_02": {
+      "initial_layer_model_segments": 572,
+      "initial_layer_deposited_volume_mm3": 291.6704693634419,
+      "initial_layer_extrusion_equivalent_area_mm2": 1458.3523468172093,
+      "model_bounds_preserved": true
+    },
+    "03_foot_03": {
+      "initial_layer_model_segments": 570,
+      "initial_layer_deposited_volume_mm3": 291.67032504652934,
+      "initial_layer_extrusion_equivalent_area_mm2": 1458.3516252326467,
+      "model_bounds_preserved": true
+    },
+    "03_foot_04": {
+      "initial_layer_model_segments": 570,
+      "initial_layer_deposited_volume_mm3": 291.67032504652934,
+      "initial_layer_extrusion_equivalent_area_mm2": 1458.3516252326467,
+      "model_bounds_preserved": true
+    },
+    "02_base_spoke_01": {
+      "initial_layer_model_segments": 477,
+      "initial_layer_deposited_volume_mm3": 210.82656430203377,
+      "initial_layer_extrusion_equivalent_area_mm2": 1054.1328215101687,
+      "model_bounds_preserved": true
+    },
+    "02_base_spoke_02": {
+      "initial_layer_model_segments": 476,
+      "initial_layer_deposited_volume_mm3": 210.82658835485253,
+      "initial_layer_extrusion_equivalent_area_mm2": 1054.1329417742627,
+      "model_bounds_preserved": true
+    },
+    "02_base_spoke_03": {
+      "initial_layer_model_segments": 476,
+      "initial_layer_deposited_volume_mm3": 210.82673267176506,
+      "initial_layer_extrusion_equivalent_area_mm2": 1054.1336633588253,
+      "model_bounds_preserved": true
+    },
+    "02_base_spoke_04": {
+      "initial_layer_model_segments": 476,
+      "initial_layer_deposited_volume_mm3": 210.82663646049002,
+      "initial_layer_extrusion_equivalent_area_mm2": 1054.13318230245,
+      "model_bounds_preserved": true
+    },
+    "04_top_saddle_01": {
+      "initial_layer_model_segments": 547,
+      "initial_layer_deposited_volume_mm3": 72.25805898460106,
+      "initial_layer_extrusion_equivalent_area_mm2": 361.2902949230053,
+      "model_bounds_preserved": true
+    },
+    "04_top_saddle_02": {
+      "initial_layer_model_segments": 543,
+      "initial_layer_deposited_volume_mm3": 72.25584612527568,
+      "initial_layer_extrusion_equivalent_area_mm2": 361.27923062637836,
+      "model_bounds_preserved": true
+    },
+    "04_top_saddle_03": {
+      "initial_layer_model_segments": 547,
+      "initial_layer_deposited_volume_mm3": 72.25839572406362,
+      "initial_layer_extrusion_equivalent_area_mm2": 361.29197862031805,
+      "model_bounds_preserved": true
+    },
+    "04_top_saddle_04": {
+      "initial_layer_model_segments": 549,
+      "initial_layer_deposited_volume_mm3": 72.2565196042008,
+      "initial_layer_extrusion_equivalent_area_mm2": 361.282598021004,
+      "model_bounds_preserved": true
+    }
+  },
+  "cad_first_layer_contact": {
+    "01_leg_segment": {
+      "first_layer_material_solids": 1,
+      "average_first_layer_area_mm2": 2412.167096933083,
+      "method": "CAD first 0.2 mm layer; not an adhesion guarantee."
+    },
+    "02_base_spoke": {
+      "first_layer_material_solids": 1,
+      "average_first_layer_area_mm2": 1103.3819467105848,
+      "method": "CAD first 0.2 mm layer; not an adhesion guarantee."
+    },
+    "03_foot": {
+      "first_layer_material_solids": 1,
+      "average_first_layer_area_mm2": 1504.274333882308,
+      "method": "CAD first 0.2 mm layer; not an adhesion guarantee."
+    },
+    "04_top_saddle": {
+      "first_layer_material_solids": 1,
+      "average_first_layer_area_mm2": 384.14278987437973,
+      "method": "CAD first 0.2 mm layer; not an adhesion guarantee."
+    },
+    "05_ballast_tray": {
+      "first_layer_material_solids": 1,
+      "average_first_layer_area_mm2": 4063.181959974095,
+      "method": "CAD first 0.2 mm layer; not an adhesion guarantee."
+    }
+  },
+  "cad_contact_reference": "analysis/independent_verification.json; reused, not recalculated here",
+  "first_layer_area_note": "Extrusion-equivalent areas are volume divided by layer height, not exact union/contact areas.",
+  "key_roof_hole_checks": {
+    "sample_instance": "01_leg_segment_01",
+    "core_path_intersections": 954,
+    "deep_hollow_core_intrusions": 0,
+    "tapered_key_path_samples": 118,
+    "key_path_layer_center_z_range_mm": [
+      2.6999999999999997,
+      11.3
+    ],
+    "m3_bore_path_samples": 108,
+    "m3_bore_deep_core_intrusions": 0,
+    "scope": "Path retention and open core checks, not a physical fit or load test."
+  },
+  "verification_scope": "Model extrusion after layer markers; machine startup/end custom G-code excluded.",
+  "printer_transmission_performed": false,
+  "promoted_without_repeat_slice": true,
+  "all_checks_passed": true
+}

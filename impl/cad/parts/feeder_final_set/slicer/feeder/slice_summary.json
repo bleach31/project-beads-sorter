@@ -1,0 +1,396 @@
+{
+  "slicer": "Bambu Studio 2.8.2.61",
+  "printer": "Bambu Lab P1S 0.4 nozzle",
+  "filament": "Generic PLA",
+  "layer_height_mm": 0.16,
+  "initial_layer_height_mm": 0.2,
+  "wall_loops": 4,
+  "infill": "40% gyroid",
+  "top_bottom_layers": 6,
+  "source": "plates\\01_feeder_geometry.3mf",
+  "source_sha256": "ce4cf79d6e5a0cf10e83cf8cbf1001162c280f4975f945b93aad1bf64f251978",
+  "object_overrides": {
+    "01_funnel": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "outer_only",
+      "brim_width": "2",
+      "elefant_foot_compensation": "0.15"
+    },
+    "04_bearing_cartridge": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "outer_only",
+      "brim_width": "2",
+      "elefant_foot_compensation": "0.15"
+    },
+    "05_lower_cap": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "outer_only",
+      "brim_width": "2",
+      "elefant_foot_compensation": "0.15"
+    },
+    "06_upper_cap": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "outer_only",
+      "brim_width": "2",
+      "elefant_foot_compensation": "0.15"
+    },
+    "07_shaft_collar": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "outer_only",
+      "brim_width": "2",
+      "elefant_foot_compensation": "0.15"
+    },
+    "08_motor_cradle": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "outer_only",
+      "brim_width": "2",
+      "elefant_foot_compensation": "0.15"
+    },
+    "09_motor_spacer_left": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "outer_only",
+      "brim_width": "2",
+      "elefant_foot_compensation": "0.15"
+    },
+    "10_motor_spacer_right": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "outer_only",
+      "brim_width": "2",
+      "elefant_foot_compensation": "0.15"
+    },
+    "C_curved_rod": {
+      "enable_support": "1",
+      "support_type": "tree(auto)",
+      "support_on_build_plate_only": "1",
+      "brim_type": "no_brim",
+      "brim_width": "0",
+      "raft_layers": "2",
+      "raft_expansion": "8",
+      "raft_contact_distance": "0.1",
+      "elefant_foot_compensation": "0"
+    },
+    "01_fixed_frame": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "outer_only",
+      "brim_width": "2",
+      "elefant_foot_compensation": "0.15"
+    },
+    "02_moving_bridge": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "outer_only",
+      "brim_width": "2",
+      "elefant_foot_compensation": "0.15"
+    },
+    "03_guide_shoe": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "outer_only",
+      "brim_width": "2",
+      "elefant_foot_compensation": "0.15"
+    },
+    "04_screw_bridge": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "outer_only",
+      "brim_width": "2",
+      "elefant_foot_compensation": "0.15"
+    },
+    "05_head_keeper": {
+      "enable_support": "0",
+      "raft_layers": "0",
+      "brim_type": "outer_only",
+      "brim_width": "2",
+      "elefant_foot_compensation": "0.15"
+    }
+  },
+  "configured_project": "print\\01_feeder_P1S_PLA.3mf",
+  "sliced_project": "print\\01_feeder_P1S_PLA_sliced.3mf",
+  "returncode": 0,
+  "result": {
+    "error_string": "Success.",
+    "export_time": 1708,
+    "layer_height": 0.1599999964237213,
+    "plate_index": 0,
+    "prepare_time": 417,
+    "return_code": 0,
+    "sliced_plates": [
+      {
+        "feature_type_times": {
+          "Bottom surface": 627.7545776367188,
+          "Bridge": 631.9710083007812,
+          "Brim": 187.4598388671875,
+          "Custom": 362.5815734863281,
+          "Flush": 29.0,
+          "Gap infill": 376.10675048828125,
+          "Inner wall": 7113.58251953125,
+          "Internal solid infill": 3056.30224609375,
+          "Outer wall": 5254.14697265625,
+          "Overhang wall": 117.11157989501953,
+          "Sparse infill": 3350.96044921875,
+          "Support": 33.25484085083008,
+          "Support interface": 4.330777168273926,
+          "Top surface": 609.481201171875,
+          "Travel": 2175.596923828125,
+          "Undefined": 2160.033447265625
+        },
+        "filament_change_times": 0,
+        "filaments": [
+          {
+            "filament_id": "GFL99",
+            "id": 1,
+            "main_used_g": 155.2403564453125,
+            "total_used_g": 155.2403564453125
+          }
+        ],
+        "generate_support_material_time": 583,
+        "id": 1,
+        "infill_time": 3102,
+        "layer_filament_change": 0,
+        "main_predication": 23510.359375,
+        "make_perimeters_time": 2039,
+        "obj_cached_cnt": 0,
+        "objects": [
+          {
+            "bbox": {
+              "depth": 126.96053314208984,
+              "height": 79.0,
+              "width": 127.0,
+              "x": 8.5,
+              "y": 8.51974105834961,
+              "z": 0.0
+            },
+            "id": 5,
+            "name": "01_funnel",
+            "triangle_count": 7680
+          },
+          {
+            "bbox": {
+              "depth": 36.0,
+              "height": 21.0,
+              "width": 39.44432830810547,
+              "x": 6.277837753295898,
+              "y": 183.0,
+              "z": 0.0
+            },
+            "id": 9,
+            "name": "04_bearing_cartridge",
+            "triangle_count": 9042
+          },
+          {
+            "bbox": {
+              "depth": 43.986328125,
+              "height": 4.0,
+              "width": 44.0,
+              "x": 6.0,
+              "y": 132.0068359375,
+              "z": 0.0
+            },
+            "id": 13,
+            "name": "05_lower_cap",
+            "triangle_count": 2532
+          },
+          {
+            "bbox": {
+              "depth": 43.986328125,
+              "height": 3.0,
+              "width": 44.0,
+              "x": 204.0,
+              "y": 6.006837844848633,
+              "z": 0.0
+            },
+            "id": 17,
+            "name": "06_upper_cap",
+            "triangle_count": 2532
+          },
+          {
+            "bbox": {
+              "depth": 17.994400024414062,
+              "height": 9.899999618530273,
+              "width": 18.0,
+              "x": 213.0,
+              "y": 105.00279998779297,
+              "z": 7.34862837248329e-10
+            },
+            "id": 21,
+            "name": "07_shaft_collar",
+            "triangle_count": 2704
+          },
+          {
+            "bbox": {
+              "depth": 34.0,
+              "height": 22.0,
+              "width": 66.0,
+              "x": 183.0,
+              "y": 63.0,
+              "z": 0.0
+            },
+            "id": 25,
+            "name": "08_motor_cradle",
+            "triangle_count": 1656
+          },
+          {
+            "bbox": {
+              "depth": 9.996892929077148,
+              "height": 13.0,
+              "width": 10.0,
+              "x": 24.0,
+              "y": 6.001554012298584,
+              "z": 0.0
+            },
+            "id": 29,
+            "name": "09_motor_spacer_left",
+            "triangle_count": 2296
+          },
+          {
+            "bbox": {
+              "depth": 9.996892929077148,
+              "height": 13.0,
+              "width": 10.0,
+              "x": 111.0,
+              "y": 6.001554012298584,
+              "z": 0.0
+            },
+            "id": 33,
+            "name": "10_motor_spacer_right",
+            "triangle_count": 2296
+          },
+          {
+            "bbox": {
+              "depth": 9.796951293945312,
+              "height": 80.25,
+              "width": 16.649993896484375,
+              "x": 149.6750030517578,
+              "y": 84.10152435302734,
+              "z": 0.0
+            },
+            "id": 37,
+            "name": "C_curved_rod",
+            "triangle_count": 19408
+          },
+          {
+            "bbox": {
+              "depth": 126.96053314208984,
+              "height": 18.200000762939453,
+              "width": 127.0,
+              "x": 120.5,
+              "y": 120.51974487304688,
+              "z": -1.469725674496658e-09
+            },
+            "id": 41,
+            "name": "01_fixed_frame",
+            "triangle_count": 6232
+          },
+          {
+            "bbox": {
+              "depth": 59.19999694824219,
+              "height": 8.0,
+              "width": 66.0,
+              "x": 132.0,
+              "y": 6.399999618530273,
+              "z": 0.0
+            },
+            "id": 45,
+            "name": "02_moving_bridge",
+            "triangle_count": 6804
+          },
+          {
+            "bbox": {
+              "depth": 20.0,
+              "height": 15.699999809265137,
+              "width": 38.0,
+              "x": 51.0,
+              "y": 195.0,
+              "z": -4.632568106899271e-09
+            },
+            "id": 49,
+            "name": "03_guide_shoe",
+            "triangle_count": 3140
+          },
+          {
+            "bbox": {
+              "depth": 14.5,
+              "height": 4.0,
+              "width": 61.0,
+              "x": 57.5,
+              "y": 141.75,
+              "z": 0.0
+            },
+            "id": 53,
+            "name": "04_screw_bridge",
+            "triangle_count": 1536
+          },
+          {
+            "bbox": {
+              "depth": 14.5,
+              "height": 5.300000190734863,
+              "width": 61.0,
+              "x": 51.5,
+              "y": 171.75,
+              "z": 4.632568550988481e-09
+            },
+            "id": 57,
+            "name": "05_head_keeper",
+            "triangle_count": 2040
+          }
+        ],
+        "sliced_time": 18915,
+        "sliced_time_with_cache": 8633,
+        "total_predication": 23915.34765625,
+        "triangle_count": 69898,
+        "warning_message": ""
+      }
+    ],
+    "sparse_infill_density": 40.0,
+    "upward_compatible_machine": [
+      "Bambu Lab P1P 0.4 nozzle",
+      "Bambu Lab X1 0.4 nozzle",
+      "Bambu Lab X1 Carbon 0.4 nozzle",
+      "Bambu Lab X1E 0.4 nozzle",
+      "Bambu Lab A1 0.4 nozzle",
+      "Bambu Lab H2D 0.4 nozzle",
+      "Bambu Lab H2D Pro 0.4 nozzle",
+      "Bambu Lab H2S 0.4 nozzle",
+      "Bambu Lab P2S 0.4 nozzle",
+      "Bambu Lab H2C 0.4 nozzle",
+      "Bambu Lab X2D 0.4 nozzle",
+      "Bambu Lab A2L 0.4 nozzle"
+    ],
+    "wall_loops": 4
+  },
+  "elapsed_seconds": 21.953000000008615,
+  "settings_preserved": true,
+  "printer_transmission_performed": false,
+  "command": [
+    "--debug",
+    "3",
+    "--load-settings",
+    "C:\\Users\\10001176180\\Documents\\BSP\\feeder_final_set\\slicer\\feeder\\settings\\machine.json;C:\\Users\\10001176180\\Documents\\BSP\\feeder_final_set\\slicer\\feeder\\settings\\process.json",
+    "--load-filaments",
+    "C:\\Users\\10001176180\\Documents\\BSP\\feeder_final_set\\slicer\\feeder\\settings\\filament_pla.json",
+    "--curr-bed-type",
+    "Textured PEI Plate",
+    "--arrange",
+    "0",
+    "--orient",
+    "0",
+    "--outputdir",
+    "C:\\Users\\10001176180\\Documents\\BSP\\feeder_final_set\\slicer\\feeder\\logs",
+    "--slice",
+    "0",
+    "--export-3mf",
+    "01_feeder_P1S_PLA_sliced.3mf",
+    "--export-settings",
+    "C:\\Users\\10001176180\\Documents\\BSP\\feeder_final_set\\slicer\\feeder\\logs\\effective_global_settings.json",
+    "C:\\Users\\10001176180\\Documents\\BSP\\feeder_final_set\\print\\01_feeder_P1S_PLA.3mf"
+  ]
+}

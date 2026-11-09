@@ -1,0 +1,750 @@
+{
+  "kit": "Feeder final set",
+  "collected_date": "2026-11-08",
+  "units": "mm",
+  "geometry_changed": false,
+  "parts": [
+    {
+      "group": "body",
+      "name": "01_funnel",
+      "label_ja": "ファンネル",
+      "quantity": 1,
+      "source_version": "feeder_v7_short_m3",
+      "files": {
+        "stl": "parts/body/01_funnel.stl",
+        "3mf": "parts/body/01_funnel.3mf",
+        "step": "parts/body/01_funnel.step"
+      }
+    },
+    {
+      "group": "body",
+      "name": "04_bearing_cartridge",
+      "label_ja": "軸受ケース",
+      "quantity": 1,
+      "source_version": "feeder_v7_short_m3",
+      "files": {
+        "stl": "parts/body/04_bearing_cartridge.stl",
+        "3mf": "parts/body/04_bearing_cartridge.3mf",
+        "step": "parts/body/04_bearing_cartridge.step"
+      }
+    },
+    {
+      "group": "body",
+      "name": "05_lower_cap",
+      "label_ja": "下軸受押さえ",
+      "quantity": 1,
+      "source_version": "feeder_v7_short_m3",
+      "files": {
+        "stl": "parts/body/05_lower_cap.stl",
+        "3mf": "parts/body/05_lower_cap.3mf",
+        "step": "parts/body/05_lower_cap.step"
+      }
+    },
+    {
+      "group": "body",
+      "name": "06_upper_cap",
+      "label_ja": "上軸受押さえ",
+      "quantity": 1,
+      "source_version": "feeder_v7_short_m3",
+      "files": {
+        "stl": "parts/body/06_upper_cap.stl",
+        "3mf": "parts/body/06_upper_cap.3mf",
+        "step": "parts/body/06_upper_cap.step"
+      }
+    },
+    {
+      "group": "body",
+      "name": "07_shaft_collar",
+      "label_ja": "軸の抜け止めカラー",
+      "quantity": 1,
+      "source_version": "feeder_v7_short_m3",
+      "files": {
+        "stl": "parts/body/07_shaft_collar.stl",
+        "3mf": "parts/body/07_shaft_collar.3mf",
+        "step": "parts/body/07_shaft_collar.step"
+      }
+    },
+    {
+      "group": "body",
+      "name": "08_motor_cradle",
+      "label_ja": "モーター台",
+      "quantity": 1,
+      "source_version": "feeder_v7_short_m3",
+      "files": {
+        "stl": "parts/body/08_motor_cradle.stl",
+        "3mf": "parts/body/08_motor_cradle.3mf",
+        "step": "parts/body/08_motor_cradle.step"
+      }
+    },
+    {
+      "group": "body",
+      "name": "09_motor_spacer_left",
+      "label_ja": "左モーター支柱",
+      "quantity": 1,
+      "source_version": "feeder_v7_short_m3",
+      "files": {
+        "stl": "parts/body/09_motor_spacer_left.stl",
+        "3mf": "parts/body/09_motor_spacer_left.3mf",
+        "step": "parts/body/09_motor_spacer_left.step"
+      }
+    },
+    {
+      "group": "body",
+      "name": "10_motor_spacer_right",
+      "label_ja": "右モーター支柱",
+      "quantity": 1,
+      "source_version": "feeder_v7_short_m3",
+      "files": {
+        "stl": "parts/body/10_motor_spacer_right.stl",
+        "3mf": "parts/body/10_motor_spacer_right.3mf",
+        "step": "parts/body/10_motor_spacer_right.step"
+      }
+    },
+    {
+      "group": "rotor",
+      "name": "C_curved_rod",
+      "label_ja": "Cローター（丸い曲がり棒）",
+      "quantity": 1,
+      "source_version": "feeder_v8_rotor_trials",
+      "files": {
+        "stl": "parts/rotor/C_curved_rod.stl",
+        "3mf": "parts/rotor/C_curved_rod.3mf",
+        "step": "parts/rotor/C_curved_rod.step"
+      }
+    },
+    {
+      "group": "height_adjust",
+      "name": "01_fixed_frame",
+      "label_ja": "固定外枠とガイド",
+      "quantity": 1,
+      "source_version": "feeder_v9_height_adjust",
+      "files": {
+        "stl": "parts/height_adjust/01_fixed_frame.stl",
+        "3mf": "parts/height_adjust/01_fixed_frame.3mf",
+        "step": "parts/height_adjust/01_fixed_frame.step"
+      }
+    },
+    {
+      "group": "height_adjust",
+      "name": "02_moving_bridge",
+      "label_ja": "昇降ブリッジ",
+      "quantity": 1,
+      "source_version": "feeder_v9_height_adjust",
+      "files": {
+        "stl": "parts/height_adjust/02_moving_bridge.stl",
+        "3mf": "parts/height_adjust/02_moving_bridge.3mf",
+        "step": "parts/height_adjust/02_moving_bridge.step"
+      }
+    },
+    {
+      "group": "height_adjust",
+      "name": "03_guide_shoe",
+      "label_ja": "ガイドシュー",
+      "quantity": 1,
+      "source_version": "feeder_v9_height_adjust",
+      "files": {
+        "stl": "parts/height_adjust/03_guide_shoe.stl",
+        "3mf": "parts/height_adjust/03_guide_shoe.3mf",
+        "step": "parts/height_adjust/03_guide_shoe.step"
+      }
+    },
+    {
+      "group": "height_adjust",
+      "name": "04_screw_bridge",
+      "label_ja": "調整ねじの受け",
+      "quantity": 1,
+      "source_version": "feeder_v9_height_adjust",
+      "files": {
+        "stl": "parts/height_adjust/04_screw_bridge.stl",
+        "3mf": "parts/height_adjust/04_screw_bridge.3mf",
+        "step": "parts/height_adjust/04_screw_bridge.step"
+      }
+    },
+    {
+      "group": "height_adjust",
+      "name": "05_head_keeper",
+      "label_ja": "ねじ頭の抜け止め",
+      "quantity": 1,
+      "source_version": "feeder_v9_height_adjust",
+      "files": {
+        "stl": "parts/height_adjust/05_head_keeper.stl",
+        "3mf": "parts/height_adjust/05_head_keeper.3mf",
+        "step": "parts/height_adjust/05_head_keeper.step"
+      }
+    },
+    {
+      "group": "stand",
+      "name": "01_leg_segment",
+      "label_ja": "脚材",
+      "quantity": 12,
+      "source_version": "feeder_v11_light_stand",
+      "files": {
+        "stl": "parts/stand/01_leg_segment.stl",
+        "3mf": "parts/stand/01_leg_segment.3mf",
+        "step": "parts/stand/01_leg_segment.step"
+      }
+    },
+    {
+      "group": "stand",
+      "name": "02_base_spoke",
+      "label_ja": "足元のつなぎ材",
+      "quantity": 4,
+      "source_version": "feeder_v11_light_stand",
+      "files": {
+        "stl": "parts/stand/02_base_spoke.stl",
+        "3mf": "parts/stand/02_base_spoke.3mf",
+        "step": "parts/stand/02_base_spoke.step"
+      }
+    },
+    {
+      "group": "stand",
+      "name": "03_foot",
+      "label_ja": "足",
+      "quantity": 4,
+      "source_version": "feeder_v11_light_stand",
+      "files": {
+        "stl": "parts/stand/03_foot.stl",
+        "3mf": "parts/stand/03_foot.3mf",
+        "step": "parts/stand/03_foot.step"
+      }
+    },
+    {
+      "group": "stand",
+      "name": "04_top_saddle",
+      "label_ja": "上部取付部",
+      "quantity": 4,
+      "source_version": "feeder_v11_light_stand",
+      "files": {
+        "stl": "parts/stand/04_top_saddle.stl",
+        "3mf": "parts/stand/04_top_saddle.3mf",
+        "step": "parts/stand/04_top_saddle.step"
+      }
+    },
+    {
+      "group": "stand",
+      "name": "05_ballast_tray",
+      "label_ja": "一体の重り受け",
+      "quantity": 1,
+      "source_version": "feeder_v11_light_stand",
+      "files": {
+        "stl": "parts/stand/05_ballast_tray.stl",
+        "3mf": "parts/stand/05_ballast_tray.3mf",
+        "step": "parts/stand/05_ballast_tray.step"
+      }
+    }
+  ],
+  "part_types": 19,
+  "printed_part_count": 39,
+  "screws": [
+    {
+      "size": "M3",
+      "length_mm": 6,
+      "quantity": 1,
+      "use_ja": "カラー"
+    },
+    {
+      "size": "M3",
+      "length_mm": 8,
+      "quantity": 2,
+      "use_ja": "モーター台から支柱上側"
+    },
+    {
+      "size": "M3",
+      "length_mm": 12,
+      "quantity": 3,
+      "use_ja": "下軸受押さえ"
+    },
+    {
+      "size": "M3",
+      "length_mm": 12,
+      "quantity": 2,
+      "use_ja": "昇降ブリッジから支柱下側"
+    },
+    {
+      "size": "M3",
+      "length_mm": 15,
+      "quantity": 3,
+      "use_ja": "上軸受押さえ"
+    },
+    {
+      "size": "M3",
+      "length_mm": 15,
+      "quantity": 1,
+      "use_ja": "チューブ割り締め"
+    },
+    {
+      "size": "M3",
+      "length_mm": 15,
+      "quantity": 2,
+      "use_ja": "ガイドシューと昇降ブリッジ"
+    },
+    {
+      "size": "M3",
+      "length_mm": 15,
+      "quantity": 2,
+      "use_ja": "調整ねじの受けと頭押さえ"
+    },
+    {
+      "size": "M3",
+      "length_mm": 15,
+      "quantity": 1,
+      "use_ja": "高さ調整部のロック"
+    },
+    {
+      "size": "M3",
+      "length_mm": 15,
+      "quantity": 16,
+      "use_ja": "台座4脚の下端、中間2か所、上端"
+    },
+    {
+      "size": "M3",
+      "length_mm": 15,
+      "quantity": 8,
+      "use_ja": "足元つなぎ材の両端"
+    },
+    {
+      "size": "M3",
+      "length_mm": 20,
+      "quantity": 1,
+      "use_ja": "高さ調整"
+    },
+    {
+      "size": "M3",
+      "length_mm": 20,
+      "quantity": 4,
+      "use_ja": "固定外枠、ファンネルリム、台座上部取付部の共締め"
+    }
+  ],
+  "screw_totals_by_length_mm": {
+    "6": 1,
+    "8": 2,
+    "12": 5,
+    "15": 33,
+    "20": 5
+  },
+  "screw_total": 46,
+  "nut_M3_total": 46,
+  "screw_head_reference": {
+    "type": "socket cap",
+    "diameter_mm": 5.5,
+    "height_mm": 3.0
+  },
+  "nut_reference": {
+    "across_flats_mm": 5.5,
+    "thickness_mm": 2.4
+  },
+  "purchased_items": [
+    {
+      "item": "698Z",
+      "quantity": 2,
+      "bore_mm": 8,
+      "outer_diameter_mm": 19,
+      "width_mm": 6
+    },
+    {
+      "item": "PTFE tube",
+      "inner_diameter_mm": 6,
+      "outer_diameter_mm": 8,
+      "length": "route dependent"
+    },
+    {
+      "item": "existing motor",
+      "quantity": 1,
+      "model": "not recorded"
+    },
+    {
+      "item": "motor cable tie",
+      "quantity": 2,
+      "width_mm": "2 to 2.5"
+    },
+    {
+      "item": "low-mounted ballast",
+      "mass_g_approx": 500
+    }
+  ],
+  "constraints": {
+    "bead_diameter_mm": 5,
+    "bead_length_mm": 5,
+    "outlet_height_mm": 500,
+    "stand_footprint_mm": [
+      300,
+      300
+    ],
+    "max_M3_length_mm": 20
+  },
+  "physical_observations_ja": [
+    "Cは一本の丸い曲がり棒。A/B/Cの供給は良好との試験報告があり、Cの支持材除去がしやすかった。",
+    "V9の片持ち支持で中心が一定方向へずれ、安定したビーズ群が形成されなくなったとの報告。",
+    "落下前のビーズが羽と出口の間に挟まり、Cがたわんでパチンと解放することがある。",
+    "偏心量は未測定でCADへ意図した数値としては組み込んでいない。",
+    "V11台座の実印刷、実物の剛性、転倒、長期クリープは未確認。"
+  ],
+  "cad_notes_ja": [
+    "組立STEPは金物とPTFEの参照形状を含み、印刷対象ではない。",
+    "組立STEPの参照金物ではカラー用M3×6とナット1組が省略されている。BOMには含める。",
+    "組立STEPは公称中心位置。実物の静的な偏心を再現したものではない。"
+  ],
+  "excluded_parts": [
+    "V7 02_ramp_rotor",
+    "V7 03_flat_bridge",
+    "V8 A/B/D trial rotors",
+    "V10 stand parts"
+  ],
+  "unchanged_copy_provenance": [
+    {
+      "file": "parts/body/01_funnel.stl",
+      "source": "feeder_v7_short_m3/parts/01_funnel.stl",
+      "sha256": "25d604cf3b0fcee411bc4f0aa1b8a81ec3f6b3d887b85e98c37adb165b03a2b6"
+    },
+    {
+      "file": "parts/body/01_funnel.3mf",
+      "source": "feeder_v7_short_m3/parts/01_funnel.3mf",
+      "sha256": "4e4b7d0ecadbe1177a444e80e9b63fd19a69bc78174719d4d8721cf38f81ebdc"
+    },
+    {
+      "file": "parts/body/01_funnel.step",
+      "source": "feeder_v7_short_m3/parts/01_funnel.step",
+      "sha256": "2499070a2a17eec87560f18a020e88fa2761477113c4b1550aa11a835705507d"
+    },
+    {
+      "file": "parts/body/04_bearing_cartridge.stl",
+      "source": "feeder_v7_short_m3/parts/04_bearing_cartridge.stl",
+      "sha256": "a06ec95056d68b175917766cf67c20b1eac9dd1d9b06fa3b07ad1729044ed890"
+    },
+    {
+      "file": "parts/body/04_bearing_cartridge.3mf",
+      "source": "feeder_v7_short_m3/parts/04_bearing_cartridge.3mf",
+      "sha256": "40344e46f852bfa340aca18a59801db2a6ddedf38b57df6748c8904232448dc0"
+    },
+    {
+      "file": "parts/body/04_bearing_cartridge.step",
+      "source": "feeder_v7_short_m3/parts/04_bearing_cartridge.step",
+      "sha256": "1736049833baa8b04c0642efaf4ecfcd0f4657a3f5cce271966ff219046697a9"
+    },
+    {
+      "file": "parts/body/05_lower_cap.stl",
+      "source": "feeder_v7_short_m3/parts/05_lower_cap.stl",
+      "sha256": "96e40dddc97adfef2ea34be60add3486622bf5d5525e57809a932d704b6c00b1"
+    },
+    {
+      "file": "parts/body/05_lower_cap.3mf",
+      "source": "feeder_v7_short_m3/parts/05_lower_cap.3mf",
+      "sha256": "0d531615ac99b6a539d6b7c0aad9e68802c4e832670e5717cb1bfb5b33fabe72"
+    },
+    {
+      "file": "parts/body/05_lower_cap.step",
+      "source": "feeder_v7_short_m3/parts/05_lower_cap.step",
+      "sha256": "9d937362067e871b02101b929b0768bc6edcb6b814595394b2524ecddb2cb5bc"
+    },
+    {
+      "file": "parts/body/06_upper_cap.stl",
+      "source": "feeder_v7_short_m3/parts/06_upper_cap.stl",
+      "sha256": "b87727ac6e06e166a5e5412c6f74310155997e4df5fcd653170ce5512443e157"
+    },
+    {
+      "file": "parts/body/06_upper_cap.3mf",
+      "source": "feeder_v7_short_m3/parts/06_upper_cap.3mf",
+      "sha256": "ffd9396cde869e4bd83f1f070351dc86891cccff5df29dfce9bec5fd63d6f4bc"
+    },
+    {
+      "file": "parts/body/06_upper_cap.step",
+      "source": "feeder_v7_short_m3/parts/06_upper_cap.step",
+      "sha256": "7fb217787826db3060c26f2bf7452b295cdaaaf803ab1ba24016bfb888eca8c8"
+    },
+    {
+      "file": "parts/body/07_shaft_collar.stl",
+      "source": "feeder_v7_short_m3/parts/07_shaft_collar.stl",
+      "sha256": "c3f57e468a8f797aa385f38c6b70668b7929caad6ae82fd246264a897ec042d4"
+    },
+    {
+      "file": "parts/body/07_shaft_collar.3mf",
+      "source": "feeder_v7_short_m3/parts/07_shaft_collar.3mf",
+      "sha256": "b25360878669af5fffd72a9ddba0cee85e31926545249758b28c7efacfa4e869"
+    },
+    {
+      "file": "parts/body/07_shaft_collar.step",
+      "source": "feeder_v7_short_m3/parts/07_shaft_collar.step",
+      "sha256": "95f013ecaaa24b59a04979e617465fd33dcf1cd6570358fbc95993e2fd04659e"
+    },
+    {
+      "file": "parts/body/08_motor_cradle.stl",
+      "source": "feeder_v7_short_m3/parts/08_motor_cradle.stl",
+      "sha256": "7c608b00431c8ac754176977491d802d0511c59f1003149e2e4e34d260c60789"
+    },
+    {
+      "file": "parts/body/08_motor_cradle.3mf",
+      "source": "feeder_v7_short_m3/parts/08_motor_cradle.3mf",
+      "sha256": "8d62526579a54d16552739f762f5492dce66a69b38314ef234c61fb3e946af2a"
+    },
+    {
+      "file": "parts/body/08_motor_cradle.step",
+      "source": "feeder_v7_short_m3/parts/08_motor_cradle.step",
+      "sha256": "d5ad0dd7b6e3d47ffd76f2e27d3a044c36be46f226cdd543cec9906598c6ef18"
+    },
+    {
+      "file": "parts/body/09_motor_spacer_left.stl",
+      "source": "feeder_v7_short_m3/parts/09_motor_spacer_left.stl",
+      "sha256": "6b3b2e01360f7a0565587044514aeb1e15d9829458a094c62aee0bc091e73b6b"
+    },
+    {
+      "file": "parts/body/09_motor_spacer_left.3mf",
+      "source": "feeder_v7_short_m3/parts/09_motor_spacer_left.3mf",
+      "sha256": "b91f1840bbf90c7075f117f32018ade64aa96f661fd52b564125653195a081a5"
+    },
+    {
+      "file": "parts/body/09_motor_spacer_left.step",
+      "source": "feeder_v7_short_m3/parts/09_motor_spacer_left.step",
+      "sha256": "e2ad576222ddb79261c920a6cd089d8e63c5457839eddff124fd8ce5c0285079"
+    },
+    {
+      "file": "parts/body/10_motor_spacer_right.stl",
+      "source": "feeder_v7_short_m3/parts/10_motor_spacer_right.stl",
+      "sha256": "b41e420a2f0c4c8e9c33b82ab720c54cbbbddecc11749bff98e1a550aa58e43d"
+    },
+    {
+      "file": "parts/body/10_motor_spacer_right.3mf",
+      "source": "feeder_v7_short_m3/parts/10_motor_spacer_right.3mf",
+      "sha256": "d30b658e39a7d27f2a78e978ff08a492ac96ab747827b58cea0dc7deaee69e89"
+    },
+    {
+      "file": "parts/body/10_motor_spacer_right.step",
+      "source": "feeder_v7_short_m3/parts/10_motor_spacer_right.step",
+      "sha256": "351d4fc66835278778180779c76cacc7e19221354275f7daf54aaccbea410199"
+    },
+    {
+      "file": "parts/rotor/C_curved_rod.stl",
+      "source": "feeder_v8_rotor_trials/parts/C_curved_rod.stl",
+      "sha256": "85037105fbeab5b768a5fa96c4b45cc618ad91e3f0cfbc1403c3b990dd646cb2"
+    },
+    {
+      "file": "parts/rotor/C_curved_rod.3mf",
+      "source": "feeder_v8_rotor_trials/parts/C_curved_rod.3mf",
+      "sha256": "a926dd1de678fb031cade536e7fe5a3d3208b390eea33cc7fc434bcd85b04565"
+    },
+    {
+      "file": "parts/rotor/C_curved_rod.step",
+      "source": "feeder_v8_rotor_trials/parts/C_curved_rod.step",
+      "sha256": "05c1e1df669d3e870485850c6e42b2fbb54dbfb41f5dbb0aef79d2f4e04c8849"
+    },
+    {
+      "file": "parts/height_adjust/01_fixed_frame.stl",
+      "source": "feeder_v9_height_adjust/parts/01_fixed_frame.stl",
+      "sha256": "82daff5ae69aa4808cfccd7b66e9f4f975fe2ffeb03cfe118a5c8591af31e9a3"
+    },
+    {
+      "file": "parts/height_adjust/01_fixed_frame.3mf",
+      "source": "feeder_v9_height_adjust/parts/01_fixed_frame.3mf",
+      "sha256": "f085cd06a01c5f2302ad911af00e15f8aa06f324ea0ecf8184c72492aa25e638"
+    },
+    {
+      "file": "parts/height_adjust/01_fixed_frame.step",
+      "source": "feeder_v9_height_adjust/parts/01_fixed_frame.step",
+      "sha256": "127538bceba283619ded9af1987370d2555e7670f44b329ca093d5c5a1ff4247"
+    },
+    {
+      "file": "parts/height_adjust/02_moving_bridge.stl",
+      "source": "feeder_v9_height_adjust/parts/02_moving_bridge.stl",
+      "sha256": "750a63ae98b081f59a8d2cc1634f1ae2663da03b4d12a9d1afcff8034e9ea4ac"
+    },
+    {
+      "file": "parts/height_adjust/02_moving_bridge.3mf",
+      "source": "feeder_v9_height_adjust/parts/02_moving_bridge.3mf",
+      "sha256": "a534938321e746a364395248fa2557f4cb37dca96e02451b4554d46e4916a0d5"
+    },
+    {
+      "file": "parts/height_adjust/02_moving_bridge.step",
+      "source": "feeder_v9_height_adjust/parts/02_moving_bridge.step",
+      "sha256": "d96b6408ab07b0b537ac73dcc501dc16b73a7cc763a2b0509d3bf5b8a3461de0"
+    },
+    {
+      "file": "parts/height_adjust/03_guide_shoe.stl",
+      "source": "feeder_v9_height_adjust/parts/03_guide_shoe.stl",
+      "sha256": "e3ee6960b8999c09680d8600015a438bdbbfda0de7ae2bf2e75ebc55c2c246e7"
+    },
+    {
+      "file": "parts/height_adjust/03_guide_shoe.3mf",
+      "source": "feeder_v9_height_adjust/parts/03_guide_shoe.3mf",
+      "sha256": "944fb95f8b48fc01a7fc43e85574b4c3e8a606f8775cb9c1e4a5eae3c56277d4"
+    },
+    {
+      "file": "parts/height_adjust/03_guide_shoe.step",
+      "source": "feeder_v9_height_adjust/parts/03_guide_shoe.step",
+      "sha256": "3b80dbd5e5b839013ca003db3d11d59e8efa88d3ee5a27974e9c3bce6731111b"
+    },
+    {
+      "file": "parts/height_adjust/04_screw_bridge.stl",
+      "source": "feeder_v9_height_adjust/parts/04_screw_bridge.stl",
+      "sha256": "6806c474e548a11df23e6c749bba7dab96162e8485667551f92a3c665cf63fab"
+    },
+    {
+      "file": "parts/height_adjust/04_screw_bridge.3mf",
+      "source": "feeder_v9_height_adjust/parts/04_screw_bridge.3mf",
+      "sha256": "c7161edce3c913ce685843c1d6ca3c1f99410a450ed5c8a3e96a5313bb9599ac"
+    },
+    {
+      "file": "parts/height_adjust/04_screw_bridge.step",
+      "source": "feeder_v9_height_adjust/parts/04_screw_bridge.step",
+      "sha256": "64a7db8ecac522b76e09d839d2a2177684c14db494ab18bc8c7b44d5b2a5b1b9"
+    },
+    {
+      "file": "parts/height_adjust/05_head_keeper.stl",
+      "source": "feeder_v9_height_adjust/parts/05_head_keeper.stl",
+      "sha256": "68c45c14f09ab0fc0ca5dc7a5a14981bd2f935d29047044f23e1ce390a2fbf03"
+    },
+    {
+      "file": "parts/height_adjust/05_head_keeper.3mf",
+      "source": "feeder_v9_height_adjust/parts/05_head_keeper.3mf",
+      "sha256": "4268695250b8927150136ae357eed52c633320a06ccd28aa35cbffd12d6ce38e"
+    },
+    {
+      "file": "parts/height_adjust/05_head_keeper.step",
+      "source": "feeder_v9_height_adjust/parts/05_head_keeper.step",
+      "sha256": "dff0b54ba9bd44449ebe8cc131e0c21fc6dd46caf3764fd804ff8e97bd4a2ed2"
+    },
+    {
+      "file": "parts/stand/01_leg_segment.stl",
+      "source": "feeder_v11_light_stand/parts/01_leg_segment.stl",
+      "sha256": "62c86d00c45c3a8a040de73e39fe2fd029eb481c0acbde283a5460cd5e3f372c"
+    },
+    {
+      "file": "parts/stand/01_leg_segment.3mf",
+      "source": "feeder_v11_light_stand/parts/01_leg_segment.3mf",
+      "sha256": "bc5b2b43adb2d488880dee8be045df763e9a295e79656218c770f52885397440"
+    },
+    {
+      "file": "parts/stand/01_leg_segment.step",
+      "source": "feeder_v11_light_stand/parts/01_leg_segment.step",
+      "sha256": "61e1bee93c9492dd6cbb7d8c4baeb06e1809df5bf1063cd38fb6c63e743a893b"
+    },
+    {
+      "file": "parts/stand/02_base_spoke.stl",
+      "source": "feeder_v11_light_stand/parts/02_base_spoke.stl",
+      "sha256": "29353a4097392cb4a8ddec575064fe194c15eae4e431851a3be2a6e276b2b6a9"
+    },
+    {
+      "file": "parts/stand/02_base_spoke.3mf",
+      "source": "feeder_v11_light_stand/parts/02_base_spoke.3mf",
+      "sha256": "5939d5b27e6eaca7bd4cf7158234b9ee947ece5cf0949f93e79b8321f51ca0f9"
+    },
+    {
+      "file": "parts/stand/02_base_spoke.step",
+      "source": "feeder_v11_light_stand/parts/02_base_spoke.step",
+      "sha256": "beace6643828e557f75897e75a54fa67e6b9e971ef1d96f55aa1e9c05ee7e68a"
+    },
+    {
+      "file": "parts/stand/03_foot.stl",
+      "source": "feeder_v11_light_stand/parts/03_foot.stl",
+      "sha256": "028edd7120f68c0d0e32ce249c44045fc80bca8d2d3e328743b85ab78ef8c70a"
+    },
+    {
+      "file": "parts/stand/03_foot.3mf",
+      "source": "feeder_v11_light_stand/parts/03_foot.3mf",
+      "sha256": "b78409e370f331627bd2f76153afe58863760bc534cb54175e4536ab74d2dd5b"
+    },
+    {
+      "file": "parts/stand/03_foot.step",
+      "source": "feeder_v11_light_stand/parts/03_foot.step",
+      "sha256": "734f529163730b827db46177233849c4896cf1ca886fbc344ec7d12f8fa50c94"
+    },
+    {
+      "file": "parts/stand/04_top_saddle.stl",
+      "source": "feeder_v11_light_stand/parts/04_top_saddle.stl",
+      "sha256": "12d0fd285c8b5234dbcb74f32ff1c4269f2851981d9998a7bb6b985e28874046"
+    },
+    {
+      "file": "parts/stand/04_top_saddle.3mf",
+      "source": "feeder_v11_light_stand/parts/04_top_saddle.3mf",
+      "sha256": "617769ad61a4a66d766274fbc81a60e041e3b84774abe6e6f386ddf5ba4d0f01"
+    },
+    {
+      "file": "parts/stand/04_top_saddle.step",
+      "source": "feeder_v11_light_stand/parts/04_top_saddle.step",
+      "sha256": "8680ed0ffba6142c966b3c427b05d213499245900df76a6128083fa91de97ef0"
+    },
+    {
+      "file": "parts/stand/05_ballast_tray.stl",
+      "source": "feeder_v11_light_stand/parts/05_ballast_tray.stl",
+      "sha256": "5eed537f40d3da173a80cb6d8dbb550d17d35fbc160a48dee2c92075479124e7"
+    },
+    {
+      "file": "parts/stand/05_ballast_tray.3mf",
+      "source": "feeder_v11_light_stand/parts/05_ballast_tray.3mf",
+      "sha256": "f055e85bd8267a3ecb8a2bd3184c53ada018254187fcbf64910a23e2de4fce3b"
+    },
+    {
+      "file": "parts/stand/05_ballast_tray.step",
+      "source": "feeder_v11_light_stand/parts/05_ballast_tray.step",
+      "sha256": "7e9feaa9684b9409c84e18ffda28502c71512e0b8891e26190258ff429929b5f"
+    },
+    {
+      "file": "print/02_stand_P1S_PLA.3mf",
+      "source": "feeder_v11_light_stand/slicer/projects/feeder_v11_light_stand_P1S_PLA.3mf",
+      "sha256": "67e39f44fa42799c510d482db3cf1b851db30c08d09a9db0c227e7ee8827845a"
+    },
+    {
+      "file": "print/02_stand_P1S_PLA_sliced.3mf",
+      "source": "feeder_v11_light_stand/slicer/projects/feeder_v11_light_stand_P1S_PLA_sliced.3mf",
+      "sha256": "7a32975d2519899aeaa9366515688a03806333877cb6a5ee420aecf824b4c53f"
+    },
+    {
+      "file": "plates/02_stand_geometry_only.3mf",
+      "source": "feeder_v11_light_stand/plates/light_stand_one_plate.3mf",
+      "sha256": "6309080998781b45b9652d9f9a3a95a2e66ae24bdc6d76abeda964e588c336c4"
+    },
+    {
+      "file": "cad/feeder_with_stand_VIEW_ONLY.step",
+      "source": "feeder_v11_light_stand/stand_500_light_assembly.step",
+      "sha256": "861bb3cca929b7e364054cf817f9d479ec60db73d1d9f6ae871d5f80ae6b93d2"
+    },
+    {
+      "file": "cad/feeder_body_VIEW_ONLY.step",
+      "source": "feeder_v9_height_adjust/feeder_v9_assembly.step",
+      "sha256": "81542905de76db845e09949fd0c89329e7033f38ca9d3e515842bf4df59643c3"
+    },
+    {
+      "file": "preview/height_adjust_overview.png",
+      "source": "feeder_v9_height_adjust/preview/height_adjust_overview.png",
+      "sha256": "e308cc5d22b753f48ce4c250fae4315ea7d64a71ce7e886f7cd1f4f4c9536830"
+    },
+    {
+      "file": "preview/height_adjust_guide.png",
+      "source": "feeder_v9_height_adjust/preview/guide_structure.png",
+      "sha256": "b3f21f1b55f13c9bf2c6ebbc8e7198d4b8d12cafca07d0c3c0e71d52b031d530"
+    },
+    {
+      "file": "preview/height_adjust_screw.png",
+      "source": "feeder_v9_height_adjust/preview/lead_section.png",
+      "sha256": "fba2c97de82eab10acd73cbea0694a39a3e94fcc80551f9515e64c7a8dcd8350"
+    },
+    {
+      "file": "preview/rotor_C.png",
+      "source": "feeder_v8_rotor_trials/preview/C_curved_rod_detail.png",
+      "sha256": "14482160b4fe7f0e76e6d9d67132e7b8d4d28fd90636bfe4b714e82972151ca1"
+    },
+    {
+      "file": "preview/stand_print_plate.png",
+      "source": "feeder_v11_light_stand/preview/print_plate.png",
+      "sha256": "0f8f295bcad3f94d40b5d8f84bfe9ed874e9a843a01f9072a20ceff4cf3968d2"
+    },
+    {
+      "file": "preview/stand_joint.png",
+      "source": "feeder_v11_light_stand/preview/joint_v11.png",
+      "sha256": "b530b6c8fcf7f529d90a077fd3e62f8c82229bd63530ae964d652d4ad2662cd1"
+    },
+    {
+      "file": "verification/stand_slice_summary.json",
+      "source": "feeder_v11_light_stand/slicer/slice_summary.json",
+      "sha256": "20f8c4a21e2a6a0325499f628d75cc8525448f25f18504b3314ae3d732d33e4a"
+    },
+    {
+      "file": "verification/stand_toolpath_verification.json",
+      "source": "feeder_v11_light_stand/slicer/toolpath_verification.json",
+      "sha256": "8aa549ecd16d0dedc7570543017e95ae7f1c4a693f93d47a4ee82150beb4f2df"
+    },
+    {
+      "file": "verification/stand_cad_verification.json",
+      "source": "feeder_v11_light_stand/analysis/independent_verification.json",
+      "sha256": "4bd09cb26ee5adb4634d8637d3d1fa9df65ba9cc57e0c247b27b4ab8f9b1c367"
+    }
+  ]
+}

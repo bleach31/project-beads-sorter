@@ -1,0 +1,161 @@
+{
+  "slicer": "Bambu Studio 2.8.2.61",
+  "plate_count": 1,
+  "object_count": 14,
+  "geometry_preserved": true,
+  "max_project_vertex_deviation_mm": 1.4118611842740505e-05,
+  "triangle_count": 69898,
+  "all_source_meshes_closed": true,
+  "settings_preserved": true,
+  "all_objects_start_z0": true,
+  "estimated_seconds": 23915.34765625,
+  "estimated_filament_g": 155.2403564453125,
+  "warnings": "",
+  "official_nozzle_offset_xy_mm": [
+    0,
+    2
+  ],
+  "extrusion_bounds_mm": [
+    [
+      4.301,
+      4.304,
+      0.2
+    ],
+    [
+      250.7,
+      249.18,
+      80.92
+    ]
+  ],
+  "all_print_paths_inside_bed": true,
+  "paths_touching_expanded_exclusion": 0,
+  "support_enabled_objects": [
+    "C_curved_rod"
+  ],
+  "per_object": {
+    "01_funnel": {
+      "first_model_layer_z": 0.2,
+      "initial_model_segments": 3337,
+      "initial_support_segments": 0,
+      "support_segments": 0,
+      "brim_segments": 508,
+      "print_extrusion_mm": 18588.98307
+    },
+    "04_bearing_cartridge": {
+      "first_model_layer_z": 0.2,
+      "initial_model_segments": 1632,
+      "initial_support_segments": 0,
+      "support_segments": 0,
+      "brim_segments": 952,
+      "print_extrusion_mm": 3839.2200199999997
+    },
+    "05_lower_cap": {
+      "first_model_layer_z": 0.2,
+      "initial_model_segments": 1948,
+      "initial_support_segments": 0,
+      "support_segments": 0,
+      "brim_segments": 507,
+      "print_extrusion_mm": 1783.2198600000002
+    },
+    "06_upper_cap": {
+      "first_model_layer_z": 0.2,
+      "initial_model_segments": 1949,
+      "initial_support_segments": 0,
+      "support_segments": 0,
+      "brim_segments": 507,
+      "print_extrusion_mm": 1438.5717399999999
+    },
+    "07_shaft_collar": {
+      "first_model_layer_z": 0.2,
+      "initial_model_segments": 679,
+      "initial_support_segments": 0,
+      "support_segments": 0,
+      "brim_segments": 376,
+      "print_extrusion_mm": 486.80189000000007
+    },
+    "08_motor_cradle": {
+      "first_model_layer_z": 0.2,
+      "initial_model_segments": 1554,
+      "initial_support_segments": 0,
+      "support_segments": 0,
+      "brim_segments": 108,
+      "print_extrusion_mm": 3799.6784100000004
+    },
+    "09_motor_spacer_left": {
+      "first_model_layer_z": 0.2,
+      "initial_model_segments": 515,
+      "initial_support_segments": 0,
+      "support_segments": 0,
+      "brim_segments": 258,
+      "print_extrusion_mm": 298.3246
+    },
+    "10_motor_spacer_right": {
+      "first_model_layer_z": 0.2,
+      "initial_model_segments": 514,
+      "initial_support_segments": 0,
+      "support_segments": 0,
+      "brim_segments": 259,
+      "print_extrusion_mm": 298.32329000000004
+    },
+    "C_curved_rod": {
+      "first_model_layer_z": 1.08,
+      "initial_model_segments": 0,
+      "initial_support_segments": 104,
+      "support_segments": 4418,
+      "brim_segments": 0,
+      "print_extrusion_mm": 1183.44578,
+      "actual_raft_layers": [
+        0.2,
+        0.5
+      ],
+      "raft_covers_first_model": true,
+      "raft_covers_support_roots": true,
+      "support_max_z_mm": 4.44,
+      "support_max_radius_mm": 13.371897284977923
+    },
+    "01_fixed_frame": {
+      "first_model_layer_z": 0.2,
+      "initial_model_segments": 3365,
+      "initial_support_segments": 0,
+      "support_segments": 0,
+      "brim_segments": 508,
+      "print_extrusion_mm": 12187.01244
+    },
+    "02_moving_bridge": {
+      "first_model_layer_z": 0.2,
+      "initial_model_segments": 2819,
+      "initial_support_segments": 0,
+      "support_segments": 0,
+      "brim_segments": 548,
+      "print_extrusion_mm": 3638.3868700000003
+    },
+    "03_guide_shoe": {
+      "first_model_layer_z": 0.2,
+      "initial_model_segments": 804,
+      "initial_support_segments": 0,
+      "support_segments": 0,
+      "brim_segments": 108,
+      "print_extrusion_mm": 1775.9006
+    },
+    "04_screw_bridge": {
+      "first_model_layer_z": 0.2,
+      "initial_model_segments": 1280,
+      "initial_support_segments": 0,
+      "support_segments": 0,
+      "brim_segments": 108,
+      "print_extrusion_mm": 1208.37388
+    },
+    "05_head_keeper": {
+      "first_model_layer_z": 0.2,
+      "initial_model_segments": 1294,
+      "initial_support_segments": 0,
+      "support_segments": 0,
+      "brim_segments": 108,
+      "print_extrusion_mm": 1491.90391
+    }
+  },
+  "minimum_print_path_envelope_clearance_mm": 2.1010653081741566,
+  "printer_transmission_performed": false,
+  "verification_scope": "All positive model/support/brim extrusion after layer markers; machine startup/end custom G-code excluded.",
+  "all_checks_passed": true
+}

@@ -1,0 +1,57 @@
+{
+  "slicer": "Bambu Studio 2.8.2.61",
+  "plate_count": 1,
+  "object_count": 1,
+  "geometry_preserved": true,
+  "max_project_vertex_deviation_mm": 1.3869903739879912e-05,
+  "triangle_count": 19408,
+  "all_source_meshes_closed": true,
+  "settings_preserved": true,
+  "all_objects_start_z0": true,
+  "estimated_seconds": 2827.470458984375,
+  "estimated_filament_g": 3.6182122230529785,
+  "warnings": "",
+  "official_nozzle_offset_xy_mm": [
+    0,
+    2
+  ],
+  "extrusion_bounds_mm": [
+    [
+      117.825,
+      116.799,
+      0.2
+    ],
+    [
+      137.40657038743382,
+      139.163,
+      80.92
+    ]
+  ],
+  "all_print_paths_inside_bed": true,
+  "paths_touching_expanded_exclusion": 0,
+  "support_enabled_objects": [
+    "C_curved_rod"
+  ],
+  "per_object": {
+    "C_curved_rod": {
+      "first_model_layer_z": 1.08,
+      "initial_model_segments": 0,
+      "initial_support_segments": 104,
+      "support_segments": 3888,
+      "brim_segments": 0,
+      "print_extrusion_mm": 1181.72719,
+      "actual_raft_layers": [
+        0.2,
+        0.5
+      ],
+      "raft_covers_first_model": true,
+      "raft_covers_support_roots": true,
+      "support_max_z_mm": 3.96,
+      "support_max_radius_mm": 13.371897284977923
+    }
+  },
+  "minimum_print_path_envelope_clearance_mm": null,
+  "printer_transmission_performed": false,
+  "verification_scope": "All positive model/support/brim extrusion after layer markers; machine startup/end custom G-code excluded.",
+  "all_checks_passed": true
+}

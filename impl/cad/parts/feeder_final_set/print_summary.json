@@ -1,0 +1,27 @@
+{
+  "main_plates": 2,
+  "main_parts": 39,
+  "feeder": {
+    "source": "slicer/feeder/slice_summary.json",
+    "seconds": 23915.34765625,
+    "PLA_g": 155.2403564453125,
+    "warnings": ""
+  },
+  "stand": {
+    "source": "verification/stand_slice_summary.json",
+    "seconds": 40125.09375,
+    "PLA_g": 340.1256408691406,
+    "warnings": ""
+  },
+  "optional_rotor": {
+    "source": "slicer/rotor/slice_summary.json",
+    "seconds": 2827.470458984375,
+    "PLA_g": 3.6182122230529785,
+    "warnings": ""
+  },
+  "complete_set_seconds": 64040.44140625,
+  "complete_set_PLA_g": 495.3659973144531,
+  "optional_rotor_included_in_main_feeder_plate": true,
+  "physical_print_time_measured": false,
+  "printer_transmission_performed": false
+}
