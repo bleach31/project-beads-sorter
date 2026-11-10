@@ -1,0 +1,29 @@
+{
+  "units":"millimeter",
+  "bed_mm":[256,256,256],
+  "keep_out_xy_mm":[0,0,18,28],
+  "external_allowance_mm":5,
+  "print_sequence":"by_layer",
+  "plates":[
+    {
+      "file":"01_motion_complete_plus5_P1S.3mf",
+      "title":"駆動部品一式：6部品を各1個",
+      "objects":[
+        {"instance":"base_with_docking","part":"base_with_docking","label":"位置決め付きベース","center_xy_mm":[92,88],"rotation_z_deg":0},
+        {"instance":"smooth_u_chute_plus5","part":"smooth_u_chute_plus5","label":"5 mm延長スロープ","center_xy_mm":[216,166],"rotation_z_deg":90},
+        {"instance":"03_drive_gear_80t","part":"03_drive_gear_80t","label":"80歯ギア","center_xy_mm":[216,38],"rotation_z_deg":0},
+        {"instance":"02_motor_carrier","part":"02_motor_carrier","label":"モーター台","center_xy_mm":[50,210],"rotation_z_deg":90},
+        {"instance":"04_output_gear_20t_spindle","part":"04_output_gear_20t_spindle","label":"20歯ギア一体軸","center_xy_mm":[102,212],"rotation_z_deg":0},
+        {"instance":"05_split_bearing_cap","part":"05_split_bearing_cap","label":"軸受キャップ","center_xy_mm":[144,212],"rotation_z_deg":330}
+      ]
+    },
+    {
+      "file":"02_two_chutes_plus5_P1S.3mf",
+      "title":"スロープのみ：同じ部品を2個",
+      "objects":[
+        {"instance":"smooth_u_chute_plus5_1","part":"smooth_u_chute_plus5","label":"5 mm延長スロープ 1","center_xy_mm":[128,100],"rotation_z_deg":0},
+        {"instance":"smooth_u_chute_plus5_2","part":"smooth_u_chute_plus5","label":"5 mm延長スロープ 2","center_xy_mm":[128,156],"rotation_z_deg":0}
+      ]
+    }
+  ]
+}

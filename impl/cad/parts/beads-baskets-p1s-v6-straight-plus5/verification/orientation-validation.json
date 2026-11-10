@@ -1,0 +1,119 @@
+{
+  "date": "2026-11-10",
+  "stl": "C:\\Users\\10001164414\\Documents\\Codex\\2026-10-05\\c-users-10001164414-git-project-beads\\outputs\\beads-baskets-p1s-v6-straight-plus5\\stl\\smooth_u_chute_plus5.stl",
+  "stl_sha256": "94c9d888f8ea57bac07294f6c180b77bc547e5d6d8050a0dd76157ad669f4d82",
+  "print_size_mm": [
+    129.46165466308594,
+    15.600000381469727,
+    16.99225616455078
+  ],
+  "print_rotation_y_deg": 22.681246409138343,
+  "print_bottom_z_mm": 0.0,
+  "flow_channel_upward": true,
+  "long_outside_bottom_horizontal": true,
+  "long_outside_bottom_height_mm": 9.795474793986017,
+  "actual_horizontal_bottom_triangle_area_mm2": 726.7683319446201,
+  "actual_horizontal_bottom_vertex_z_range_mm": [
+    9.795475006103516,
+    9.795475006103516
+  ],
+  "lowest_points_in_assembly_frame_mm": [
+    [
+      6.499998957341797,
+      0.0,
+      26.099999564247565
+    ]
+  ],
+  "outside_bottom_samples": [
+    {
+      "radius_mm": 10,
+      "expected_print_outside_bottom_mm": [
+        44.734768098297025,
+        0.0,
+        9.795474793986017
+      ]
+    },
+    {
+      "radius_mm": 20,
+      "expected_print_outside_bottom_mm": [
+        33.89659061609848,
+        0.0,
+        9.795474793986017
+      ]
+    },
+    {
+      "radius_mm": 40,
+      "expected_print_outside_bottom_mm": [
+        12.220235651701405,
+        0.0,
+        9.795474793986017
+      ]
+    },
+    {
+      "radius_mm": 70,
+      "expected_print_outside_bottom_mm": [
+        -20.29429679489421,
+        0.0,
+        9.79547479398602
+      ]
+    },
+    {
+      "radius_mm": 106,
+      "expected_print_outside_bottom_mm": [
+        -59.31173573080894,
+        0.0,
+        9.795474793986024
+      ]
+    },
+    {
+      "radius_mm": 111,
+      "expected_print_outside_bottom_mm": [
+        -64.73082447190822,
+        0.0,
+        9.795474793986017
+      ]
+    }
+  ],
+  "horizontal_sections": [
+    {
+      "z_mm": 0.16,
+      "material_area_mm2": 1.3675136017406402,
+      "contours": 1
+    },
+    {
+      "z_mm": 0.32,
+      "material_area_mm2": 3.845723431571007,
+      "contours": 1
+    },
+    {
+      "z_mm": 0.8,
+      "material_area_mm2": 14.774984654347149,
+      "contours": 1
+    },
+    {
+      "z_mm": 1.6,
+      "material_area_mm2": 39.50649851100515,
+      "contours": 1
+    },
+    {
+      "z_mm": 9.6,
+      "material_area_mm2": 137.05747313554724,
+      "contours": 1
+    },
+    {
+      "z_mm": 9.8,
+      "material_area_mm2": 861.1875949806854,
+      "contours": 1
+    },
+    {
+      "z_mm": 10.0,
+      "material_area_mm2": 900.3623267384253,
+      "contours": 1
+    }
+  ],
+  "support_required": true,
+  "support_style_recommendation": "Normal, build plate only, horizontal expansion 0 mm; support long external underside and root, outside brim up to 5 mm.",
+  "support_exclusions": "U channel interior and double-flat shaft socket; confirm socket roof bridge approximately 3.2 to 5.2 mm in slicer preview.",
+  "scope": "STL geometry and orientation only. Actual generated supports, adhesion, bridge sag, physical printing and flow not tested.",
+  "valid": true
+}

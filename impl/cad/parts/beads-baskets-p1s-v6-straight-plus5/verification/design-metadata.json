@@ -1,0 +1,88 @@
+{
+  "date": "2026-11-10",
+  "units": "mm",
+  "reference": "beads-baskets-p1s-v5-central-integral",
+  "replaces": "smooth_u_chute",
+  "outlet_radius_mm": 111.0,
+  "horizontal_extension_mm": 5.0,
+  "slope_surface_extension_mm": 5.419088741099269,
+  "constant_slope_deg": 22.68124640913834,
+  "inlet_floor_assembly_z_mm": 35.8,
+  "outlet_floor_assembly_z_mm": -10.589622641509436,
+  "table_z_offset_mm": 46.0,
+  "outlet_floor_table_z_mm": 35.410377358490564,
+  "outlet_outer_bottom_table_z_mm": 33.61037735849057,
+  "original_geometry_retained_radius_mm": 106.0,
+  "inlet_width_mm": 10.4,
+  "main_width_mm": 12.0,
+  "main_depth_mm": 6.0,
+  "central_vertical_bottom_thickness_mm": 1.8,
+  "wall_note": "V5 outer profile retained; 1.8 mm is central vertical thickness, not a global normal minimum.",
+  "socket_diameter_mm": 5.2,
+  "socket_across_flats_mm": 3.2,
+  "socket_open_z_mm": 26.1,
+  "socket_blind_end_z_mm": 33.1,
+  "additional_hardware": [],
+  "physical_print_tested": false,
+  "physical_flow_tested": false,
+  "assembly_bbox_mm": [
+    [
+      -111.0,
+      -7.800000190734863,
+      -12.389622688293457
+    ],
+    [
+      7.0,
+      7.800000190734863,
+      41.0
+    ]
+  ],
+  "print_bbox_mm": [
+    [
+      -64.73082733154297,
+      -7.800000190734863,
+      0.0
+    ],
+    [
+      64.73082733154297,
+      7.800000190734863,
+      16.99225616455078
+    ]
+  ],
+  "print_size_mm": [
+    129.46165466308594,
+    15.600000381469727,
+    16.99225616455078
+  ],
+  "assembly_to_print_matrix": [
+    [
+      0.9226643516794935,
+      0.0,
+      0.3856040639566185,
+      42.46240740597053
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      -0.0
+    ],
+    [
+      -0.3856040639566185,
+      0.0,
+      0.9226643516794935,
+      -21.57511316311676
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "mesh_triangles": 3076,
+  "volume_mm3": 5503.848371993044,
+  "stl_sha256": "94c9d888f8ea57bac07294f6c180b77bc547e5d6d8050a0dd76157ad669f4d82",
+  "print_orientation_y_degrees": 22.68124640913834,
+  "sliced": false
+}

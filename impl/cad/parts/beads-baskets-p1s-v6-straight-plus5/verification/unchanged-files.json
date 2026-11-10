@@ -1,0 +1,147 @@
+[
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\stl\\base_with_docking.stl",
+    "destination": "stl\\base_with_docking.stl",
+    "sha256": "876803a8fade73d322a5080058fa4f6af4f6796c846cbbb1bfb922ccca07ccd1"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\stl\\bin_27.stl",
+    "destination": "stl\\bin_27.stl",
+    "sha256": "fe629597d3797f0ed326e65b5bf926c002cc6313be6c7ddafd7a16eab0612be7"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\stl\\bin_90.stl",
+    "destination": "stl\\bin_90.stl",
+    "sha256": "89f49837d31a0b77807de6d5496040b3cb03358de8b5d8f1e645f5d1ba7d65f1"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\stl\\central_case.stl",
+    "destination": "stl\\central_case.stl",
+    "sha256": "69e9a7168067dc933ad2f2ba5a146c10e87fcd27379174821a968f5212d4d471"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\stl\\central_lid.stl",
+    "destination": "stl\\central_lid.stl",
+    "sha256": "0fae9ec923b5ee12b9dffe58a0e989f0491f314604582d6db7fb64a31b52650f"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\stl\\dock_fit_pins.stl",
+    "destination": "stl\\dock_fit_pins.stl",
+    "sha256": "765a6cb7c160b5fd7a7792911a9fd04582130957daa1dc177b64ef0200596c55"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\stl\\dock_fit_socket.stl",
+    "destination": "stl\\dock_fit_socket.stl",
+    "sha256": "5b96a06e1c75ed726461640dcb3313fedc8b3d3c5787b2cb975cbd8938050e4c"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\stl\\joint_fit_female.stl",
+    "destination": "stl\\joint_fit_female.stl",
+    "sha256": "2a64e3e4dcaec3cf4b04ff54aaa020d291a58b2a048b1cea40fdbb0896876da5"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\stl\\joint_fit_male.stl",
+    "destination": "stl\\joint_fit_male.stl",
+    "sha256": "30bfaa3b6b648d416d6536e384abd542d79e299714b4bdbf47dcaa3d366a3583"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\stl\\lid_27.stl",
+    "destination": "stl\\lid_27.stl",
+    "sha256": "13312397e15a8f0461bc4f3ec571d99289a05ae1be5ace94a261483393496f2c"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\stl\\lid_90.stl",
+    "destination": "stl\\lid_90.stl",
+    "sha256": "4042c64a70ded6b7d160e1c0cdb406e0650fc751b93461fe35066a6ecfd61aa7"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\stl\\lid_fit_cup.stl",
+    "destination": "stl\\lid_fit_cup.stl",
+    "sha256": "0d379b2143183a5eb09397b4bed8b4d2d1802075f2fffb1502c21fe86a1bfebe"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\stl\\lid_fit_lid.stl",
+    "destination": "stl\\lid_fit_lid.stl",
+    "sha256": "6485d2d29f1915ab8805ed577b00f5b06ac798ba040bb59cf8cbf803852a58a8"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\optional_reprint_stl\\02_motor_carrier.stl",
+    "destination": "stl\\02_motor_carrier.stl",
+    "sha256": "71ae05412d19b20ccd45bb34d3921dc34a75c5d63becf97a7c2096b14f1abe5b"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\optional_reprint_stl\\03_drive_gear_80t.stl",
+    "destination": "stl\\03_drive_gear_80t.stl",
+    "sha256": "4beadd92e4e2e884f69f4c96e476df306c1f26cb4ac9b626b0bcd2342b542458"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\optional_reprint_stl\\04_output_gear_20t_spindle.stl",
+    "destination": "stl\\04_output_gear_20t_spindle.stl",
+    "sha256": "421e12d0af3945ed79fe50251e040d4332b3e2068539617b643b38c09dead5dd"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\optional_reprint_stl\\05_split_bearing_cap.stl",
+    "destination": "stl\\05_split_bearing_cap.stl",
+    "sha256": "3c785d1fff3d84a5ecf6afb0bca293302c70839f2feccdf07a82b2fd3a6232a7"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\plates\\02_five_bins.3mf",
+    "destination": "print\\containers\\02_five_bins.3mf",
+    "sha256": "2881cedcf474ac5d52b107ff46596483e2882fa93d0387828cd44cba6565eb27"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\plates\\03_five_bins.3mf",
+    "destination": "print\\containers\\03_five_bins.3mf",
+    "sha256": "31e8293025d120ef463aa164f2c1e4328ccad9b0394b0e9763e7fdd9a25b685c"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\plates\\04_central_case_and_three_lids.3mf",
+    "destination": "print\\containers\\04_central_case_and_three_lids.3mf",
+    "sha256": "7b2ce72d6b68d10d7907cb9c67c9a3be8eae9caf8fea885882a8ede5074f4d89"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\plates\\05_central_lid_and_three_lids.3mf",
+    "destination": "print\\containers\\05_central_lid_and_three_lids.3mf",
+    "sha256": "6a46ab0c67dac6cfea8b3afb1d28ab8ffa851482783af69bc01554b9d7f67ad8"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\plates\\06_bin90_and_lid90.3mf",
+    "destination": "print\\containers\\06_bin90_and_lid90.3mf",
+    "sha256": "7ef0c6b2e65b38c04f1857d2b07035d196e6b81bad6760f9c3bf7101f207e387"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\plates\\07_four_lids.3mf",
+    "destination": "print\\containers\\07_four_lids.3mf",
+    "sha256": "13d338267bd77fa0848f95b8ad0da5dbeee7e7b5b2766d4407bd08c7f19d85d9"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\plates\\OPTIONAL_fit_checks.3mf",
+    "destination": "print\\optional\\OPTIONAL_fit_checks.3mf",
+    "sha256": "41f5404950b26a9dd4e119d527dcc67517115036936434bcca83a1ecbd72e105"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\assembly\\VIEW_ONLY_storage.3mf",
+    "destination": "assembly\\VIEW_ONLY_storage.3mf",
+    "sha256": "c365ce1d0c8690f82c7d202c2cf668c75dd5af31d7176e7ab7866c16386f17a1"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\assembly\\VIEW_ONLY_storage.glb",
+    "destination": "assembly\\VIEW_ONLY_storage.glb",
+    "sha256": "2a7735de602d05a49337f498ea6c441a50edd567ec07995703e03622bc24fc26"
+  },
+  {
+    "source": "outputs\\beads-baskets-p1s-v5-central-integral\\source\\chute.py",
+    "destination": "source\\reference\\v5_chute.py",
+    "sha256": "c9a597bebcef88b26c23b8a7c5ec214aec5a84ccbf696bc086a0e7637807e7c7"
+  },
+  {
+    "source": "outputs\\beads-chute-plus20-v1\\source\\reference\\v5-operating.npz",
+    "destination": "source\\reference\\v5-operating.npz",
+    "sha256": "646154c7358ed765a80a50bc3d0738128fe2203f1dade5c5091786027f908406"
+  },
+  {
+    "source": "outputs\\beads-chute-plus20-v1\\source\\render_core.py",
+    "destination": "source\\render_core.py",
+    "sha256": "8fa294a323324155c8ac81da6b205160ba44d12aa511ccb00eec221d9e0175e7"
+  }
+]

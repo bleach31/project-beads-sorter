@@ -1,0 +1,118 @@
+{
+  "unchanged_operating_objects": 18,
+  "old_chute_absent": true,
+  "new_chute_count": 1,
+  "new_count": 19,
+  "original_count": 19,
+  "checks": [
+    {
+      "part": "bin_27_01",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "bin_27_02",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "bin_27_03",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "bin_27_04",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "bin_27_05",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "bin_27_06",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "bin_27_07",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "bin_27_08",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "bin_27_09",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "bin_27_10",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "bin_90",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "base_with_docking",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "motor_carrier",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "drive80",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "output20",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "bearing_cap",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "REFERENCE_existing_middle_plate",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    },
+    {
+      "part": "REFERENCE_28BYJ48_motor",
+      "same_vertex_count": true,
+      "faces_exact": true,
+      "vertices_exact": true
+    }
+  ],
+  "valid": true
+}

@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-10",
+  "valid": true,
+  "documents": [
+    {
+      "file": "ASSEMBLY.md",
+      "sha256": "c87a224ddba66ae034a74bc9c6a91a4a154fae72dce5e106affe9955b61887ad",
+      "middle_dot_absent": true,
+      "image_links_exist": true
+    },
+    {
+      "file": "CLEARANCE-NOTES.md",
+      "sha256": "e2bf51c492950ec593fb5bb524108cec335b220e9023996b136d51141ef8eeac",
+      "middle_dot_absent": true,
+      "image_links_exist": true
+    },
+    {
+      "file": "README.md",
+      "sha256": "a38f175c3903c864894efff43dd4a35c0a990248b61d14594437741017f316a5",
+      "middle_dot_absent": true,
+      "image_links_exist": true
+    },
+    {
+      "file": "source/README.md",
+      "sha256": "2a7327e9d022cb0162ef275613880fcf76c2c937c09fef94d8650ee1aecafe57",
+      "middle_dot_absent": true,
+      "image_links_exist": true
+    }
+  ],
+  "manual_checks": [
+    "new01 contains six parts including one chute",
+    "new02 contains two chutes only",
+    "both new plates yield three chutes",
+    "containers02 is explicitly distinguished by folder",
+    "full production is 30 parts over 7 plates",
+    "full production plus two-chute plate is 32 parts over 8 plates",
+    "optional samples not included in production total",
+    "constant slope and plus5 dimensions match design metadata",
+    "legacy inlet contact separated from new extension clearance",
+    "geometry-only versus sliced printing distinction retained"
+  ],
+  "errors": []
+}

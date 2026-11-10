@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-10",
+  "units": "mm",
+  "stl_types": 18,
+  "copied_files_verified": 29,
+  "print_plate_object_counts": {
+    "print\\01_motion_complete_plus5_P1S.3mf": 6,
+    "print\\02_two_chutes_plus5_P1S.3mf": 2,
+    "print\\containers\\02_five_bins.3mf": 5,
+    "print\\containers\\03_five_bins.3mf": 5,
+    "print\\containers\\04_central_case_and_three_lids.3mf": 4,
+    "print\\containers\\05_central_lid_and_three_lids.3mf": 4,
+    "print\\containers\\06_bin90_and_lid90.3mf": 2,
+    "print\\containers\\07_four_lids.3mf": 4,
+    "print\\optional\\OPTIONAL_fit_checks.3mf": 6
+  },
+  "production_total_with_one_chute": 30,
+  "production_plate_count_with_one_chute": 7,
+  "extra_two_chutes_are_optional_additional_or_replacement": true,
+  "markdown_links_and_images_exist": true,
+  "source_files_unchanged": true,
+  "sliced": false,
+  "valid": true
+}

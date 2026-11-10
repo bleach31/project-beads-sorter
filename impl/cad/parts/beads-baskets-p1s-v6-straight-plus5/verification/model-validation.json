@@ -1,0 +1,194 @@
+{
+  "date": "2026-11-10",
+  "scope": "Actual delivered STL, independently inverse-transformed and measured. Shape and collision envelope checks; not slicing or physical flow testing.",
+  "stl": "outputs\\beads-baskets-p1s-v6-straight-plus5\\stl\\smooth_u_chute_plus5.stl",
+  "stl_sha256": "94c9d888f8ea57bac07294f6c180b77bc547e5d6d8050a0dd76157ad669f4d82",
+  "checks": {
+    "delivered_mesh": {
+      "bounds_mm": [
+        [
+          -64.73082733154297,
+          -7.800000190734863,
+          0.0
+        ],
+        [
+          64.73082733154297,
+          7.800000190734863,
+          16.99225616455078
+        ]
+      ],
+      "size_mm": [
+        129.46165466308594,
+        15.600000381469727,
+        16.99225616455078
+      ],
+      "triangles": 3076,
+      "volume_mm3": 5503.848278213763,
+      "watertight": true,
+      "winding_consistent": true,
+      "connected_components": 1,
+      "degenerate_triangles": 0
+    },
+    "print_rigid_transform": {
+      "matrix": [
+        [
+          0.9226643516794935,
+          0.0,
+          0.3856040639566185,
+          42.46240740597053
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.0
+        ],
+        [
+          -0.3856040639566185,
+          0.0,
+          0.9226643516794935,
+          -21.57511316311676
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "orthonormal": true,
+      "print_base_z_mm": 0.0
+    },
+    "expected_constant_slope_geometry": {
+      "symmetric_difference_with_independent_model_mm3": 0.0009059412882857663,
+      "assembly_bounds_mm": [
+        [
+          -111.00000272027641,
+          -7.800000190734863,
+          -12.389623548482962
+        ],
+        [
+          7.0000027966597145,
+          7.800000190734863,
+          41.000001132324016
+        ]
+      ],
+      "expected_outlet_x_mm": -111.0,
+      "independent_expected_slope_deg": 22.68124640913834
+    },
+    "unchanged_root_socket_and_original_106mm": [
+      {
+        "retained_radius_mm": 20.0,
+        "symmetric_difference_mm3": 0.0002513136518411918
+      },
+      {
+        "retained_radius_mm": 106.0,
+        "symmetric_difference_mm3": 0.000816743742554545
+      }
+    ],
+    "constant_downhill_flow_floor": {
+      "radius_sample_step_mm": 0.25,
+      "samples": 444,
+      "maximum_floor_deviation_mm": 1.1349905193469567e-06,
+      "minimum_slope_deg": 22.68123889952076,
+      "maximum_slope_deg": 22.681269426193385,
+      "expected_slope_deg": 22.68124640913834
+    },
+    "main_channel_sections": [
+      {
+        "radius_mm": 10.1,
+        "floor_assembly_z_mm": 31.57896139472723,
+        "central_vertical_bottom_thickness_mm": 1.7999988421797752,
+        "depth_mm": 5.999999597668648,
+        "width_0_01mm_below_rim_mm": 11.999509020762632
+      },
+      {
+        "radius_mm": 20,
+        "floor_assembly_z_mm": 27.441508755087852,
+        "central_vertical_bottom_thickness_mm": 1.799999162554741,
+        "depth_mm": 5.999999456107616,
+        "width_0_01mm_below_rim_mm": 11.999509016765035
+      },
+      {
+        "radius_mm": 40,
+        "floor_assembly_z_mm": 19.083018578588963,
+        "central_vertical_bottom_thickness_mm": 1.7999998033046722,
+        "depth_mm": 5.9999991580843925,
+        "width_0_01mm_below_rim_mm": 11.99950901597145
+      },
+      {
+        "radius_mm": 60,
+        "floor_assembly_z_mm": 10.724528402090073,
+        "central_vertical_bottom_thickness_mm": 1.8000004515051842,
+        "depth_mm": 5.999998860061169,
+        "width_0_01mm_below_rim_mm": 11.999509015913581
+      },
+      {
+        "radius_mm": 90,
+        "floor_assembly_z_mm": -1.813206858932972,
+        "central_vertical_bottom_thickness_mm": 1.8000014200806618,
+        "depth_mm": 5.999998405575752,
+        "width_0_01mm_below_rim_mm": 11.999509016052784
+      },
+      {
+        "radius_mm": 105.9,
+        "floor_assembly_z_mm": -8.458206549286842,
+        "central_vertical_bottom_thickness_mm": 1.800001934170723,
+        "depth_mm": 5.999998167157173,
+        "width_0_01mm_below_rim_mm": 11.99950901409009
+      },
+      {
+        "radius_mm": 108,
+        "floor_assembly_z_mm": -9.335848018527031,
+        "central_vertical_bottom_thickness_mm": 1.8000020012259483,
+        "depth_mm": 5.999998137354851,
+        "width_0_01mm_below_rim_mm": 11.999509017879856
+      },
+      {
+        "radius_mm": 110.9,
+        "floor_assembly_z_mm": -10.54782909154892,
+        "central_vertical_bottom_thickness_mm": 1.800002098083496,
+        "depth_mm": 5.999998092651367,
+        "width_0_01mm_below_rim_mm": 11.99950901732554
+      }
+    ],
+    "basket_top_clearance": {
+      "nominal_minimum_gap_mm": 3.610376451517041,
+      "all_horizontal_tilt_axes_1_2deg_and_drop_0_3mm_minimum_gap_mm": 0.9901510429017826,
+      "independent_analytic_expected_gap_mm": 0.9901520066506855,
+      "tilt_pivot_assembly_z_mm": 12.0,
+      "assumptions_measured_on_user_machine": false,
+      "applies_continuously_over_swivel_angles": true
+    },
+    "new_extension_fixed_body_separation": {
+      "fixed_max_radii_mm": {
+        "dock_base": 100.26828881555612,
+        "motor_carrier": 56.65848174983782,
+        "bearing_cap": 14.956269413656093,
+        "middle": 49.65790882017029,
+        "upper": 47.69045423257289,
+        "camera": 40.26185526544863,
+        "drive_envelope": 72.80000305175781
+      },
+      "extension_radius_minimum_before_tilt_mm": 106.0,
+      "continuous_all_axis_tilt_lower_radius_bound_mm": 103.61886325688883,
+      "minimum_radial_separation_mm": 3.3505744413327108,
+      "unchanged_original_contacts_excluded": true
+    },
+    "inherited_contact_scope": {
+      "existing_transverse_tilt_inlet_contact_is_not_fixed": true,
+      "baseline_contact_reference": "work/chute-plus20-validation/extra-tilt-contact-review.json",
+      "statement": "Only the downstream extension changes. The small existing v5 inlet contact under transverse tilt remains a separate condition, not a new extension collision."
+    },
+    "reference_files_unchanged": {
+      "chute.py": "c9a597bebcef88b26c23b8a7c5ec214aec5a84ccbf696bc086a0e7637807e7c7",
+      "baskets.py": "bf24622bed681edff3b5711f6d84e9bd06c59408301bbd32379ff11a3a1bda37",
+      "build.py": "9785c61415c33adeed6a8955768b8110fb242a98f7d773ec26551001e38b0e6d",
+      "system_spec.json": "3a9c0ca2ca8ba05c024726419d3043f726bed1f28016ed5650159967ede9649d",
+      "zip": "3371edd027acd383ca4eb2826cf9e602aa9b5d196fb74b028b772b5534fe06b6"
+    }
+  },
+  "errors": [],
+  "valid": true,
+  "elapsed_seconds": 0.5940000000409782
+}
