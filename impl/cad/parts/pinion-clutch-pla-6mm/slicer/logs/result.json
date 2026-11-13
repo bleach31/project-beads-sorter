@@ -1,0 +1,192 @@
+{
+    "error_string": "Success.",
+    "export_time": 840,
+    "layer_height": 0.11999999731779099,
+    "plate_index": 0,
+    "prepare_time": 973,
+    "return_code": 0,
+    "sliced_plates": [
+        {
+            "feature_type_times": {
+                "Custom": 425.9325866699219,
+                "Flush": 29.0,
+                "Gap infill": 4.982950687408447,
+                "Inner wall": 1078.50146484375,
+                "Outer wall": 1270.700439453125,
+                "Overhang wall": 12.918526649475098,
+                "Top surface": 34.9560546875,
+                "Travel": 249.59683227539063,
+                "Undefined": 234.14358520507813
+            },
+            "filament_change_times": 0,
+            "filaments": [
+                {
+                    "filament_id": "GFL99",
+                    "id": 1,
+                    "main_used_g": 2.1781582832336426,
+                    "total_used_g": 2.1781582832336426
+                }
+            ],
+            "generate_support_material_time": 188,
+            "id": 1,
+            "infill_time": 270,
+            "layer_filament_change": 0,
+            "main_predication": 2622.633056640625,
+            "make_perimeters_time": 1278,
+            "obj_cached_cnt": 0,
+            "objects": [
+                {
+                    "bbox": {
+                        "depth": 18.62350082397461,
+                        "height": 4.079999923706055,
+                        "width": 18.62379264831543,
+                        "x": 48.688106536865234,
+                        "y": 78.6882553100586,
+                        "z": -1.8530275092132342e-09
+                    },
+                    "id": 5,
+                    "name": "00_common_pinion_copy1",
+                    "triangle_count": 8704
+                },
+                {
+                    "bbox": {
+                        "depth": 18.623493194580078,
+                        "height": 4.079999923706055,
+                        "width": 18.62379264831543,
+                        "x": 48.688106536865234,
+                        "y": 105.68826293945313,
+                        "z": -1.8530275092132342e-09
+                    },
+                    "id": 9,
+                    "name": "00_common_pinion_copy2",
+                    "triangle_count": 8704
+                },
+                {
+                    "bbox": {
+                        "depth": 10.0999755859375,
+                        "height": 6.0,
+                        "width": 10.997238159179688,
+                        "x": 78.50138092041016,
+                        "y": 82.95001220703125,
+                        "z": 0.0
+                    },
+                    "id": 13,
+                    "name": "01_hub_A_t0.80_d0.20",
+                    "triangle_count": 12672
+                },
+                {
+                    "bbox": {
+                        "depth": 10.099960327148438,
+                        "height": 6.0,
+                        "width": 10.997238159179688,
+                        "x": 101.50138092041016,
+                        "y": 82.95001983642578,
+                        "z": 0.0
+                    },
+                    "id": 17,
+                    "name": "02_hub_B_t1.00_d0.20",
+                    "triangle_count": 14116
+                },
+                {
+                    "bbox": {
+                        "depth": 10.099960327148438,
+                        "height": 6.0,
+                        "width": 10.997234344482422,
+                        "x": 124.50137329101563,
+                        "y": 82.95001983642578,
+                        "z": 0.0
+                    },
+                    "id": 21,
+                    "name": "03_hub_C_t1.20_d0.20",
+                    "triangle_count": 15570
+                },
+                {
+                    "bbox": {
+                        "depth": 10.099960327148438,
+                        "height": 6.0,
+                        "width": 10.8372802734375,
+                        "x": 147.58135986328125,
+                        "y": 82.95001983642578,
+                        "z": 0.0
+                    },
+                    "id": 25,
+                    "name": "04_hub_D_t1.00_d0.12",
+                    "triangle_count": 17102
+                },
+                {
+                    "bbox": {
+                        "depth": 10.099960327148438,
+                        "height": 6.0,
+                        "width": 11.157196044921875,
+                        "x": 170.42140197753906,
+                        "y": 82.95001983642578,
+                        "z": 0.0
+                    },
+                    "id": 29,
+                    "name": "05_hub_E_t1.00_d0.28",
+                    "triangle_count": 18824
+                },
+                {
+                    "bbox": {
+                        "depth": 6.5081939697265625,
+                        "height": 1.2000000476837158,
+                        "width": 8.49981689453125,
+                        "x": 79.75009155273438,
+                        "y": 112.74164581298828,
+                        "z": 1.5814205500674916e-10
+                    },
+                    "id": 33,
+                    "name": "06_clip_spare1",
+                    "triangle_count": 3132
+                },
+                {
+                    "bbox": {
+                        "depth": 6.5081939697265625,
+                        "height": 1.2000000476837158,
+                        "width": 8.49981689453125,
+                        "x": 102.75009155273438,
+                        "y": 112.74164581298828,
+                        "z": 1.5814205500674916e-10
+                    },
+                    "id": 37,
+                    "name": "06_clip_spare2",
+                    "triangle_count": 3132
+                },
+                {
+                    "bbox": {
+                        "depth": 6.5081939697265625,
+                        "height": 1.2000000476837158,
+                        "width": 8.49981689453125,
+                        "x": 125.75009155273438,
+                        "y": 112.74164581298828,
+                        "z": 1.5814205500674916e-10
+                    },
+                    "id": 41,
+                    "name": "06_clip_spare3",
+                    "triangle_count": 3132
+                }
+            ],
+            "sliced_time": 8030,
+            "sliced_time_with_cache": 5956,
+            "total_predication": 3091.081787109375,
+            "triangle_count": 105088,
+            "warning_message": ""
+        }
+    ],
+    "sparse_infill_density": 100.0,
+    "upward_compatible_machine": [
+        "Bambu Lab P1P 0.4 nozzle",
+        "Bambu Lab X1 0.4 nozzle",
+        "Bambu Lab X1 Carbon 0.4 nozzle",
+        "Bambu Lab X1E 0.4 nozzle",
+        "Bambu Lab A1 0.4 nozzle",
+        "Bambu Lab H2D 0.4 nozzle",
+        "Bambu Lab H2D Pro 0.4 nozzle",
+        "Bambu Lab H2S 0.4 nozzle",
+        "Bambu Lab P2S 0.4 nozzle",
+        "Bambu Lab H2C 0.4 nozzle",
+        "Bambu Lab X2D 0.4 nozzle",
+        "Bambu Lab A2L 0.4 nozzle"
+    ],
+    "wall_loops": 4
+}

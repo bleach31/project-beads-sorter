@@ -1,0 +1,68 @@
+{
+  "all_passed": true,
+  "cases": [
+    {
+      "W": 5.8,
+      "files": [
+        {
+          "name": "01_upper-base_W5p8_original_pose.3mf",
+          "sha256": "2adad0862c6cacd1c195cbb8d11e488a9ac69bbc538aead7752ecea513170749",
+          "opposed_end_faces_overlap_mm2": 0.0,
+          "ID6_end_face_coverage_mm2": 0.0,
+          "rays": 89,
+          "blocked_rays": 0
+        },
+        {
+          "name": "01_upper-base_W5p8_print.3mf",
+          "sha256": "551395333c959055dce716244b5d611a0c57973fc18ee2eb2118f1db183a3c28",
+          "opposed_end_faces_overlap_mm2": 0.0,
+          "ID6_end_face_coverage_mm2": 0.0,
+          "rays": 89,
+          "blocked_rays": 0
+        }
+      ]
+    },
+    {
+      "W": 6.8,
+      "files": [
+        {
+          "name": "02_upper-base_W6p8_original_pose.3mf",
+          "sha256": "41805025cdd6cad5b2eaccb9769ff922735b8c69daee35bd56175a25d4c0b11a",
+          "opposed_end_faces_overlap_mm2": 0.0,
+          "ID6_end_face_coverage_mm2": 0.0,
+          "rays": 89,
+          "blocked_rays": 0
+        },
+        {
+          "name": "02_upper-base_W6p8_print.3mf",
+          "sha256": "4665a394c1b0542b92806b52377c252fe91332c2ab5d67fe3aa4a2b68fc83b8d",
+          "opposed_end_faces_overlap_mm2": 0.0,
+          "ID6_end_face_coverage_mm2": 0.0,
+          "rays": 89,
+          "blocked_rays": 0
+        }
+      ]
+    },
+    {
+      "W": 7.2,
+      "files": [
+        {
+          "name": "03_upper-base_W7p2_original_pose.3mf",
+          "sha256": "23338838d24e558df951e1bb742fff92a10200b27f276f0dc8a12abd00c2cb1c",
+          "opposed_end_faces_overlap_mm2": 0.0,
+          "ID6_end_face_coverage_mm2": 0.0,
+          "rays": 89,
+          "blocked_rays": 0
+        },
+        {
+          "name": "03_upper-base_W7p2_print.3mf",
+          "sha256": "1bf3818fbcbbd3be11284cbd538cfa2014606c641e08f83312a434f8dbcb61af",
+          "opposed_end_faces_overlap_mm2": 0.0,
+          "ID6_end_face_coverage_mm2": 0.0,
+          "rays": 89,
+          "blocked_rays": 0
+        }
+      ]
+    }
+  ]
+}

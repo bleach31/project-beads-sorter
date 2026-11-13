@@ -1,0 +1,124 @@
+{
+  "geometry_all_cases_passed": true,
+  "cases": [
+    {
+      "waiting_width_mm": 5.8,
+      "nominal_geometry_passed": true,
+      "geometry_test_count": 31,
+      "bed_contact_area_mm2": 561.8274297829557,
+      "tube_end_stop_contact_area_mm2": 8.758141390276704,
+      "skew_angles": [
+        {
+          "degrees": -30,
+          "clear_for_full_5mm_push": false,
+          "first_collision_travel_mm": 0.0,
+          "first_collision_with": "tube"
+        },
+        {
+          "degrees": -15,
+          "clear_for_full_5mm_push": false,
+          "first_collision_travel_mm": 2.2,
+          "first_collision_with": "tube"
+        },
+        {
+          "degrees": 0,
+          "clear_for_full_5mm_push": true,
+          "first_collision_travel_mm": null,
+          "first_collision_with": null
+        },
+        {
+          "degrees": 15,
+          "clear_for_full_5mm_push": false,
+          "first_collision_travel_mm": 0.6000000000000001,
+          "first_collision_with": "tube"
+        },
+        {
+          "degrees": 30,
+          "clear_for_full_5mm_push": false,
+          "first_collision_travel_mm": 0.0,
+          "first_collision_with": "tube"
+        }
+      ]
+    },
+    {
+      "waiting_width_mm": 6.8,
+      "nominal_geometry_passed": true,
+      "geometry_test_count": 31,
+      "bed_contact_area_mm2": 561.8274297829557,
+      "tube_end_stop_contact_area_mm2": 8.758139936771968,
+      "skew_angles": [
+        {
+          "degrees": -30,
+          "clear_for_full_5mm_push": false,
+          "first_collision_travel_mm": 3.8000000000000003,
+          "first_collision_with": "tube"
+        },
+        {
+          "degrees": -15,
+          "clear_for_full_5mm_push": true,
+          "first_collision_travel_mm": null,
+          "first_collision_with": null
+        },
+        {
+          "degrees": 0,
+          "clear_for_full_5mm_push": true,
+          "first_collision_travel_mm": null,
+          "first_collision_with": null
+        },
+        {
+          "degrees": 15,
+          "clear_for_full_5mm_push": true,
+          "first_collision_travel_mm": null,
+          "first_collision_with": null
+        },
+        {
+          "degrees": 30,
+          "clear_for_full_5mm_push": false,
+          "first_collision_travel_mm": 2.0,
+          "first_collision_with": "tube"
+        }
+      ]
+    },
+    {
+      "waiting_width_mm": 7.2,
+      "nominal_geometry_passed": true,
+      "geometry_test_count": 31,
+      "bed_contact_area_mm2": 561.8274297829557,
+      "tube_end_stop_contact_area_mm2": 8.758141497774151,
+      "skew_angles": [
+        {
+          "degrees": -30,
+          "clear_for_full_5mm_push": true,
+          "first_collision_travel_mm": null,
+          "first_collision_with": null
+        },
+        {
+          "degrees": -15,
+          "clear_for_full_5mm_push": true,
+          "first_collision_travel_mm": null,
+          "first_collision_with": null
+        },
+        {
+          "degrees": 0,
+          "clear_for_full_5mm_push": true,
+          "first_collision_travel_mm": null,
+          "first_collision_with": null
+        },
+        {
+          "degrees": 15,
+          "clear_for_full_5mm_push": true,
+          "first_collision_travel_mm": null,
+          "first_collision_with": null
+        },
+        {
+          "degrees": 30,
+          "clear_for_full_5mm_push": true,
+          "first_collision_travel_mm": null,
+          "first_collision_with": null
+        }
+      ]
+    }
+  ],
+  "skew_test_method": "Yaw is held fixed. Phi5x5 cylinder surface is sampled densely to follow the measured floor with0.02mm clearance, then moved+X in0.2mm increments for5mm.",
+  "interpretation": "Skew collisions are comparison data for prototypes, not proof of real jams. Actual rotation, bead-bead impacts, friction and printed fit are not simulated."
+}

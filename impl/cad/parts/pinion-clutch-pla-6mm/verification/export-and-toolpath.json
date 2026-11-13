@@ -1,0 +1,268 @@
+{
+  "exported_parts": {
+    "00_common_pinion": {
+      "3mf_watertight": true,
+      "stl_watertight": true,
+      "connected_components": 1
+    },
+    "01_hub_A_t0.80_d0.20": {
+      "3mf_watertight": true,
+      "stl_watertight": true,
+      "connected_components": 1
+    },
+    "02_hub_B_t1.00_d0.20": {
+      "3mf_watertight": true,
+      "stl_watertight": true,
+      "connected_components": 1
+    },
+    "03_hub_C_t1.20_d0.20": {
+      "3mf_watertight": true,
+      "stl_watertight": true,
+      "connected_components": 1
+    },
+    "04_hub_D_t1.00_d0.12": {
+      "3mf_watertight": true,
+      "stl_watertight": true,
+      "connected_components": 1
+    },
+    "05_hub_E_t1.00_d0.28": {
+      "3mf_watertight": true,
+      "stl_watertight": true,
+      "connected_components": 1
+    },
+    "06_retaining_clip": {
+      "3mf_watertight": true,
+      "stl_watertight": true,
+      "connected_components": 1
+    }
+  },
+  "gcode_arms": [
+    {
+      "variant": "A",
+      "layer_z_mm": 0.68,
+      "centreline_samples_with_extrusion": 120,
+      "centreline_samples_total": 120,
+      "gap_samples_with_unwanted_extrusion": 0
+    },
+    {
+      "variant": "B",
+      "layer_z_mm": 0.68,
+      "centreline_samples_with_extrusion": 120,
+      "centreline_samples_total": 120,
+      "gap_samples_with_unwanted_extrusion": 0
+    },
+    {
+      "variant": "C",
+      "layer_z_mm": 0.68,
+      "centreline_samples_with_extrusion": 120,
+      "centreline_samples_total": 120,
+      "gap_samples_with_unwanted_extrusion": 0
+    },
+    {
+      "variant": "D",
+      "layer_z_mm": 0.68,
+      "centreline_samples_with_extrusion": 120,
+      "centreline_samples_total": 120,
+      "gap_samples_with_unwanted_extrusion": 0
+    },
+    {
+      "variant": "E",
+      "layer_z_mm": 0.68,
+      "centreline_samples_with_extrusion": 120,
+      "centreline_samples_total": 120,
+      "gap_samples_with_unwanted_extrusion": 0
+    }
+  ],
+  "gcode_screw_seats": [
+    {
+      "variant": "A",
+      "screw_seat_present_at_layers_mm": [
+        2.48,
+        2.6,
+        2.72,
+        2.84,
+        2.96,
+        3.08,
+        3.2
+      ]
+    },
+    {
+      "variant": "B",
+      "screw_seat_present_at_layers_mm": [
+        2.48,
+        2.6,
+        2.72,
+        2.84,
+        2.96,
+        3.08,
+        3.2
+      ]
+    },
+    {
+      "variant": "C",
+      "screw_seat_present_at_layers_mm": [
+        2.48,
+        2.6,
+        2.72,
+        2.84,
+        2.96,
+        3.08,
+        3.2
+      ]
+    },
+    {
+      "variant": "D",
+      "screw_seat_present_at_layers_mm": [
+        2.48,
+        2.6,
+        2.72,
+        2.84,
+        2.96,
+        3.08,
+        3.2
+      ]
+    },
+    {
+      "variant": "E",
+      "screw_seat_present_at_layers_mm": [
+        2.48,
+        2.6,
+        2.72,
+        2.84,
+        2.96,
+        3.08,
+        3.2
+      ]
+    }
+  ],
+  "assembly_end_position_checks": [
+    {
+      "hub": "01_hub_A_t0.80_d0.20",
+      "clip_z_mm": 4.401000000000001,
+      "ring_z_mm": 0,
+      "full_height_mm": 6.000000000000001
+    },
+    {
+      "hub": "01_hub_A_t0.80_d0.20",
+      "clip_z_mm": 4.401000000000001,
+      "ring_z_mm": 0.3200000000000006,
+      "full_height_mm": 6.0
+    },
+    {
+      "hub": "01_hub_A_t0.80_d0.20",
+      "clip_z_mm": 4.558999999999999,
+      "ring_z_mm": 0,
+      "full_height_mm": 6.000000000000001
+    },
+    {
+      "hub": "01_hub_A_t0.80_d0.20",
+      "clip_z_mm": 4.558999999999999,
+      "ring_z_mm": 0.4779999999999992,
+      "full_height_mm": 6.0
+    },
+    {
+      "hub": "02_hub_B_t1.00_d0.20",
+      "clip_z_mm": 4.401000000000001,
+      "ring_z_mm": 0,
+      "full_height_mm": 6.000000000000001
+    },
+    {
+      "hub": "02_hub_B_t1.00_d0.20",
+      "clip_z_mm": 4.401000000000001,
+      "ring_z_mm": 0.3200000000000006,
+      "full_height_mm": 6.0
+    },
+    {
+      "hub": "02_hub_B_t1.00_d0.20",
+      "clip_z_mm": 4.558999999999999,
+      "ring_z_mm": 0,
+      "full_height_mm": 6.000000000000001
+    },
+    {
+      "hub": "02_hub_B_t1.00_d0.20",
+      "clip_z_mm": 4.558999999999999,
+      "ring_z_mm": 0.4779999999999992,
+      "full_height_mm": 6.0
+    },
+    {
+      "hub": "03_hub_C_t1.20_d0.20",
+      "clip_z_mm": 4.401000000000001,
+      "ring_z_mm": 0,
+      "full_height_mm": 6.000000000000001
+    },
+    {
+      "hub": "03_hub_C_t1.20_d0.20",
+      "clip_z_mm": 4.401000000000001,
+      "ring_z_mm": 0.3200000000000006,
+      "full_height_mm": 6.0
+    },
+    {
+      "hub": "03_hub_C_t1.20_d0.20",
+      "clip_z_mm": 4.558999999999999,
+      "ring_z_mm": 0,
+      "full_height_mm": 6.000000000000001
+    },
+    {
+      "hub": "03_hub_C_t1.20_d0.20",
+      "clip_z_mm": 4.558999999999999,
+      "ring_z_mm": 0.4779999999999992,
+      "full_height_mm": 6.0
+    },
+    {
+      "hub": "04_hub_D_t1.00_d0.12",
+      "clip_z_mm": 4.401000000000001,
+      "ring_z_mm": 0,
+      "full_height_mm": 6.000000000000001
+    },
+    {
+      "hub": "04_hub_D_t1.00_d0.12",
+      "clip_z_mm": 4.401000000000001,
+      "ring_z_mm": 0.3200000000000006,
+      "full_height_mm": 6.0
+    },
+    {
+      "hub": "04_hub_D_t1.00_d0.12",
+      "clip_z_mm": 4.558999999999999,
+      "ring_z_mm": 0,
+      "full_height_mm": 6.000000000000001
+    },
+    {
+      "hub": "04_hub_D_t1.00_d0.12",
+      "clip_z_mm": 4.558999999999999,
+      "ring_z_mm": 0.4779999999999992,
+      "full_height_mm": 6.0
+    },
+    {
+      "hub": "05_hub_E_t1.00_d0.28",
+      "clip_z_mm": 4.401000000000001,
+      "ring_z_mm": 0,
+      "full_height_mm": 6.000000000000001
+    },
+    {
+      "hub": "05_hub_E_t1.00_d0.28",
+      "clip_z_mm": 4.401000000000001,
+      "ring_z_mm": 0.3200000000000006,
+      "full_height_mm": 6.0
+    },
+    {
+      "hub": "05_hub_E_t1.00_d0.28",
+      "clip_z_mm": 4.558999999999999,
+      "ring_z_mm": 0,
+      "full_height_mm": 6.000000000000001
+    },
+    {
+      "hub": "05_hub_E_t1.00_d0.28",
+      "clip_z_mm": 4.558999999999999,
+      "ring_z_mm": 0.4779999999999992,
+      "full_height_mm": 6.0
+    }
+  ],
+  "axial_float_nominal_mm": 0.3600000000000003,
+  "axial_float_maximum_mm": 0.47999999999999954,
+  "configured_nozzle_offset_mm": [
+    0.0,
+    2.0
+  ],
+  "physical_function_verified": false,
+  "printer_transmission_performed": false
+}

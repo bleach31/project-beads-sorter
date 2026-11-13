@@ -58,3 +58,7 @@ desktop.ini
 htmlcov/
 .tox/
 .nox/
+
+
+.build/
+poster/

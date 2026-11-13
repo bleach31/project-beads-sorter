@@ -1,0 +1,278 @@
+{
+  "all_checks_passed": true,
+  "revision": "v9r1: complete tube-outlet and discharge-opening membrane removal",
+  "bases_project": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\print_review\\bases_016_release\\projects\\prototypes_P1S_PLA_reference.3mf",
+  "bases_project_sha256": "0c08aaafa09ea36a8d7211babde32ace60c4bddb504a94dad71b1a997a79caaf",
+  "rods_project": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\print_review\\rods_010\\projects\\prototypes_P1S_PLA_reference.3mf",
+  "rods_project_sha256": "0f88351a2230badd76dc30a070e7782fde25b9392010e0ee1c7bb4939649baa6",
+  "layout_preview": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9\\print_review\\recommended_jobs_layout.png",
+  "notes": "本体3種類のP1S・PLA・0.16mm設定付き3MFを、出口の面を修正した正モデルから作り直しました。\n各モデルはID6内121本と、横へ開く部分まで含めた共通空洞1121本のレイで開通を確認。管端平面の両向き面の重複と、開口を覆う面積は0です。\n印刷経路でも管端の共通開口内へ材料を押し出していないことを確認しました。\n機種・材料・プロセス設定は以前の確認済み設定と同一です。今回の追加足場監査は、修正箇所を含む印刷Z27.8〜37.1mmの58層（3本体配置）で実施し、無支持島・微小な足場・新しい大きな張出しは0でした。全278層の監査を今回もう一度行ったという意味ではありません。\n棒2本の0.10mm設定付きプロジェクトは旧版と同一バイトで、変更・再スライスしていません。すでに棒を印刷済みなら再印刷は不要です。\n半透明の箱は印刷されないサポート禁止領域です。削除せずに使ってください。\n実物の造形、支持の取り外し、チューブのはまり具合、ビーズの通過は未確認です。",
+  "base_native_validation": {
+    "path": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\print_review\\bases_016_release\\projects\\prototypes_P1S_PLA_reference.3mf",
+    "sha256": "0c08aaafa09ea36a8d7211babde32ace60c4bddb504a94dad71b1a997a79caaf",
+    "maximum_positive_vertex_errors_mm": {
+      "01_upper-base_W5p8": 8.06007236758115e-06,
+      "02_upper-base_W6p8": 6.915383496617402e-06,
+      "03_upper-base_W7p2": 9.154977173819304e-06
+    },
+    "faces_by_object_and_role": {
+      "01_upper-base_W5p8": {
+        "normal_part": 9916,
+        "support_blocker": 12
+      },
+      "02_upper-base_W6p8": {
+        "normal_part": 9890,
+        "support_blocker": 12
+      },
+      "03_upper-base_W7p2": {
+        "normal_part": 9874,
+        "support_blocker": 12
+      }
+    },
+    "contains_gcode": false,
+    "positive_models_retained": true,
+    "support_blocker_roles_retained": true
+  },
+  "base_native_opening_surface_audit": {
+    "project": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\print_review\\bases_016_release\\projects\\prototypes_P1S_PLA_reference.3mf",
+    "project_sha256": "0c08aaafa09ea36a8d7211babde32ace60c4bddb504a94dad71b1a997a79caaf",
+    "manifest": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\print_review\\manifests\\bases_016.json",
+    "positive_model_count": 3,
+    "cases": [
+      {
+        "width_mm": 5.8,
+        "tube_end_Z_mm": -3.799765,
+        "ray_count": 121,
+        "rays_with_face_hits": 0,
+        "hits": [],
+        "plane_face_area_inside_ID6_mm2": {
+          "-1": 0.0,
+          "1": 0.0
+        },
+        "whole_plane_opposed_face_overlap_mm2": 0.0,
+        "common_opening_core_area_mm2": 45.629440661202835,
+        "plane_faces_inside_common_opening_core_mm2": {
+          "-1": 0.0,
+          "1": 0.0
+        },
+        "whole_common_opening_ray_count": 1121,
+        "whole_common_opening_rays_blocked": 0,
+        "whole_common_opening_hits": [],
+        "passed": true,
+        "method": "Local axial rays and finite-area face intersection; positive native mesh only.",
+        "name": "01_upper-base_W5p8"
+      },
+      {
+        "width_mm": 6.8,
+        "tube_end_Z_mm": -4.799765,
+        "ray_count": 121,
+        "rays_with_face_hits": 0,
+        "hits": [],
+        "plane_face_area_inside_ID6_mm2": {
+          "-1": 0.0,
+          "1": 0.0
+        },
+        "whole_plane_opposed_face_overlap_mm2": 0.0,
+        "common_opening_core_area_mm2": 45.629440661202835,
+        "plane_faces_inside_common_opening_core_mm2": {
+          "-1": 0.0,
+          "1": 0.0
+        },
+        "whole_common_opening_ray_count": 1121,
+        "whole_common_opening_rays_blocked": 0,
+        "whole_common_opening_hits": [],
+        "passed": true,
+        "method": "Local axial rays and finite-area face intersection; positive native mesh only.",
+        "name": "02_upper-base_W6p8"
+      },
+      {
+        "width_mm": 7.2,
+        "tube_end_Z_mm": -5.199765,
+        "ray_count": 121,
+        "rays_with_face_hits": 0,
+        "hits": [],
+        "plane_face_area_inside_ID6_mm2": {
+          "-1": 0.0,
+          "1": 0.0
+        },
+        "whole_plane_opposed_face_overlap_mm2": 0.0,
+        "common_opening_core_area_mm2": 45.629440661202835,
+        "plane_faces_inside_common_opening_core_mm2": {
+          "-1": 0.0,
+          "1": 0.0
+        },
+        "whole_common_opening_ray_count": 1121,
+        "whole_common_opening_rays_blocked": 0,
+        "whole_common_opening_hits": [],
+        "passed": true,
+        "method": "Local axial rays and finite-area face intersection; positive native mesh only.",
+        "name": "03_upper-base_W7p2"
+      }
+    ],
+    "all_mouths_open": true
+  },
+  "base_print_aperture_core_checks": {
+    "case": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\print_review\\bases_016_release",
+    "gcode_sha256": "c70c3776caeccb7f5392d91b130b7cb64a8dce30d31a429869f8c6faa8472d0e",
+    "applied_offsets_mm": [
+      [
+        0.0,
+        2.0,
+        0.0
+      ]
+    ],
+    "cases": [
+      {
+        "name": "01_upper-base_W5p8",
+        "width_mm": 5.8,
+        "candidate_segments": 0,
+        "sampled_model_extrusions_inside_R2p7mm_aperture_core": 0,
+        "model_extrusion_samples_inside_extended_opening_core": 0,
+        "extended_opening_core_area_mm2": 38.6000864731347,
+        "aperture_core_empty": true,
+        "probe": {
+          "radius_mm": 2.7,
+          "half_axial_length_mm": 0.1,
+          "segment_step_max_mm": 0.04
+        },
+        "limits": "Centreline probe excludes a margin from the true ID6 rim. Actual native mesh faces are audited separately."
+      },
+      {
+        "name": "02_upper-base_W6p8",
+        "width_mm": 6.8,
+        "candidate_segments": 0,
+        "sampled_model_extrusions_inside_R2p7mm_aperture_core": 0,
+        "model_extrusion_samples_inside_extended_opening_core": 0,
+        "extended_opening_core_area_mm2": 38.6000864731347,
+        "aperture_core_empty": true,
+        "probe": {
+          "radius_mm": 2.7,
+          "half_axial_length_mm": 0.1,
+          "segment_step_max_mm": 0.04
+        },
+        "limits": "Centreline probe excludes a margin from the true ID6 rim. Actual native mesh faces are audited separately."
+      },
+      {
+        "name": "03_upper-base_W7p2",
+        "width_mm": 7.2,
+        "candidate_segments": 0,
+        "sampled_model_extrusions_inside_R2p7mm_aperture_core": 0,
+        "model_extrusion_samples_inside_extended_opening_core": 0,
+        "extended_opening_core_area_mm2": 38.6000864731347,
+        "aperture_core_empty": true,
+        "probe": {
+          "radius_mm": 2.7,
+          "half_axial_length_mm": 0.1,
+          "segment_step_max_mm": 0.04
+        },
+        "limits": "Centreline probe excludes a margin from the true ID6 rim. Actual native mesh faces are audited separately."
+      }
+    ],
+    "all_aperture_cores_empty": true,
+    "comparison": {
+      "old_case": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9\\print_review\\bases_016",
+      "old_gcode_sha256": "311703a2734bc10d11e0eb76121171afbf457491ff533d664f6d66640400e987",
+      "new_segment_count": 666619,
+      "old_segment_count": 666830,
+      "same_segment_count": false,
+      "old_aperture_probe": {
+        "case": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9\\print_review\\bases_016",
+        "gcode_sha256": "311703a2734bc10d11e0eb76121171afbf457491ff533d664f6d66640400e987",
+        "applied_offsets_mm": [
+          [
+            0.0,
+            2.0,
+            0.0
+          ]
+        ],
+        "cases": [
+          {
+            "name": "01_upper-base_W5p8",
+            "width_mm": 5.8,
+            "candidate_segments": 0,
+            "sampled_model_extrusions_inside_R2p7mm_aperture_core": 0,
+            "model_extrusion_samples_inside_extended_opening_core": 0,
+            "extended_opening_core_area_mm2": 38.6000864731347,
+            "aperture_core_empty": true,
+            "probe": {
+              "radius_mm": 2.7,
+              "half_axial_length_mm": 0.1,
+              "segment_step_max_mm": 0.04
+            },
+            "limits": "Centreline probe excludes a margin from the true ID6 rim. Actual native mesh faces are audited separately."
+          },
+          {
+            "name": "02_upper-base_W6p8",
+            "width_mm": 6.8,
+            "candidate_segments": 0,
+            "sampled_model_extrusions_inside_R2p7mm_aperture_core": 0,
+            "model_extrusion_samples_inside_extended_opening_core": 0,
+            "extended_opening_core_area_mm2": 38.6000864731347,
+            "aperture_core_empty": true,
+            "probe": {
+              "radius_mm": 2.7,
+              "half_axial_length_mm": 0.1,
+              "segment_step_max_mm": 0.04
+            },
+            "limits": "Centreline probe excludes a margin from the true ID6 rim. Actual native mesh faces are audited separately."
+          },
+          {
+            "name": "03_upper-base_W7p2",
+            "width_mm": 7.2,
+            "candidate_segments": 0,
+            "sampled_model_extrusions_inside_R2p7mm_aperture_core": 0,
+            "model_extrusion_samples_inside_extended_opening_core": 0,
+            "extended_opening_core_area_mm2": 38.6000864731347,
+            "aperture_core_empty": true,
+            "probe": {
+              "radius_mm": 2.7,
+              "half_axial_length_mm": 0.1,
+              "segment_step_max_mm": 0.04
+            },
+            "limits": "Centreline probe excludes a margin from the true ID6 rim. Actual native mesh faces are audited separately."
+          }
+        ],
+        "all_aperture_cores_empty": true
+      }
+    }
+  },
+  "base_partial_layer_reaudit": {
+    "report": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\print_review\\bases_016_release\\mouth_layers_audit\\unsupported_islands.json",
+    "model_layers_checked": 58,
+    "total_model_layers": 278,
+    "print_Z_scope": [
+      27.8,
+      37.1
+    ],
+    "unsupported_islands": 0,
+    "marginal_contacts": 0,
+    "new_anchored_extension_reviews": 0,
+    "registration_passed": true,
+    "full_278_layer_reaudit_performed": false
+  },
+  "settings_unchanged_from_previous": {
+    "machine.json": true,
+    "filament_pla.json": true,
+    "process_reference.json": true
+  },
+  "previous_full_print_audit_reference": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9\\print_review\\release_manifest.json",
+  "source_file_hashes": {
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\bases\\parts\\01_upper-base_W5p8_print.stl": "466debb3b27aff44f1f61b1ab8f24103b7f92129b6d6d0b13a26cc87ed417c61",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\bases\\parts\\01_upper-base_W5p8_original_pose.stl": "75408db33c515b443df9655147efa31a95578b9a65881b16be00c77f85161cb3",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\bases\\analysis\\01_upper-base_W5p8_transform.json": "98f63334b3af24165e13af1cd656c36eacf0f2cffa233828acc63533716d014d",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\bases\\parts\\02_upper-base_W6p8_print.stl": "9e55730bf754193c4b797351e9c1863a600a375a6ad7d5b98f39b0c82913b350",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\bases\\parts\\02_upper-base_W6p8_original_pose.stl": "6d91ab0cc464d5d338f25ed195e7dd1611d4b69bc2bd29535e493300d2730cb1",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\bases\\analysis\\02_upper-base_W6p8_transform.json": "98f63334b3af24165e13af1cd656c36eacf0f2cffa233828acc63533716d014d",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\bases\\parts\\03_upper-base_W7p2_print.stl": "12dc64cd50e5eafc29e9404ee6fadcebf708987f3684fe9c497a2b7212a4dffd",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\bases\\parts\\03_upper-base_W7p2_original_pose.stl": "19c07b9ccf57d559fa6f46bded36a398c355ade7bbb5053bd9e5da3a0f43e0cf",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\bases\\analysis\\03_upper-base_W7p2_transform.json": "98f63334b3af24165e13af1cd656c36eacf0f2cffa233828acc63533716d014d"
+  },
+  "rods_byte_identical_to_previous": true,
+  "rods_re_sliced": false,
+  "base_job_estimated_minutes": 140.33528645833334,
+  "base_job_estimated_filament_g": 51.77680969238281,
+  "rod_job_estimated_minutes": 29.373844401041666,
+  "rod_job_estimated_filament_g": 4.2938714027404785,
+  "physical_print_tested": false,
+  "printer_transmission_performed": false
+}

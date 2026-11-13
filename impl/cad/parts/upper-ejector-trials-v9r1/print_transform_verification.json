@@ -1,0 +1,29 @@
+[
+  {
+    "W": 5.8,
+    "original_sha": "2adad0862c6cacd1c195cbb8d11e488a9ac69bbc538aead7752ecea513170749",
+    "print_sha": "551395333c959055dce716244b5d611a0c57973fc18ee2eb2118f1db183a3c28",
+    "print_stl_sha": "466debb3b27aff44f1f61b1ab8f24103b7f92129b6d6d0b13a26cc87ed417c61",
+    "max_vertex_error": 1.3186952199851768e-08,
+    "volume_delta": 5.812697054352611e-06,
+    "faces_identical": true
+  },
+  {
+    "W": 6.8,
+    "original_sha": "41805025cdd6cad5b2eaccb9769ff922735b8c69daee35bd56175a25d4c0b11a",
+    "print_sha": "4665a394c1b0542b92806b52377c252fe91332c2ab5d67fe3aa4a2b68fc83b8d",
+    "print_stl_sha": "9e55730bf754193c4b797351e9c1863a600a375a6ad7d5b98f39b0c82913b350",
+    "max_vertex_error": 1.3186952199851768e-08,
+    "volume_delta": 5.8237910707248375e-06,
+    "faces_identical": true
+  },
+  {
+    "W": 7.2,
+    "original_sha": "23338838d24e558df951e1bb742fff92a10200b27f276f0dc8a12abd00c2cb1c",
+    "print_sha": "1bf3818fbcbbd3be11284cbd538cfa2014606c641e08f83312a434f8dbcb61af",
+    "print_stl_sha": "12dc64cd50e5eafc29e9404ee6fadcebf708987f3684fe9c497a2b7212a4dffd",
+    "max_vertex_error": 1.3186952199851768e-08,
+    "volume_delta": 5.8325949794379994e-06,
+    "faces_identical": true
+  }
+]

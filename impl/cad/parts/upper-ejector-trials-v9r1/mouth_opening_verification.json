@@ -1,0 +1,533 @@
+{
+  "cases": [
+    {
+      "width_mm": 5.8,
+      "files_sha256": {
+        "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\bases\\parts\\01_upper-base_W5p8_original_pose.3mf": "2adad0862c6cacd1c195cbb8d11e488a9ac69bbc538aead7752ecea513170749",
+        "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\bases\\parts\\01_upper-base_W5p8_print.3mf": "551395333c959055dce716244b5d611a0c57973fc18ee2eb2118f1db183a3c28"
+      },
+      "tube_end_z_mm": -3.799765,
+      "basic_tests_count": 31,
+      "surface_checks": {
+        "original": {
+          "full_path_start_z_mm": -40,
+          "full_path_end_z_mm": 1.900235,
+          "full_path_centerline_hits": [],
+          "full_path_ray_count": 81,
+          "full_path_blocked_ray_count": 0,
+          "full_path_blocked_rays": [],
+          "local_path_blocked_ray_count": 0,
+          "ID6_cap_projected_area_mm2": 0.0,
+          "near_end_facets": [
+            {
+              "normal_sign": -1,
+              "cover_area_ID6_mm2": 0.0,
+              "facet_count": 0,
+              "z_min": -3.79976511,
+              "z_max": -3.79976511
+            },
+            {
+              "normal_sign": 1,
+              "cover_area_ID6_mm2": 0.0,
+              "facet_count": 0,
+              "z_min": -3.79976511,
+              "z_max": -3.79976511
+            }
+          ],
+          "opposed_coplanar_area_across_full_mouth_mm2": 0.0,
+          "opposed_coplanar_test_bounds_XY_mm": [
+            [
+              22.5,
+              -12
+            ],
+            [
+              32,
+              -2.8
+            ]
+          ],
+          "passed": true
+        },
+        "print": {
+          "full_path_start_z_mm": -40,
+          "full_path_end_z_mm": 1.900235,
+          "full_path_centerline_hits": [],
+          "full_path_ray_count": 81,
+          "full_path_blocked_ray_count": 0,
+          "full_path_blocked_rays": [],
+          "local_path_blocked_ray_count": 0,
+          "ID6_cap_projected_area_mm2": 0.0,
+          "near_end_facets": [
+            {
+              "normal_sign": -1,
+              "cover_area_ID6_mm2": 0.0,
+              "facet_count": 0,
+              "z_min": -3.79976511016449,
+              "z_max": -3.79976511016449
+            },
+            {
+              "normal_sign": 1,
+              "cover_area_ID6_mm2": 0.0,
+              "facet_count": 0,
+              "z_min": -3.79976511016449,
+              "z_max": -3.79976511016449
+            }
+          ],
+          "opposed_coplanar_area_across_full_mouth_mm2": 0.0,
+          "opposed_coplanar_test_bounds_XY_mm": [
+            [
+              22.5,
+              -12
+            ],
+            [
+              32,
+              -2.8
+            ]
+          ],
+          "passed": true
+        }
+      },
+      "stop_contact_area_old_mm2": 8.758149792651318,
+      "stop_contact_area_new_mm2": 8.75814827388238,
+      "stop_contact_delta_mm2": -1.5187689381690461e-06,
+      "stop_area_old_sections": {
+        "method": "Actual mesh cross-section intersected with OD8/ID6 annulus; 128-sided circles match original probe.",
+        "slices": [
+          {
+            "z_mm": -3.797765,
+            "contact_area_mm2": 8.758149745173114
+          },
+          {
+            "z_mm": -3.794765,
+            "contact_area_mm2": 8.758149684023433
+          },
+          {
+            "z_mm": -3.7887649999999997,
+            "contact_area_mm2": 8.75814997121553
+          },
+          {
+            "z_mm": -3.7847649999999997,
+            "contact_area_mm2": 8.758149700207905
+          },
+          {
+            "z_mm": -3.779765,
+            "contact_area_mm2": 8.758149862636603
+          }
+        ],
+        "mean_contact_area_mm2": 8.758149792651318
+      },
+      "stop_area_new_sections": {
+        "method": "Actual mesh cross-section intersected with OD8/ID6 annulus; 128-sided circles match original probe.",
+        "slices": [
+          {
+            "z_mm": -3.797765,
+            "contact_area_mm2": 8.758148227489748
+          },
+          {
+            "z_mm": -3.794765,
+            "contact_area_mm2": 8.758148278977693
+          },
+          {
+            "z_mm": -3.7887649999999997,
+            "contact_area_mm2": 8.758148335041021
+          },
+          {
+            "z_mm": -3.7847649999999997,
+            "contact_area_mm2": 8.758148293446839
+          },
+          {
+            "z_mm": -3.779765,
+            "contact_area_mm2": 8.758148234456606
+          }
+        ],
+        "mean_contact_area_mm2": 8.75814827388238
+      },
+      "actual_room_widths_mm": [
+        5.800000190734863,
+        5.800000190734863,
+        5.800000190734863
+      ],
+      "room_floor_max_error_mm": 2.7567669771855208e-05,
+      "center_depth_mm": 0.24999993774414087,
+      "flat_foot_faces": {
+        "main_claw": {
+          "sample_count": 63,
+          "max_error_from_Xbed_mm": 0.0,
+          "range_X_mm": [
+            -5.020318984985352,
+            -5.020318984985352
+          ]
+        },
+        "front_flange": {
+          "sample_count": 63,
+          "max_error_from_Xbed_mm": 0.0,
+          "range_X_mm": [
+            -5.020318984985352,
+            -5.020318984985352
+          ]
+        }
+      },
+      "tests": {
+        "basic_31_checks_passed": true,
+        "original_mouth_and_full_path_open": true,
+        "print_mouth_and_full_path_open": true,
+        "axial_stop_contact_preserved": true,
+        "no_input_changed_during_audit": true
+      },
+      "passed": true
+    },
+    {
+      "width_mm": 6.8,
+      "files_sha256": {
+        "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\bases\\parts\\02_upper-base_W6p8_original_pose.3mf": "41805025cdd6cad5b2eaccb9769ff922735b8c69daee35bd56175a25d4c0b11a",
+        "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\bases\\parts\\02_upper-base_W6p8_print.3mf": "4665a394c1b0542b92806b52377c252fe91332c2ab5d67fe3aa4a2b68fc83b8d"
+      },
+      "tube_end_z_mm": -4.799765,
+      "basic_tests_count": 31,
+      "surface_checks": {
+        "original": {
+          "full_path_start_z_mm": -40,
+          "full_path_end_z_mm": 1.900235,
+          "full_path_centerline_hits": [],
+          "full_path_ray_count": 81,
+          "full_path_blocked_ray_count": 0,
+          "full_path_blocked_rays": [],
+          "local_path_blocked_ray_count": 0,
+          "ID6_cap_projected_area_mm2": 0.0,
+          "near_end_facets": [
+            {
+              "normal_sign": -1,
+              "cover_area_ID6_mm2": 0.0,
+              "facet_count": 0,
+              "z_min": -4.79976511,
+              "z_max": -4.79976511
+            },
+            {
+              "normal_sign": 1,
+              "cover_area_ID6_mm2": 0.0,
+              "facet_count": 0,
+              "z_min": -4.79976511,
+              "z_max": -4.79976511
+            }
+          ],
+          "opposed_coplanar_area_across_full_mouth_mm2": 0.0,
+          "opposed_coplanar_test_bounds_XY_mm": [
+            [
+              22.5,
+              -12
+            ],
+            [
+              32,
+              -2.8
+            ]
+          ],
+          "passed": true
+        },
+        "print": {
+          "full_path_start_z_mm": -40,
+          "full_path_end_z_mm": 1.900235,
+          "full_path_centerline_hits": [],
+          "full_path_ray_count": 81,
+          "full_path_blocked_ray_count": 0,
+          "full_path_blocked_rays": [],
+          "local_path_blocked_ray_count": 0,
+          "ID6_cap_projected_area_mm2": 0.0,
+          "near_end_facets": [
+            {
+              "normal_sign": -1,
+              "cover_area_ID6_mm2": 0.0,
+              "facet_count": 0,
+              "z_min": -4.79976511016449,
+              "z_max": -4.79976511016449
+            },
+            {
+              "normal_sign": 1,
+              "cover_area_ID6_mm2": 0.0,
+              "facet_count": 0,
+              "z_min": -4.79976511016449,
+              "z_max": -4.79976511016449
+            }
+          ],
+          "opposed_coplanar_area_across_full_mouth_mm2": 0.0,
+          "opposed_coplanar_test_bounds_XY_mm": [
+            [
+              22.5,
+              -12
+            ],
+            [
+              32,
+              -2.8
+            ]
+          ],
+          "passed": true
+        }
+      },
+      "stop_contact_area_old_mm2": 8.7581490295593,
+      "stop_contact_area_new_mm2": 8.75814826446371,
+      "stop_contact_delta_mm2": -7.650955904381362e-07,
+      "stop_area_old_sections": {
+        "method": "Actual mesh cross-section intersected with OD8/ID6 annulus; 128-sided circles match original probe.",
+        "slices": [
+          {
+            "z_mm": -4.797765,
+            "contact_area_mm2": 8.75814911306193
+          },
+          {
+            "z_mm": -4.794765,
+            "contact_area_mm2": 8.758149026302714
+          },
+          {
+            "z_mm": -4.788765,
+            "contact_area_mm2": 8.758149023310178
+          },
+          {
+            "z_mm": -4.784765,
+            "contact_area_mm2": 8.758149075757824
+          },
+          {
+            "z_mm": -4.779765,
+            "contact_area_mm2": 8.758148909363857
+          }
+        ],
+        "mean_contact_area_mm2": 8.7581490295593
+      },
+      "stop_area_new_sections": {
+        "method": "Actual mesh cross-section intersected with OD8/ID6 annulus; 128-sided circles match original probe.",
+        "slices": [
+          {
+            "z_mm": -4.797765,
+            "contact_area_mm2": 8.758148257364754
+          },
+          {
+            "z_mm": -4.794765,
+            "contact_area_mm2": 8.758148273157195
+          },
+          {
+            "z_mm": -4.788765,
+            "contact_area_mm2": 8.758148288500923
+          },
+          {
+            "z_mm": -4.784765,
+            "contact_area_mm2": 8.758148314445073
+          },
+          {
+            "z_mm": -4.779765,
+            "contact_area_mm2": 8.758148188850605
+          }
+        ],
+        "mean_contact_area_mm2": 8.75814826446371
+      },
+      "actual_room_widths_mm": [
+        6.800000190734863,
+        6.800000190734863,
+        6.800000190734863
+      ],
+      "room_floor_max_error_mm": 2.7567669771855208e-05,
+      "center_depth_mm": 0.24999993774414087,
+      "flat_foot_faces": {
+        "main_claw": {
+          "sample_count": 63,
+          "max_error_from_Xbed_mm": 0.0,
+          "range_X_mm": [
+            -5.020318984985352,
+            -5.020318984985352
+          ]
+        },
+        "front_flange": {
+          "sample_count": 63,
+          "max_error_from_Xbed_mm": 0.0,
+          "range_X_mm": [
+            -5.020318984985352,
+            -5.020318984985352
+          ]
+        }
+      },
+      "tests": {
+        "basic_31_checks_passed": true,
+        "original_mouth_and_full_path_open": true,
+        "print_mouth_and_full_path_open": true,
+        "axial_stop_contact_preserved": true,
+        "no_input_changed_during_audit": true
+      },
+      "passed": true
+    },
+    {
+      "width_mm": 7.2,
+      "files_sha256": {
+        "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\bases\\parts\\03_upper-base_W7p2_original_pose.3mf": "23338838d24e558df951e1bb742fff92a10200b27f276f0dc8a12abd00c2cb1c",
+        "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_trials_v9r1\\bases\\parts\\03_upper-base_W7p2_print.3mf": "1bf3818fbcbbd3be11284cbd538cfa2014606c641e08f83312a434f8dbcb61af"
+      },
+      "tube_end_z_mm": -5.199765,
+      "basic_tests_count": 31,
+      "surface_checks": {
+        "original": {
+          "full_path_start_z_mm": -40,
+          "full_path_end_z_mm": 1.900235,
+          "full_path_centerline_hits": [],
+          "full_path_ray_count": 81,
+          "full_path_blocked_ray_count": 0,
+          "full_path_blocked_rays": [],
+          "local_path_blocked_ray_count": 0,
+          "ID6_cap_projected_area_mm2": 0.0,
+          "near_end_facets": [
+            {
+              "normal_sign": -1,
+              "cover_area_ID6_mm2": 0.0,
+              "facet_count": 0,
+              "z_min": -5.19976521,
+              "z_max": -5.19976521
+            },
+            {
+              "normal_sign": 1,
+              "cover_area_ID6_mm2": 0.0,
+              "facet_count": 0,
+              "z_min": -5.19976521,
+              "z_max": -5.19976521
+            }
+          ],
+          "opposed_coplanar_area_across_full_mouth_mm2": 0.0,
+          "opposed_coplanar_test_bounds_XY_mm": [
+            [
+              22.5,
+              -12
+            ],
+            [
+              32,
+              -2.8
+            ]
+          ],
+          "passed": true
+        },
+        "print": {
+          "full_path_start_z_mm": -40,
+          "full_path_end_z_mm": 1.900235,
+          "full_path_centerline_hits": [],
+          "full_path_ray_count": 81,
+          "full_path_blocked_ray_count": 0,
+          "full_path_blocked_rays": [],
+          "local_path_blocked_ray_count": 0,
+          "ID6_cap_projected_area_mm2": 0.0,
+          "near_end_facets": [
+            {
+              "normal_sign": -1,
+              "cover_area_ID6_mm2": 0.0,
+              "facet_count": 0,
+              "z_min": -5.19976521016449,
+              "z_max": -5.19976521016449
+            },
+            {
+              "normal_sign": 1,
+              "cover_area_ID6_mm2": 0.0,
+              "facet_count": 0,
+              "z_min": -5.19976521016449,
+              "z_max": -5.19976521016449
+            }
+          ],
+          "opposed_coplanar_area_across_full_mouth_mm2": 0.0,
+          "opposed_coplanar_test_bounds_XY_mm": [
+            [
+              22.5,
+              -12
+            ],
+            [
+              32,
+              -2.8
+            ]
+          ],
+          "passed": true
+        }
+      },
+      "stop_contact_area_old_mm2": 8.758149742384706,
+      "stop_contact_area_new_mm2": 8.758148294302618,
+      "stop_contact_delta_mm2": -1.4480820880180545e-06,
+      "stop_area_old_sections": {
+        "method": "Actual mesh cross-section intersected with OD8/ID6 annulus; 128-sided circles match original probe.",
+        "slices": [
+          {
+            "z_mm": -5.197765,
+            "contact_area_mm2": 8.75814986015532
+          },
+          {
+            "z_mm": -5.194765,
+            "contact_area_mm2": 8.758149877114032
+          },
+          {
+            "z_mm": -5.188765,
+            "contact_area_mm2": 8.758149531527808
+          },
+          {
+            "z_mm": -5.1847650000000005,
+            "contact_area_mm2": 8.758149766927811
+          },
+          {
+            "z_mm": -5.179765000000001,
+            "contact_area_mm2": 8.758149676198556
+          }
+        ],
+        "mean_contact_area_mm2": 8.758149742384706
+      },
+      "stop_area_new_sections": {
+        "method": "Actual mesh cross-section intersected with OD8/ID6 annulus; 128-sided circles match original probe.",
+        "slices": [
+          {
+            "z_mm": -5.197765,
+            "contact_area_mm2": 8.75814831517825
+          },
+          {
+            "z_mm": -5.194765,
+            "contact_area_mm2": 8.758148285834194
+          },
+          {
+            "z_mm": -5.188765,
+            "contact_area_mm2": 8.758148303523923
+          },
+          {
+            "z_mm": -5.1847650000000005,
+            "contact_area_mm2": 8.75814830455811
+          },
+          {
+            "z_mm": -5.179765000000001,
+            "contact_area_mm2": 8.758148262418606
+          }
+        ],
+        "mean_contact_area_mm2": 8.758148294302618
+      },
+      "actual_room_widths_mm": [
+        7.200000286102295,
+        7.200000286102295,
+        7.200000286102295
+      ],
+      "room_floor_max_error_mm": 2.7567669771855208e-05,
+      "center_depth_mm": 0.24999993774414087,
+      "flat_foot_faces": {
+        "main_claw": {
+          "sample_count": 63,
+          "max_error_from_Xbed_mm": 0.0,
+          "range_X_mm": [
+            -5.020318984985352,
+            -5.020318984985352
+          ]
+        },
+        "front_flange": {
+          "sample_count": 63,
+          "max_error_from_Xbed_mm": 0.0,
+          "range_X_mm": [
+            -5.020318984985352,
+            -5.020318984985352
+          ]
+        }
+      },
+      "tests": {
+        "basic_31_checks_passed": true,
+        "original_mouth_and_full_path_open": true,
+        "print_mouth_and_full_path_open": true,
+        "axial_stop_contact_preserved": true,
+        "no_input_changed_during_audit": true
+      },
+      "passed": true
+    }
+  ],
+  "all_passed": true,
+  "method": "Direct triangle-ray intersections, ID6 face projection at pipe end, and independent original dimensional/volume checks.",
+  "native_print_project_checked_separately": true,
+  "physical_print_or_flow_tested": false
+}
