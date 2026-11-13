@@ -1,0 +1,237 @@
+{
+  "all_checks_passed": true,
+  "scope": "Static geometry, native 3MF contents and reference-slice verification. Physical printing and feeding have not been performed.",
+  "adopted_case": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\bases_selective_016",
+  "bases_project": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\bases_selective_016\\projects\\prototypes_P1S_PLA_reference.3mf",
+  "bases_project_sha256": "7c9e477c743db95a1c582623bd6302c3cd71bf182cdea50e4cab9583f9027d8f",
+  "rods_project": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\reused_rods\\prototypes_P1S_PLA_reference.3mf",
+  "rods_project_sha256": "0f88351a2230badd76dc30a070e7782fde25b9392010e0ee1c7bb4939649baa6",
+  "rods_reused_unchanged_from": "v9r1",
+  "rods_reprint_required": false,
+  "support_preview": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\bases_selective_016\\support_preview.png",
+  "support_preview_sha256": "8813c021f3b5bcd5f680e49b5f802397fccbf78644a200fc601662541100d557",
+  "support_preview_visually_checked": true,
+  "notes": "案内溝は4.8mm、棒は4.5mmのまま。待機幅5.8／6.8／7.2mmの3種類。6個の非造形サポートブロッカーは削除しないでください。SG90の広い面にはサポートを付け、案内溝・ビーズ経路・チューブ内・クランプすきまは除外しています。現物の寸法、滑り、支持材の取り外し、ビーズ送りは未確認です。",
+  "non_printing_support_blocker_count": 6,
+  "blockers_per_base": 2,
+  "excluded_previous_trial": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\bases_016",
+  "excluded_previous_trial_reason": "Initial support policy entered the rod guide; superseded by bases_selective_016.",
+  "reference_settings": {
+    "printer": "Bambu Lab P1S 0.4 nozzle",
+    "filament": "Generic PLA",
+    "layer_height_mm": 0.16,
+    "initial_layer_height_mm": 0.2,
+    "walls": 4,
+    "infill_percent": 25,
+    "infill_pattern": "gyroid",
+    "support": "normal(auto), on model and build plate with six blockers",
+    "bridge_angle_deg": 90,
+    "brim_width_mm": 3
+  },
+  "estimated_minutes": 141.75603841145832,
+  "estimated_filament_g": 51.90065002441406,
+  "no_gcode_in_released_projects": true,
+  "printer_transmission_performed": false,
+  "geometry_and_slice_identity_verified": true,
+  "source_file_hashes": {
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\bases\\parts\\01_upper-base_G4p8_W5p8_print.stl": "c366ae63c25c8ff616ab4c8a2bc6f24f4c7baa6678bdd6520d933e25baa04b8f",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\bases\\parts\\01_upper-base_G4p8_W5p8_original_pose.stl": "d12f23a26a64c100b803fa83d584210d9ced440be11539b1fdb28ceb950ba492",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\bases\\analysis\\01_upper-base_G4p8_W5p8_transform.json": "98f63334b3af24165e13af1cd656c36eacf0f2cffa233828acc63533716d014d",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\bases\\parts\\02_upper-base_G4p8_W6p8_print.stl": "efb5ac8c15210592ca00a849954a2151780d2912e62fadb41a6f2b0204d90ffa",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\bases\\parts\\02_upper-base_G4p8_W6p8_original_pose.stl": "0fb131b444e85788b4c34ec96e529e62e21478893b325301ecdd7cdaaaf08ba4",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\bases\\analysis\\02_upper-base_G4p8_W6p8_transform.json": "98f63334b3af24165e13af1cd656c36eacf0f2cffa233828acc63533716d014d",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\bases\\parts\\03_upper-base_G4p8_W7p2_print.stl": "b4e95e43c3836197a1f0ffd14b2b4d9870ed0da73e5c3ab6e518ec78ef6c4a69",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\bases\\parts\\03_upper-base_G4p8_W7p2_original_pose.stl": "b9158832b773282d6603c94a885002396a5445160fc09470321872e45a3aa6ab",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\bases\\analysis\\03_upper-base_G4p8_W7p2_transform.json": "98f63334b3af24165e13af1cd656c36eacf0f2cffa233828acc63533716d014d"
+  },
+  "guide_checks": [
+    {
+      "name": "01_upper-base_G4p8_W5p8",
+      "specified_guide_gap_mm": 4.8,
+      "measured_station_count": 12,
+      "requested_station_count": 12,
+      "minimum_commanded_guide_opening_mm": 4.799999999999999,
+      "maximum_commanded_guide_opening_mm": 4.799999999999999,
+      "nominal_rod_thickness_mm": 4.5,
+      "minimum_commanded_red_clearance_for_5mm_bead_mm": 0.20000000000000107,
+      "rod_guide_corridor_bounds_original_mm": [
+        [
+          -4.920318984985352,
+          -9.7632227,
+          -2.799765
+        ],
+        [
+          23.0,
+          -2.756923,
+          2.000235
+        ]
+      ],
+      "support_centreline_samples_inside_guide_corridor": 0,
+      "conservative_support_clearance_to_guide_corridor_mm": 2.928214770916438,
+      "no_support_intrusion_possible": true,
+      "all_requested_stations_measured": true,
+      "commanded_gap_matches_nominal": true,
+      "limits": "Commanded bead footprints, not printed dimensions. Material spreading, friction and real bead height are unmeasured."
+    },
+    {
+      "name": "02_upper-base_G4p8_W6p8",
+      "specified_guide_gap_mm": 4.8,
+      "measured_station_count": 12,
+      "requested_station_count": 12,
+      "minimum_commanded_guide_opening_mm": 4.799999999999999,
+      "maximum_commanded_guide_opening_mm": 4.799999999999999,
+      "nominal_rod_thickness_mm": 4.5,
+      "minimum_commanded_red_clearance_for_5mm_bead_mm": 0.20000000000000107,
+      "rod_guide_corridor_bounds_original_mm": [
+        [
+          -4.920318984985352,
+          -9.7632227,
+          -2.799765
+        ],
+        [
+          23.0,
+          -2.756923,
+          2.000235
+        ]
+      ],
+      "support_centreline_samples_inside_guide_corridor": 0,
+      "conservative_support_clearance_to_guide_corridor_mm": 2.928214770916438,
+      "no_support_intrusion_possible": true,
+      "all_requested_stations_measured": true,
+      "commanded_gap_matches_nominal": true,
+      "limits": "Commanded bead footprints, not printed dimensions. Material spreading, friction and real bead height are unmeasured."
+    },
+    {
+      "name": "03_upper-base_G4p8_W7p2",
+      "specified_guide_gap_mm": 4.8,
+      "measured_station_count": 12,
+      "requested_station_count": 12,
+      "minimum_commanded_guide_opening_mm": 4.799999999999999,
+      "maximum_commanded_guide_opening_mm": 4.799999999999999,
+      "nominal_rod_thickness_mm": 4.5,
+      "minimum_commanded_red_clearance_for_5mm_bead_mm": 0.20000000000000107,
+      "rod_guide_corridor_bounds_original_mm": [
+        [
+          -4.920318984985352,
+          -9.7632227,
+          -2.799765
+        ],
+        [
+          23.0,
+          -2.756923,
+          2.000235
+        ]
+      ],
+      "support_centreline_samples_inside_guide_corridor": 0,
+      "conservative_support_clearance_to_guide_corridor_mm": 2.928214770916438,
+      "no_support_intrusion_possible": true,
+      "all_requested_stations_measured": true,
+      "commanded_gap_matches_nominal": true,
+      "limits": "Commanded bead footprints, not printed dimensions. Material spreading, friction and real bead height are unmeasured."
+    }
+  ],
+  "all_native_tube_mouths_open": true,
+  "all_native_M2_bores_open": true,
+  "whole_plate_model_layers_checked": 278,
+  "unsupported_island_count": 0,
+  "marginal_contact_count": 0,
+  "surface_run_checks": {
+    "explicit_layers_checked": 41,
+    "print_Z_ranges_mm": [
+      [
+        7.62,
+        10.42
+      ],
+      [
+        21.02,
+        23.92
+      ],
+      [
+        27.72,
+        28.52
+      ]
+    ],
+    "significant_contiguous_run_count": 0,
+    "automatic_selected_layers": 0,
+    "scope_note": "Automatic extension selection found no additional layers. The 41 layers around new M2 closures and lead-in were explicitly checked. This is not a complete deposition simulation."
+  },
+  "contacts_and_bridges": [
+    {
+      "name": "01_upper-base_G4p8_W5p8",
+      "bead_floor_support_clearance_mm": 13.180579808998658,
+      "clamp_split_support_clearance_mm": 6.87631140933647,
+      "tube_bore_support_clearance_mm": 2.776311420469886,
+      "SG90_main_face_support": {
+        "support_under_main_face": true,
+        "support_segments_near_main_face": 63,
+        "highest_support_top_original_X_mm": 20.13968101501465,
+        "CAD_face_X_mm": 20.3,
+        "vertical_gap_to_CAD_face_mm": 0.16031898498535213,
+        "top_interface_overlap_area_mm2": 49.45818432741205,
+        "main_face_rectangle_area_mm2": 107.10364544999997,
+        "max_in_plane_distance_to_interface_mm": 0.7846938550484398,
+        "support_is_accessible_from_open_holder_side": true,
+        "actual_removal_force_not_tested": true
+      },
+      "new_guide_M2_roof_max_bridge_span_mm": 0.7947321265106382
+    },
+    {
+      "name": "02_upper-base_G4p8_W6p8",
+      "bead_floor_support_clearance_mm": 12.244462495239944,
+      "clamp_split_support_clearance_mm": 6.87631140933647,
+      "tube_bore_support_clearance_mm": 2.776311420469886,
+      "SG90_main_face_support": {
+        "support_under_main_face": true,
+        "support_segments_near_main_face": 63,
+        "highest_support_top_original_X_mm": 20.13968101501465,
+        "CAD_face_X_mm": 20.3,
+        "vertical_gap_to_CAD_face_mm": 0.16031898498535213,
+        "top_interface_overlap_area_mm2": 49.458184327412056,
+        "main_face_rectangle_area_mm2": 107.10364544999997,
+        "max_in_plane_distance_to_interface_mm": 0.784693855048434,
+        "support_is_accessible_from_open_holder_side": true,
+        "actual_removal_force_not_tested": true
+      },
+      "new_guide_M2_roof_max_bridge_span_mm": 0.7947395371226946
+    },
+    {
+      "name": "03_upper-base_G4p8_W7p2",
+      "bead_floor_support_clearance_mm": 11.872860720014696,
+      "clamp_split_support_clearance_mm": 6.87631140933647,
+      "tube_bore_support_clearance_mm": 2.776311420469886,
+      "SG90_main_face_support": {
+        "support_under_main_face": true,
+        "support_segments_near_main_face": 63,
+        "highest_support_top_original_X_mm": 20.13968101501465,
+        "CAD_face_X_mm": 20.3,
+        "vertical_gap_to_CAD_face_mm": 0.16031898498535213,
+        "top_interface_overlap_area_mm2": 49.45818432741204,
+        "main_face_rectangle_area_mm2": 107.10364544999997,
+        "max_in_plane_distance_to_interface_mm": 0.784693855048434,
+        "support_is_accessible_from_open_holder_side": true,
+        "actual_removal_force_not_tested": true
+      },
+      "new_guide_M2_roof_max_bridge_span_mm": 0.7947395371226946
+    }
+  ],
+  "verification_reports": {
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\bases_selective_016\\slice_report.json": "901940e4f55c25f16f760a9d4be13fa4961586ab649a7b25048fa8894137a3af",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\bases_selective_016\\editable_project_verification.json": "498ba52972ca633cf20223245241fb2cf02182e0ab5af089f334b5378109ee73",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\bases_selective_016\\native_mouth_verification.json": "caf0558f677f49c89dd32ceb990ebea4c9ab8bdf99e1ea1d7a9bc93f90a571cf",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\bases_selective_016\\native_M2_verification.json": "93bfce89b53d005873e63a02cbe967eadf874e0db64824a394d73e7356f52c2b",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\bases_selective_016\\verification\\guide_path_clearance.json": "68bdecc92ca64e856b0aa9da71f39d8d234f39f987d3221595fa3e8822fd567c",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\bases_selective_016\\verification\\unsupported_islands.json": "e73f0bcd7b966e75356a4910c10d218b973933fb4d4b600491b7d3a759e3b6ab",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\bases_selective_016\\verification\\surface_runs.json": "149db1b4b46b51a17e1e7b854137493dd54d54e4de210b672566b37ed172d559",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\bases_selective_016\\verification\\surface_runs_preflight.json": "ab25170434674dbf95e782187801a2ec0946486759c9ad0c51e91e30a2c8edd2",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\bases_selective_016\\verification\\W5p8\\contacts_and_bridges.json": "b75dbe28e6cdc37e8c5db68cab18e23bbc8d5c5f77ce53c4ef8d1a580f3e7dd4",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\bases_selective_016\\verification\\W6p8\\contacts_and_bridges.json": "b147fc0032279251eba56331fe9d41f8359fffe762dbb3e5d9d813a0a3af0ef9",
+    "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\print_review\\bases_selective_016\\verification\\W7p2\\contacts_and_bridges.json": "7eb2159d80a44cfbab813ee2ccabe31f8f1e1af7bf25d97bebc43ccd16ae8a6f"
+  },
+  "unverified_physical_properties": [
+    "printed dimensions and pin fit",
+    "material spreading and bridge sag",
+    "friction and rod sliding",
+    "support removal force",
+    "bead feeding and jam rate"
+  ]
+}

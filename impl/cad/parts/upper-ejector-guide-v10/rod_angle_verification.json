@@ -1,0 +1,18 @@
+{
+  "method": "Rigid C0 rod; sample yaw/roll, Z guide float, Y slot float; reject base/pin collisions; intersect projected nominal next-bead cylinder.",
+  "valid_pose_count": 206,
+  "minimum_gap_pose": {
+    "travel_X_mm": 10.0,
+    "yaw_about_Y_deg": 0.6,
+    "roll_about_X_deg": 0.0,
+    "Z_shift_mm": 0.29868395999999997,
+    "Y_shift_mm": 0.0,
+    "nearest_red_face_gap_mm": 0.13508694485807693
+  },
+  "guide_end_X_mm": 23.0,
+  "sampled_poses_not_exhaustive": true,
+  "all_valid_sampled_poses_clear_nominal_red": true,
+  "source_path": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\bases\\parts\\03_upper-base_G4p8_W7p2_original_pose.3mf",
+  "source_sha256": "8a0aa251583e9e77f8b5fc24fe82db1bb79e5d4cd202b8e5a983ec3986b91475",
+  "shared_guide_application": "W5.8/W6.8/W7.2 share the same tested guide, M2 positions and A wall. W7.2 is the representative geometry for this sampled-pose check."
+}

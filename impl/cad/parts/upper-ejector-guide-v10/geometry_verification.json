@@ -1,0 +1,23 @@
+{
+  "cases": [
+    {
+      "width": 5.8,
+      "passed": true,
+      "failed_tests": [],
+      "report": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\verification\\guide48_W5.8.json"
+    },
+    {
+      "width": 6.8,
+      "passed": true,
+      "failed_tests": [],
+      "report": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\verification\\guide48_W6.8.json"
+    },
+    {
+      "width": 7.2,
+      "passed": true,
+      "failed_tests": [],
+      "report": "C:\\Users\\10001176180\\Documents\\BSP\\upper_ejector_guide_v10\\verification\\guide48_W7.2.json"
+    }
+  ],
+  "all_passed": true
+}
