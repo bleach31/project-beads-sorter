@@ -1,0 +1,4 @@
+# Intermediate slicer exports duplicate the delivered print projects.
+/slicer/logs/*
+!/slicer/logs/result.json
+!/slicer/logs/effective_settings.json

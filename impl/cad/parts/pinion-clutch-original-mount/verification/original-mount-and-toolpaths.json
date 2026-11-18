@@ -1,0 +1,247 @@
+{
+  "mount_reference": "original pinion socket entrance and original motor-side tooth face",
+  "original_socket_depth_mm": 2.80850219,
+  "original_screw_seat_mm": 3.0000534,
+  "mount_checks": [
+    {
+      "hub": "J1",
+      "socket_entry_mm": 0.0,
+      "socket_depth_mm": 2.8085022,
+      "screw_seat_mm": 3.0000534,
+      "motor_side_tooth_face_offset_mm": -8.881784197001252e-16,
+      "original_tooth_band_difference_mm3": 5.104048308234608e-06
+    },
+    {
+      "hub": "J2",
+      "socket_entry_mm": 0.0,
+      "socket_depth_mm": 2.8085022,
+      "screw_seat_mm": 3.0000534,
+      "motor_side_tooth_face_offset_mm": -8.881784197001252e-16,
+      "original_tooth_band_difference_mm3": 5.104048308234608e-06
+    },
+    {
+      "hub": "J3",
+      "socket_entry_mm": 0.0,
+      "socket_depth_mm": 2.8085022,
+      "screw_seat_mm": 3.0000534,
+      "motor_side_tooth_face_offset_mm": -8.881784197001252e-16,
+      "original_tooth_band_difference_mm3": 5.104048308234608e-06
+    }
+  ],
+  "assembly_end_checks": [
+    {
+      "hub": "J1",
+      "clip": "C1",
+      "clip_z_mm": 4.2010000000000005,
+      "ring_z_mm": 0,
+      "height_mm": 6.000000000000001
+    },
+    {
+      "hub": "J1",
+      "clip": "C1",
+      "clip_z_mm": 4.2010000000000005,
+      "ring_z_mm": 0.12000000000000044,
+      "height_mm": 6.0
+    },
+    {
+      "hub": "J1",
+      "clip": "C1",
+      "clip_z_mm": 4.318999999999999,
+      "ring_z_mm": 0,
+      "height_mm": 6.000000000000001
+    },
+    {
+      "hub": "J1",
+      "clip": "C1",
+      "clip_z_mm": 4.318999999999999,
+      "ring_z_mm": 0.237999999999999,
+      "height_mm": 6.0
+    },
+    {
+      "hub": "J1",
+      "clip": "C2",
+      "clip_z_mm": 4.2010000000000005,
+      "ring_z_mm": 0,
+      "height_mm": 6.000000000000001
+    },
+    {
+      "hub": "J1",
+      "clip": "C2",
+      "clip_z_mm": 4.2010000000000005,
+      "ring_z_mm": 0.12000000000000044,
+      "height_mm": 6.0
+    },
+    {
+      "hub": "J1",
+      "clip": "C2",
+      "clip_z_mm": 4.318999999999999,
+      "ring_z_mm": 0,
+      "height_mm": 6.000000000000001
+    },
+    {
+      "hub": "J1",
+      "clip": "C2",
+      "clip_z_mm": 4.318999999999999,
+      "ring_z_mm": 0.237999999999999,
+      "height_mm": 6.0
+    },
+    {
+      "hub": "J2",
+      "clip": "C1",
+      "clip_z_mm": 4.2010000000000005,
+      "ring_z_mm": 0,
+      "height_mm": 6.000000000000001
+    },
+    {
+      "hub": "J2",
+      "clip": "C1",
+      "clip_z_mm": 4.2010000000000005,
+      "ring_z_mm": 0.12000000000000044,
+      "height_mm": 6.0
+    },
+    {
+      "hub": "J2",
+      "clip": "C1",
+      "clip_z_mm": 4.318999999999999,
+      "ring_z_mm": 0,
+      "height_mm": 6.000000000000001
+    },
+    {
+      "hub": "J2",
+      "clip": "C1",
+      "clip_z_mm": 4.318999999999999,
+      "ring_z_mm": 0.237999999999999,
+      "height_mm": 6.0
+    },
+    {
+      "hub": "J2",
+      "clip": "C2",
+      "clip_z_mm": 4.2010000000000005,
+      "ring_z_mm": 0,
+      "height_mm": 6.000000000000001
+    },
+    {
+      "hub": "J2",
+      "clip": "C2",
+      "clip_z_mm": 4.2010000000000005,
+      "ring_z_mm": 0.12000000000000044,
+      "height_mm": 6.0
+    },
+    {
+      "hub": "J2",
+      "clip": "C2",
+      "clip_z_mm": 4.318999999999999,
+      "ring_z_mm": 0,
+      "height_mm": 6.000000000000001
+    },
+    {
+      "hub": "J2",
+      "clip": "C2",
+      "clip_z_mm": 4.318999999999999,
+      "ring_z_mm": 0.237999999999999,
+      "height_mm": 6.0
+    },
+    {
+      "hub": "J3",
+      "clip": "C1",
+      "clip_z_mm": 4.2010000000000005,
+      "ring_z_mm": 0,
+      "height_mm": 6.000000000000001
+    },
+    {
+      "hub": "J3",
+      "clip": "C1",
+      "clip_z_mm": 4.2010000000000005,
+      "ring_z_mm": 0.12000000000000044,
+      "height_mm": 6.0
+    },
+    {
+      "hub": "J3",
+      "clip": "C1",
+      "clip_z_mm": 4.318999999999999,
+      "ring_z_mm": 0,
+      "height_mm": 6.000000000000001
+    },
+    {
+      "hub": "J3",
+      "clip": "C1",
+      "clip_z_mm": 4.318999999999999,
+      "ring_z_mm": 0.237999999999999,
+      "height_mm": 6.0
+    },
+    {
+      "hub": "J3",
+      "clip": "C2",
+      "clip_z_mm": 4.2010000000000005,
+      "ring_z_mm": 0,
+      "height_mm": 6.000000000000001
+    },
+    {
+      "hub": "J3",
+      "clip": "C2",
+      "clip_z_mm": 4.2010000000000005,
+      "ring_z_mm": 0.12000000000000044,
+      "height_mm": 6.0
+    },
+    {
+      "hub": "J3",
+      "clip": "C2",
+      "clip_z_mm": 4.318999999999999,
+      "ring_z_mm": 0,
+      "height_mm": 6.000000000000001
+    },
+    {
+      "hub": "J3",
+      "clip": "C2",
+      "clip_z_mm": 4.318999999999999,
+      "ring_z_mm": 0.237999999999999,
+      "height_mm": 6.0
+    }
+  ],
+  "arm_toolpaths": [
+    {
+      "hub": "J1",
+      "z_mm": 0.68,
+      "printed_arm_samples": 180,
+      "unwanted_gap_extrusion_samples": 0
+    },
+    {
+      "hub": "J2",
+      "z_mm": 0.68,
+      "printed_arm_samples": 180,
+      "unwanted_gap_extrusion_samples": 0
+    },
+    {
+      "hub": "J3",
+      "z_mm": 0.68,
+      "printed_arm_samples": 180,
+      "unwanted_gap_extrusion_samples": 0
+    }
+  ],
+  "screw_seat_toolpaths": [
+    {
+      "hub": "J1",
+      "screw_seat_extrusion_at_z_mm": 2.96
+    },
+    {
+      "hub": "J2",
+      "screw_seat_extrusion_at_z_mm": 2.96
+    },
+    {
+      "hub": "J3",
+      "screw_seat_extrusion_at_z_mm": 2.96
+    }
+  ],
+  "clip_toolpaths": [
+    {
+      "clip": "C1",
+      "printed_arc_samples": 160
+    },
+    {
+      "clip": "C2",
+      "printed_arc_samples": 160
+    }
+  ],
+  "physical_installation_and_torque_tested": false,
+  "printer_transmission_performed": false
+}

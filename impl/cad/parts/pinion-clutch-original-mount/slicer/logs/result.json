@@ -1,0 +1,140 @@
+{
+    "error_string": "Success.",
+    "export_time": 453,
+    "layer_height": 0.11999999731779099,
+    "plate_index": 0,
+    "prepare_time": 692,
+    "return_code": 0,
+    "sliced_plates": [
+        {
+            "feature_type_times": {
+                "Custom": 425.9446716308594,
+                "Flush": 29.0,
+                "Gap infill": 2.7137300968170166,
+                "Inner wall": 554.2816162109375,
+                "Outer wall": 758.6068115234375,
+                "Overhang wall": 7.744520664215088,
+                "Top surface": 13.170533180236816,
+                "Travel": 165.43133544921875,
+                "Undefined": 149.989990234375
+            },
+            "filament_change_times": 0,
+            "filaments": [
+                {
+                    "filament_id": "GFL99",
+                    "id": 1,
+                    "main_used_g": 1.28837251663208,
+                    "total_used_g": 1.28837251663208
+                }
+            ],
+            "generate_support_material_time": 104,
+            "id": 1,
+            "infill_time": 157,
+            "layer_filament_change": 0,
+            "main_predication": 1472.949951171875,
+            "make_perimeters_time": 948,
+            "obj_cached_cnt": 0,
+            "objects": [
+                {
+                    "bbox": {
+                        "depth": 18.62350082397461,
+                        "height": 4.079999923706055,
+                        "width": 18.62379264831543,
+                        "x": 48.688106536865234,
+                        "y": 78.6882553100586,
+                        "z": -1.8530275092132342e-09
+                    },
+                    "id": 5,
+                    "name": "00_ring",
+                    "triangle_count": 9114
+                },
+                {
+                    "bbox": {
+                        "depth": 10.099910736083984,
+                        "height": 6.0,
+                        "width": 10.698562622070313,
+                        "x": 78.95001220703125,
+                        "y": 82.9500503540039,
+                        "z": 0.0
+                    },
+                    "id": 9,
+                    "name": "01_hub_J1_arc100",
+                    "triangle_count": 16166
+                },
+                {
+                    "bbox": {
+                        "depth": 10.099884033203125,
+                        "height": 6.0,
+                        "width": 10.698558807373047,
+                        "x": 101.95001220703125,
+                        "y": 82.95003509521484,
+                        "z": 0.0
+                    },
+                    "id": 13,
+                    "name": "02_hub_J2_arc95",
+                    "triangle_count": 17674
+                },
+                {
+                    "bbox": {
+                        "depth": 10.081836700439453,
+                        "height": 6.0,
+                        "width": 10.698563575744629,
+                        "x": 124.95001983642578,
+                        "y": 82.95001220703125,
+                        "z": 0.0
+                    },
+                    "id": 17,
+                    "name": "03_hub_J3_arc85",
+                    "triangle_count": 19186
+                },
+                {
+                    "bbox": {
+                        "depth": 6.657318115234375,
+                        "height": 1.2000000476837158,
+                        "width": 8.299911499023438,
+                        "x": 79.85004425048828,
+                        "y": 112.49259185791016,
+                        "z": 1.5814205500674916e-10
+                    },
+                    "id": 21,
+                    "name": "04_clip_C1",
+                    "triangle_count": 4348
+                },
+                {
+                    "bbox": {
+                        "depth": 6.910991191864014,
+                        "height": 1.2000000476837158,
+                        "width": 8.299972534179688,
+                        "x": 102.85001373291016,
+                        "y": 112.23890686035156,
+                        "z": 1.5814205500674916e-10
+                    },
+                    "id": 25,
+                    "name": "05_clip_C2",
+                    "triangle_count": 4348
+                }
+            ],
+            "sliced_time": 4612,
+            "sliced_time_with_cache": 3247,
+            "total_predication": 1941.422607421875,
+            "triangle_count": 70836,
+            "warning_message": ""
+        }
+    ],
+    "sparse_infill_density": 100.0,
+    "upward_compatible_machine": [
+        "Bambu Lab P1P 0.4 nozzle",
+        "Bambu Lab X1 0.4 nozzle",
+        "Bambu Lab X1 Carbon 0.4 nozzle",
+        "Bambu Lab X1E 0.4 nozzle",
+        "Bambu Lab A1 0.4 nozzle",
+        "Bambu Lab H2D 0.4 nozzle",
+        "Bambu Lab H2D Pro 0.4 nozzle",
+        "Bambu Lab H2S 0.4 nozzle",
+        "Bambu Lab P2S 0.4 nozzle",
+        "Bambu Lab H2C 0.4 nozzle",
+        "Bambu Lab X2D 0.4 nozzle",
+        "Bambu Lab A2L 0.4 nozzle"
+    ],
+    "wall_loops": 4
+}

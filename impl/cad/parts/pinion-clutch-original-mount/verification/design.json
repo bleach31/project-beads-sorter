@@ -1,0 +1,51 @@
+{
+  "revision": "original-mount",
+  "source_sha256": "e7fe19085b29652e0118aae01e3574706bc58faefb8e170da148da74c147bc5d",
+  "coordinate_basis": "z=0 is ORIGINAL motor-side tooth face and socket mouth; +z away from motor",
+  "motor_side_tooth_face_mm": 0.0,
+  "original_tooth_width_mm": 3.0000534,
+  "new_tooth_width_mm": 4.08,
+  "socket_diameter_mm": 5.0,
+  "socket_depth_mm": 2.80850219,
+  "screw_seat_position_mm": 3.0000534,
+  "screw_seat_web_mm": 0.19155121000000008,
+  "extra_screw_length_vs_original_mm": 0,
+  "groove_diameter_mm": 5.8,
+  "groove_depth_from_journal_mm": 0.3999999999999999,
+  "retaining_lip_step_mm": 0.4500000000000002,
+  "groove_wall_around_screw_access_mm": 0.6000000000000001,
+  "clip_overlap_with_lip_mm": 0.3999999999999999,
+  "axial_play_min_mm": 0.1200000000000001,
+  "axial_play_max_mm": 0.23999999999999932,
+  "physical_fit_and_torque_verified": false,
+  "variants": [
+    {
+      "name": "J1",
+      "arc_deg": 100,
+      "arc_length_mm": 7.766715171374766,
+      "claw_count": 3,
+      "width_mm": 1.2,
+      "height_mm": 2.04,
+      "engagement_mm": 0.35
+    },
+    {
+      "name": "J2",
+      "arc_deg": 95,
+      "arc_length_mm": 7.378379412806029,
+      "claw_count": 3,
+      "width_mm": 1.2,
+      "height_mm": 2.04,
+      "engagement_mm": 0.35
+    },
+    {
+      "name": "J3",
+      "arc_deg": 85,
+      "arc_length_mm": 6.601707895668552,
+      "claw_count": 3,
+      "width_mm": 1.2,
+      "height_mm": 2.04,
+      "engagement_mm": 0.35
+    }
+  ],
+  "original_tooth_band_difference_mm3": 0.0
+}
