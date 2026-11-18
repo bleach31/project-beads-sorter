@@ -3,7 +3,14 @@
 import cv2
 import numpy as np
 
-from beads_sorter.vision.camera import measure_bead_rgb
+from beads_sorter.vision.camera import CameraService, measure_bead_rgb
+
+
+def test_camera_defaults_cover_physical_bead_area() -> None:
+    camera = CameraService()
+
+    assert camera.measurement_region == (0.16, 0.20, 0.98, 0.91)
+    assert camera.seed_position == (0.62, 0.56)
 
 
 def test_measurement_averages_the_whole_bead_without_background() -> None:

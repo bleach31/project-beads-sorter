@@ -47,7 +47,7 @@ class SortController:
         self.minimum_confidence = minimum_confidence
         self._lock = Lock()
 
-    def recognize(self, rgb: RGB):
+    def recognize(self, rgb: RGB) -> ColorMatch:
         return self.classifier.classify(rgb)
 
     def sort(self, rgb: RGB) -> SortResult:

@@ -121,12 +121,12 @@ class CameraService:
         *,
         frame_size: tuple[int, int] = (640, 480),
         measurement_region: tuple[float, float, float, float] = (
-            0.36,
             0.16,
-            0.92,
-            0.90,
+            0.20,
+            0.98,
+            0.91,
         ),
-        seed_position: tuple[float, float] = (0.50, 0.50),
+        seed_position: tuple[float, float] = (0.62, 0.56),
         color_tolerance: float = 55.0,
     ) -> None:
         self.frame_size = frame_size

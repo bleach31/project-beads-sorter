@@ -4,35 +4,46 @@ import asyncio
 import os
 from contextlib import asynccontextmanager
 from dataclasses import asdict
-from threading import Lock
-from typing import Any, Callable
+from math import sqrt
+from threading import Event, Lock, Thread
+from time import monotonic
+from typing import Any, Callable, Literal
 
+import cv2
+import numpy as np
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse, StreamingResponse
 from pydantic import BaseModel, Field
 
 from beads_sorter.controller import SortController
 from beads_sorter.ejector.hardware import (
+    DEFAULT_STEPPER_TRAVEL_STEPS,
     HardwareUnavailableError,
     StepperMotor,
     SysfsServo,
 )
 from beads_sorter.vision.camera import CameraService, CameraUnavailableError
-from beads_sorter.vision.color import ColorClassifier, ColorMatch
+from beads_sorter.vision.color import RGB, ColorClassifier, ColorMatch
 
 COLOR_LABELS = {
-    "red": "赤",
-    "orange": "オレンジ",
-    "yellow": "黄",
-    "green": "緑",
-    "cyan": "水色",
-    "blue": "青",
-    "purple": "紫",
-    "pink": "ピンク",
     "white": "白",
-    "black": "黒",
+    "pink": "ピンク",
+    "magenta": "マゼンタ",
+    "purple": "紫",
+    "blue": "青",
+    "cyan": "水色",
+    "green": "緑",
+    "green_tea": "緑茶",
+    "orange": "オレンジ",
+    "red": "赤",
+    "background": "ビーズなし",
     "unknown": "判定外",
 }
+
+AUTO_RGB_STABILITY_THRESHOLD = 12.0
+AUTO_FRAME_STABILITY_THRESHOLD = 5.0
+AUTO_STABLE_FRAMES = 2
+AUTO_STABILITY_SECONDS = 0.5
 
 
 class BusyError(RuntimeError):
@@ -43,8 +54,9 @@ class UnavailableStepper:
     def __init__(self, error: str) -> None:
         self.error = error
         self.current_slot = 0
-        self.travel_steps = 1536
+        self.travel_steps = DEFAULT_STEPPER_TRAVEL_STEPS
         self.step_delay = 0.004
+        self.position_offset_steps = 0
 
     def _raise(self) -> None:
         raise HardwareUnavailableError(self.error)
@@ -59,6 +71,10 @@ class UnavailableStepper:
     def configure(self, **_values: Any) -> None:
         self._raise()
 
+    def shift_positions(self, steps: int) -> int:
+        self._raise()
+        return steps
+
     def close(self) -> None:
         pass
 
@@ -66,8 +82,9 @@ class UnavailableStepper:
 class SimulatedStepper:
     def __init__(self) -> None:
         self.current_slot = 0
-        self.travel_steps = 1536
+        self.travel_steps = DEFAULT_STEPPER_TRAVEL_STEPS
         self.step_delay = 0.004
+        self.position_offset_steps = 0
 
     def move_to_slot(self, slot: int) -> int:
         old_position = round(self.current_slot * self.travel_steps / 9)
@@ -78,12 +95,17 @@ class SimulatedStepper:
 
     def set_home(self) -> None:
         self.current_slot = 0
+        self.position_offset_steps = 0
 
     def configure(self, *, travel_steps: int, step_delay: float) -> None:
         if travel_steps == 0:
             raise ValueError("Stepper travel must be non-zero")
         self.travel_steps = travel_steps
         self.step_delay = step_delay
+
+    def shift_positions(self, steps: int) -> int:
+        self.position_offset_steps += steps
+        return steps
 
     def close(self) -> None:
         pass
@@ -117,8 +139,12 @@ class AppRuntime:
         pusher: Any | None = None,
         *,
         simulation: bool | None = None,
+        automatic_stability_seconds: float = AUTO_STABILITY_SECONDS,
     ) -> None:
+        if automatic_stability_seconds <= 0:
+            raise ValueError("Automatic stability time must be positive")
         self.camera = camera or CameraService()
+        self.automatic_stability_seconds = automatic_stability_seconds
         requested_simulation = simulation
         if requested_simulation is None:
             requested_simulation = os.getenv("BEADS_SORTER_SIMULATION") == "1"
@@ -148,7 +174,12 @@ class AppRuntime:
 
         classifier = ColorClassifier()
         slots = {name: slot for slot, name in enumerate(classifier.references)}
-        self.controller = SortController(classifier, self.stepper, self.pusher, slots)
+        self.controller = SortController(
+            classifier,
+            self.stepper,
+            self.pusher,
+            slots,
+        )
         self._operation_lock = Lock()
         self._state_lock = Lock()
         self.busy = False
@@ -156,17 +187,39 @@ class AppRuntime:
         self.last_error: str | None = None
         self.last_result: dict[str, Any] | None = None
         self.last_detection: ColorMatch | None = None
+        self.background_rgb: RGB | None = None
+        self.background_tolerance = 25
         self._recognition_paused = False
+        self._auto_stop_event = Event()
+        self._auto_thread: Thread | None = None
+        self._auto_running = False
+        self._auto_waiting = False
+        self._auto_count = 0
 
     def start(self) -> None:
         self.camera.start()
 
     def close(self) -> None:
+        self.stop_automatic()
+        auto_thread = self._auto_thread
+        if auto_thread is not None:
+            auto_thread.join(timeout=30)
+            if auto_thread.is_alive():
+                raise RuntimeError("Automatic sorting did not stop during shutdown")
         self.camera.stop()
         self.stepper.close()
         self.pusher.close()
 
-    def execute(self, action: str, operation: Callable[[], Any]) -> Any:
+    def execute(
+        self,
+        action: str,
+        operation: Callable[[], Any],
+        *,
+        allow_during_automatic: bool = False,
+    ) -> Any:
+        with self._state_lock:
+            if self._auto_running and not allow_during_automatic:
+                raise BusyError("Automatic sorting is running")
         if not self._operation_lock.acquire(blocking=False):
             raise BusyError("Another mechanical operation is running")
         with self._state_lock:
@@ -188,16 +241,169 @@ class AppRuntime:
                 self.action = "idle"
             self._operation_lock.release()
 
+    @staticmethod
+    def _rgb_distance(left: tuple[int, int, int], right: tuple[int, int, int]) -> float:
+        return sqrt(sum((a - b) ** 2 for a, b in zip(left, right)))
+
+    @staticmethod
+    def _frame_distance(left: bytes | None, right: bytes) -> float:
+        if not left:
+            return 0.0
+        left_frame = cv2.imdecode(np.frombuffer(left, np.uint8), cv2.IMREAD_GRAYSCALE)
+        right_frame = cv2.imdecode(
+            np.frombuffer(right, np.uint8),
+            cv2.IMREAD_GRAYSCALE,
+        )
+        if left_frame is None or right_frame is None:
+            return 0.0
+        size = (32, 24)
+        left_small = cv2.resize(left_frame, size, interpolation=cv2.INTER_AREA)
+        right_small = cv2.resize(right_frame, size, interpolation=cv2.INTER_AREA)
+        return float(np.mean(cv2.absdiff(left_small, right_small)))
+
+    def _wait_for_stable_reading(self) -> bool:
+        last_sequence = -1
+        candidate_rgb: tuple[int, int, int] | None = None
+        candidate_jpeg: bytes | None = None
+        stable_frames = 0
+        stable_since: float | None = None
+
+        while not self._auto_stop_event.is_set():
+            reading = self.camera.latest()
+            if reading is None:
+                if self.camera.error is not None:
+                    raise CameraUnavailableError(self.camera.error)
+                self._auto_stop_event.wait(0.05)
+                continue
+            if reading.sequence == last_sequence:
+                self._auto_stop_event.wait(0.05)
+                continue
+
+            last_sequence = reading.sequence
+            if (
+                candidate_rgb is not None
+                and candidate_jpeg is not None
+                and self._rgb_distance(reading.rgb, candidate_rgb)
+                <= AUTO_RGB_STABILITY_THRESHOLD
+                and self._frame_distance(reading.jpeg, candidate_jpeg)
+                <= AUTO_FRAME_STABILITY_THRESHOLD
+            ):
+                stable_frames += 1
+                candidate_rgb = reading.rgb
+                candidate_jpeg = reading.jpeg
+            else:
+                candidate_rgb = reading.rgb
+                candidate_jpeg = reading.jpeg
+                stable_frames = 1
+                stable_since = monotonic()
+
+            if (
+                stable_frames >= AUTO_STABLE_FRAMES
+                and stable_since is not None
+                and monotonic() - stable_since >= self.automatic_stability_seconds
+            ):
+                return True
+
+        return False
+
+    def _automatic_loop(self) -> None:
+        has_sorted = False
+        try:
+            while not self._auto_stop_event.is_set():
+                if has_sorted:
+                    with self._state_lock:
+                        self._auto_waiting = True
+                    if not self._wait_for_stable_reading():
+                        break
+
+                reading = self.camera.latest()
+                if reading is None:
+                    reading = self.camera.get_reading()
+                match = self._classify_rgb(reading.rgb)
+                with self._state_lock:
+                    self.last_detection = match
+                if match.name == "background":
+                    with self._state_lock:
+                        self._auto_waiting = True
+                    if not self._wait_for_stable_reading():
+                        break
+                    has_sorted = True
+                    continue
+
+                with self._state_lock:
+                    self._auto_waiting = False
+
+                self.execute(
+                    "automatic sorting",
+                    self.sort_current,
+                    allow_during_automatic=True,
+                )
+                with self._state_lock:
+                    self._auto_count += 1
+                has_sorted = True
+        except Exception as error:
+            with self._state_lock:
+                self.last_error = f"Automatic sorting stopped: {error}"
+        finally:
+            with self._state_lock:
+                self._auto_running = False
+                self._auto_waiting = False
+                self._auto_thread = None
+
+    def start_automatic(self) -> dict[str, Any]:
+        with self._state_lock:
+            if self._auto_running:
+                raise BusyError("Automatic sorting is already running")
+            if self.busy:
+                raise BusyError("Another mechanical operation is running")
+            self._auto_stop_event.clear()
+            self._auto_running = True
+            self._auto_waiting = False
+            self._auto_count = 0
+            self.last_error = None
+            self._auto_thread = Thread(
+                target=self._automatic_loop,
+                daemon=True,
+                name="automatic-sorter",
+            )
+            auto_thread = self._auto_thread
+        auto_thread.start()
+        return self.automatic_status()
+
+    def stop_automatic(self) -> dict[str, Any]:
+        self._auto_stop_event.set()
+        return self.automatic_status()
+
+    def automatic_status(self) -> dict[str, Any]:
+        with self._state_lock:
+            return {
+                "running": self._auto_running,
+                "waiting_for_bead": self._auto_waiting,
+                "stop_requested": (
+                    self._auto_running and self._auto_stop_event.is_set()
+                ),
+                "sorted_count": self._auto_count,
+            }
+
     def recognize_current(
         self,
         *,
         after_sequence: int | None = None,
     ) -> ColorMatch:
         reading = self.camera.get_reading(after_sequence=after_sequence)
-        match = self.controller.recognize(reading.rgb)
+        match = self._classify_rgb(reading.rgb)
         with self._state_lock:
             self.last_detection = match
         return match
+
+    def _classify_rgb(self, rgb: RGB) -> ColorMatch:
+        background_rgb = self.background_rgb
+        if background_rgb is not None and all(
+            abs(channel - background_channel) <= self.background_tolerance
+            for channel, background_channel in zip(rgb, background_rgb)
+        ):
+            return ColorMatch(name="background", rgb=rgb, confidence=1.0)
+        return self.controller.recognize(rgb)
 
     def _refresh_live_detection(self) -> ColorMatch | None:
         reading = self.camera.latest()
@@ -206,7 +412,7 @@ class AppRuntime:
         with self._state_lock:
             if self._recognition_paused:
                 return self.last_detection
-            self.last_detection = self.controller.recognize(reading.rgb)
+            self.last_detection = self._classify_rgb(reading.rgb)
             return self.last_detection
 
     def _push_with_recognition_paused(self) -> ColorMatch:
@@ -217,7 +423,7 @@ class AppRuntime:
             latest = self.camera.latest()
             after_sequence = latest.sequence if latest is not None else None
             reading = self.camera.get_reading(after_sequence=after_sequence)
-            match = self.controller.recognize(reading.rgb)
+            match = self._classify_rgb(reading.rgb)
             with self._state_lock:
                 self.last_detection = match
             return match
@@ -226,9 +432,14 @@ class AppRuntime:
                 self._recognition_paused = False
 
     def sort_current(self):
-        match = self._refresh_live_detection()
-        if match is None:
-            match = self.recognize_current()
+        reading = self.camera.latest()
+        if reading is None:
+            reading = self.camera.get_reading()
+        match = self._classify_rgb(reading.rgb)
+        with self._state_lock:
+            self.last_detection = match
+        if match.name == "background":
+            raise ValueError("No bead detected: the measurement matches the background")
 
         return self.controller.sort_match(
             match,
@@ -247,6 +458,10 @@ class AppRuntime:
                 if self.last_detection is not None
                 else None
             )
+            if detection is not None and self.last_detection is not None:
+                detection["slot"] = self.controller.slots.get(
+                    self.last_detection.name
+                )
             recognition_paused = self._recognition_paused
         return {
             "busy": self.busy,
@@ -265,12 +480,17 @@ class AppRuntime:
             "detection": detection,
             "last_result": self.last_result,
             "last_error": self.last_error,
+            "automatic": self.automatic_status(),
             "config": self.config(),
         }
 
     def config(self) -> dict[str, Any]:
+        slot_direction = 1 if self.stepper.travel_steps > 0 else -1
         return {
             "travel_steps": self.stepper.travel_steps,
+            "position_offset_steps": (
+                self.stepper.position_offset_steps * slot_direction
+            ),
             "step_delay": self.stepper.step_delay,
             "push_angle": self.pusher.push_angle,
             "rest_angle": self.pusher.rest_angle,
@@ -278,6 +498,8 @@ class AppRuntime:
             "settle_seconds": self.pusher.settle_seconds,
             "minimum_confidence": self.controller.minimum_confidence,
             "rgb_tolerance": self.controller.classifier.rgb_tolerance,
+            "background_rgb": self.background_rgb,
+            "background_tolerance": self.background_tolerance,
         }
 
 
@@ -302,6 +524,11 @@ class StepperConfig(BaseModel):
     step_delay: float = Field(ge=0, le=0.1)
 
 
+class PositionShiftRequest(BaseModel):
+    direction: Literal["left", "right"]
+    steps: int = Field(ge=1, le=100_000)
+
+
 class ServoConfig(BaseModel):
     push_angle: int = Field(ge=0, le=180)
     rest_angle: int = Field(ge=0, le=180)
@@ -312,6 +539,10 @@ class ServoConfig(BaseModel):
 class RecognitionConfig(BaseModel):
     minimum_confidence: float = Field(ge=0, le=1)
     rgb_tolerance: int = Field(ge=0, le=255)
+
+
+class BackgroundConfig(BaseModel):
+    background_tolerance: int = Field(ge=0, le=255)
 
 
 class MotionConfig(BaseModel):
@@ -392,6 +623,17 @@ def create_app(runtime: AppRuntime | None = None) -> FastAPI:
     async def sort() -> Any:
         return await run_action("sorting", runtime.sort_current)
 
+    @app.post("/api/automatic/start")
+    async def start_automatic() -> Any:
+        try:
+            return runtime.start_automatic()
+        except BusyError as error:
+            raise HTTPException(status_code=409, detail=str(error)) from error
+
+    @app.post("/api/automatic/stop")
+    async def stop_automatic() -> Any:
+        return runtime.stop_automatic()
+
     @app.post("/api/move")
     async def move(request: SlotRequest) -> Any:
         return await run_action(
@@ -412,6 +654,23 @@ def create_app(runtime: AppRuntime | None = None) -> FastAPI:
             "homing",
             lambda: (runtime.stepper.set_home() or {"slot": 0}),
         )
+
+    @app.post("/api/stepper/shift")
+    async def shift_stepper(request: PositionShiftRequest) -> Any:
+        def apply_shift() -> dict[str, Any]:
+            slot_direction = 1 if runtime.stepper.travel_steps > 0 else -1
+            direction = 1 if request.direction == "right" else -1
+            moved_steps = runtime.stepper.shift_positions(
+                request.steps * slot_direction * direction
+            )
+            return {
+                "direction": request.direction,
+                "steps": request.steps,
+                "moved_steps": moved_steps,
+                "position_offset_steps": runtime.config()["position_offset_steps"],
+            }
+
+        return await run_action("shifting", apply_shift)
 
     @app.post("/api/calibrate")
     async def calibrate(request: CalibrationRequest) -> Any:
@@ -440,6 +699,20 @@ def create_app(runtime: AppRuntime | None = None) -> FastAPI:
             return {"color": request.color, "rgb": reading.rgb}
 
         return await run_action("calibrating", apply_color_calibration)
+
+    @app.post("/api/calibrate/background")
+    async def calibrate_background() -> Any:
+        def apply_background_calibration() -> dict[str, Any]:
+            reading = runtime.camera.get_reading()
+            with runtime._state_lock:
+                runtime.background_rgb = reading.rgb
+                runtime.last_detection = runtime._classify_rgb(reading.rgb)
+            return {
+                "background_rgb": reading.rgb,
+                "background_tolerance": runtime.background_tolerance,
+            }
+
+        return await run_action("calibrating", apply_background_calibration)
 
     @app.put("/api/slots")
     async def assign_slot(request: SlotAssignmentRequest) -> Any:
@@ -493,6 +766,15 @@ def create_app(runtime: AppRuntime | None = None) -> FastAPI:
             "configuring",
             lambda: apply_recognition_config(request),
         )
+
+    @app.put("/api/config/background")
+    async def configure_background(request: BackgroundConfig) -> Any:
+        def apply_background_config() -> dict[str, Any]:
+            with runtime._state_lock:
+                runtime.background_tolerance = request.background_tolerance
+            return runtime.config()
+
+        return await run_action("configuring", apply_background_config)
 
     @app.put("/api/config")
     async def configure(request: MotionConfig) -> Any:
@@ -569,8 +851,11 @@ OPERATOR_HTML = """<!doctype html>
     .control-panel { padding: 18px; display: flex; flex-direction: column; gap: 18px; }
     .detection { display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: center; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
     .swatch { width: 64px; height: 64px; border: 1px solid var(--line); border-radius: 6px; background: #d5dbd8; }
+    .detection-title { display: flex; align-items: baseline; gap: 10px; }
     .color-name { font: 700 28px/1 "Arial Narrow", "Noto Sans JP", sans-serif; }
+    .detection-slot { color: var(--muted); font: 700 13px/1 monospace; }
     .rgb, .confidence { color: var(--muted); font: 12px/1.5 monospace; }
+    .primary-actions { display: grid; gap: 8px; }
     .primary-actions button { width: 100%; }
     button, select, input { min-height: 42px; border: 1px solid var(--line); border-radius: 5px; font: inherit; }
     button { padding: 0 14px; color: var(--ink); background: white; cursor: pointer; font-weight: 700; }
@@ -627,11 +912,13 @@ OPERATOR_HTML = """<!doctype html>
       <aside class="control-panel">
         <div class="detection">
           <div id="swatch" class="swatch"></div>
-          <div><div id="color-name" class="color-name">待機中</div><div id="rgb" class="rgb">RGB -- / -- / --</div><div id="confidence" class="confidence">CONFIDENCE --</div></div>
+          <div><div class="detection-title"><div id="color-name" class="color-name">待機中</div><div id="detection-slot" class="detection-slot">SLOT --</div></div><div id="rgb" class="rgb">RGB -- / -- / --</div><div id="confidence" class="confidence">CONFIDENCE --</div></div>
         </div>
         <div><h2 class="section-title">自動運転</h2></div>
         <div class="primary-actions">
           <button class="primary action" data-action="sort">認識して仕分け</button>
+          <button id="automatic-start" class="primary action" data-action="automatic-start">完全自動仕分けを開始</button>
+          <button id="automatic-stop" class="action" data-action="automatic-stop" disabled>完全自動仕分けを停止</button>
         </div>
         <div><h2 class="section-title">手動操作</h2></div>
         <div class="manual-grid">
@@ -651,8 +938,11 @@ OPERATOR_HTML = """<!doctype html>
                     <div class="field-grid">
                         <label>SLOT 0→9 可動量（フルステップ）<input id="travel" type="number" min="-100000" max="100000"></label>
                         <label>1フルステップ待ち時間（秒）<input id="delay" type="number" min="0" max="0.1" step="0.001"></label>
+                        <label>全体位置調整（ステップ）<input id="position-shift" type="number" min="1" max="100000" value="1"></label>
+                        <label>現在の位置オフセット<span id="position-offset" class="threshold">0 steps</span></label>
                     </div>
                     <div class="group-actions"><button id="save-stepper" class="action">ステッパー設定を適用</button></div>
+                    <div class="group-actions"><button id="shift-left" class="action">左へずらす</button><button id="shift-right" class="action">右へずらす</button></div>
                     <div class="subsection-title">色別の排出先</div>
                     <div class="field-grid">
                         <label>認識色<select id="slot-color"></select></label>
@@ -679,6 +969,12 @@ OPERATOR_HTML = """<!doctype html>
                                 <label>最低信頼度<input id="confidence-min" type="number" min="0" max="1" step="0.01"></label>
                             </div>
                             <div class="group-actions"><button id="save-recognition" class="action">判定設定を適用</button></div>
+                            <div class="subsection-title">背景の校正</div>
+                            <div class="field-grid">
+                                <label>背景RGB<span id="background-rgb" class="threshold">未登録</span></label>
+                                <label>背景RGB許容幅（±）<input id="background-tolerance" type="number" min="0" max="255" value="25"></label>
+                            </div>
+                            <div class="group-actions"><button id="save-background" class="action">背景設定を適用</button><button id="calibrate-background" class="action">現在のRGBを背景に登録</button></div>
                             <div class="subsection-title">基準色の校正</div>
                             <label>校正する色<select id="calibration-color"></select></label>
                             <div class="group-actions"><button id="calibrate" class="action">現在のRGBを基準色に登録</button></div>
@@ -695,7 +991,7 @@ OPERATOR_HTML = """<!doctype html>
     </details>
   </main>
   <script>
-    const labels = {red:'赤',orange:'オレンジ',yellow:'黄',green:'緑',cyan:'水色',blue:'青',purple:'紫',pink:'ピンク',white:'白',black:'黒',unknown:'判定外'};
+    const labels = {white:'白',pink:'ピンク',magenta:'マゼンタ',purple:'紫',blue:'青',cyan:'水色',green:'緑',green_tea:'緑茶',orange:'オレンジ',red:'赤',background:'ビーズなし',unknown:'判定外'};
     const stepperFields = {travel_steps:'travel',step_delay:'delay'};
     const servoFields = {push_angle:'push-angle',rest_angle:'rest-angle',hold_seconds:'hold',settle_seconds:'settle'};
     const recognitionFields = {minimum_confidence:'confidence-min',rgb_tolerance:'rgb-tolerance'};
@@ -716,6 +1012,7 @@ OPERATOR_HTML = """<!doctype html>
       const [r,g,b]=item.rgb;
       document.querySelector('#swatch').style.background=`rgb(${r},${g},${b})`;
       document.querySelector('#color-name').textContent=labels[item.name] || item.name;
+      document.querySelector('#detection-slot').textContent=`SLOT ${item.slot ?? '--'}`;
       document.querySelector('#rgb').textContent=`RGB ${r} / ${g} / ${b}`;
         document.querySelector('#confidence').textContent=`CONFIDENCE ${Math.round(item.confidence*100)}% / ${sampleCount} PIXELS`;
     }
@@ -725,12 +1022,20 @@ OPERATOR_HTML = """<!doctype html>
         showDetection(state.detection,state.camera.sample_count);
         document.querySelector('#slot').textContent=`SLOT ${state.current_slot}`;
         document.querySelector('#status-dot').classList.toggle('ready',state.camera.ready && state.hardware.mode!=='unavailable');
-        document.querySelector('#status-text').textContent=state.recognition_paused ? 'PUSHING / COLOR HOLD' : state.busy ? state.action.toUpperCase() : `${state.camera.ready?'CAMERA OK':'CAMERA WAIT'} / ${state.hardware.mode.toUpperCase()}`;
-        document.querySelectorAll('.action').forEach(button => button.disabled=state.busy);
+        const automatic=state.automatic;
+        document.querySelector('#status-text').textContent=state.recognition_paused ? 'PUSHING / COLOR HOLD' : automatic.running ? (automatic.waiting_for_bead ? 'AUTO / WAITING FOR BEAD' : 'AUTO / SORTING') : state.busy ? state.action.toUpperCase() : `${state.camera.ready?'CAMERA OK':'CAMERA WAIT'} / ${state.hardware.mode.toUpperCase()}`;
+        document.querySelectorAll('.action').forEach(button => button.disabled=state.busy || automatic.running);
+        document.querySelector('#automatic-start').disabled=state.busy || automatic.running;
+        document.querySelector('#automatic-stop').disabled=!automatic.running || automatic.stop_requested;
+        document.querySelector('#position-offset').textContent=`${state.config.position_offset_steps} steps`;
+        document.querySelector('#background-rgb').textContent=state.config.background_rgb ? state.config.background_rgb.join(' / ') : '未登録';
+        if (!configLoaded) document.querySelector('#background-tolerance').value=state.config.background_tolerance;
         if (!configLoaded) { for (const [name,id] of Object.entries(fields)) document.querySelector(`#${id}`).value=state.config[name]; configLoaded=true; }
         if (state.last_error) message(state.last_error,true);
         else if (state.camera.error) message(state.camera.error,true);
         else if (state.hardware.error) message(state.hardware.error,true);
+        else if (automatic.stop_requested) message(`停止待ちです（仕分け済み ${automatic.sorted_count}個）`);
+        else if (automatic.running) message(`完全自動仕分け中（仕分け済み ${automatic.sorted_count}個）`);
         else if (!state.busy) message('常時認識中');
       } catch (error) { message(error.message,true); }
     }
@@ -739,8 +1044,12 @@ OPERATOR_HTML = """<!doctype html>
         message('実行中');
         let data;
         if (name==='move') data=await request('/api/move','POST',{slot:Number(manualSlot.value)});
+        else if (name==='automatic-start') data=await request('/api/automatic/start');
+        else if (name==='automatic-stop') data=await request('/api/automatic/stop');
         else data=await request(`/api/${name}`);
-        if (data.color) message(`${labels[data.color] || data.color} → スロット ${data.slot ?? '-'}`);
+        if (name==='automatic-start') message('完全自動仕分けを開始しました');
+        else if (name==='automatic-stop') message('完全自動仕分けの停止を要求しました');
+        else if (data.color) message(`${labels[data.color] || data.color} → スロット ${data.slot ?? '-'}`);
         else if (data.name) message(`復帰後に${labels[data.name] || data.name}を認識`);
         else message('完了');
       } catch (error) { message(error.message,true); }
@@ -753,10 +1062,29 @@ OPERATOR_HTML = """<!doctype html>
       await refresh();
         }
         document.querySelector('#save-stepper').addEventListener('click',()=>saveSettings('/api/config/stepper',stepperFields,'ステッパー設定を適用しました'));
+        async function shiftPositions(direction) {
+            const steps=Number(document.querySelector('#position-shift').value);
+            try {
+                const data=await request('/api/stepper/shift','POST',{direction,steps});
+                message(`${direction==='right'?'右':'左'}へ${steps}ステップ調整しました（オフセット ${data.position_offset_steps}）`);
+            } catch(error) { message(error.message,true); }
+            await refresh();
+        }
+        document.querySelector('#shift-left').addEventListener('click',()=>shiftPositions('left'));
+        document.querySelector('#shift-right').addEventListener('click',()=>shiftPositions('right'));
         document.querySelector('#save-servo').addEventListener('click',()=>saveSettings('/api/config/servo',servoFields,'サーボ設定を適用しました'));
         document.querySelector('#save-recognition').addEventListener('click',async()=>{
             await saveSettings('/api/config/recognition',recognitionFields,'判定設定を適用しました');
             await loadColors();
+        });
+        document.querySelector('#save-background').addEventListener('click',async()=>{
+            const background_tolerance=Number(document.querySelector('#background-tolerance').value);
+            try { await request('/api/config/background','PUT',{background_tolerance}); message('背景判定設定を適用しました'); } catch(error) { message(error.message,true); }
+            await refresh();
+        });
+        document.querySelector('#calibrate-background').addEventListener('click',async()=>{
+            try { await request('/api/calibrate/background'); message('現在のRGBを背景として登録しました'); } catch(error) { message(error.message,true); }
+            await refresh();
         });
     document.querySelector('#calibrate').addEventListener('click',async()=>{
       const color=document.querySelector('#calibration-color').value;

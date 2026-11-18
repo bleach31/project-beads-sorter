@@ -7,16 +7,16 @@ from typing import Mapping
 RGB = tuple[int, int, int]
 
 DEFAULT_COLOR_REFERENCES: dict[str, RGB] = {
-    "red": (210, 45, 45),
-    "orange": (235, 125, 35),
-    "yellow": (225, 205, 45),
-    "green": (55, 155, 75),
-    "cyan": (55, 175, 185),
-    "blue": (55, 90, 190),
-    "purple": (135, 75, 170),
-    "pink": (225, 125, 165),
-    "white": (225, 225, 220),
-    "black": (35, 35, 35),
+    "white": (191, 191, 184),
+    "pink": (229, 92, 165),
+    "magenta": (215, 12, 118),
+    "purple": (124, 39, 167),
+    "blue": (2, 46, 214),
+    "cyan": (15, 170, 210),
+    "green": (37, 183, 88),
+    "green_tea": (153, 224, 48),
+    "orange": (249, 158, 1),
+    "red": (226, 12, 8),
 }
 
 

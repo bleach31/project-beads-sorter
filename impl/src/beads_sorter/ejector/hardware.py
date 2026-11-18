@@ -23,6 +23,7 @@ FULL_STEP_SEQUENCE = (
     (0, 0, 1, 1),
     (1, 0, 0, 1),
 )
+DEFAULT_STEPPER_TRAVEL_STEPS = 350
 
 
 def _gpio_output(pin_number: int) -> DigitalOutput:
@@ -42,7 +43,7 @@ class StepperMotor:
         self,
         pins: tuple[int, int, int, int] = (17, 18, 27, 22),
         *,
-        travel_steps: int = 1536,
+        travel_steps: int = DEFAULT_STEPPER_TRAVEL_STEPS,
         slot_count: int = 10,
         step_delay: float = 0.004,
         pin_factory: Callable[[int], DigitalOutput] = _gpio_output,
@@ -56,12 +57,16 @@ class StepperMotor:
         self._sleep = sleep
         self._pins = tuple(pin_factory(pin) for pin in pins)
         self._position_steps = 0
+        self.position_offset_steps = 0
+        self._phase_index: int | None = None
         self._lock = Lock()
 
     @property
     def current_slot(self) -> int:
         slot = round(
-            self._position_steps * (self.slot_count - 1) / self.travel_steps
+            (self._position_steps - self.position_offset_steps)
+            * (self.slot_count - 1)
+            / self.travel_steps
         )
         return min(max(slot, 0), self.slot_count - 1)
 
@@ -69,6 +74,7 @@ class StepperMotor:
         """Mark the current physical table position as slot zero."""
         with self._lock:
             self._position_steps = 0
+            self.position_offset_steps = 0
 
     def configure(self, *, travel_steps: int, step_delay: float) -> None:
         """Apply motion tuning while preserving the current logical slot."""
@@ -80,7 +86,15 @@ class StepperMotor:
             self.step_delay = step_delay
             self._position_steps = round(
                 slot * self.travel_steps / (self.slot_count - 1)
-            )
+            ) + self.position_offset_steps
+
+    def shift_positions(self, steps: int) -> int:
+        """Move immediately and shift every slot target by the same steps."""
+        with self._lock:
+            self._move_steps(steps)
+            self._position_steps += steps
+            self.position_offset_steps += steps
+            return steps
 
     def move_to_slot(self, slot: int) -> int:
         """Move within the configured bounded travel and return signed steps."""
@@ -88,19 +102,25 @@ class StepperMotor:
             raise ValueError(f"slot must be between 0 and {self.slot_count - 1}")
 
         with self._lock:
-            target = round(slot * self.travel_steps / (self.slot_count - 1))
+            target = self.position_offset_steps + round(
+                slot * self.travel_steps / (self.slot_count - 1)
+            )
             steps = target - self._position_steps
             self._move_steps(steps)
             self._position_steps = target
             return steps
 
     def _move_steps(self, steps: int) -> None:
-        sequence = FULL_STEP_SEQUENCE if steps >= 0 else tuple(
-            reversed(FULL_STEP_SEQUENCE)
-        )
+        phase_delta = 1 if steps >= 0 else -1
         try:
-            for step in range(abs(steps)):
-                self._set_outputs(sequence[step % len(sequence)])
+            for _step in range(abs(steps)):
+                if self._phase_index is None:
+                    self._phase_index = 0
+                else:
+                    self._phase_index = (
+                        self._phase_index + phase_delta
+                    ) % len(FULL_STEP_SEQUENCE)
+                self._set_outputs(FULL_STEP_SEQUENCE[self._phase_index])
                 self._sleep(self.step_delay)
         finally:
             self.release()

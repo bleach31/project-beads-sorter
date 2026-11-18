@@ -1,6 +1,7 @@
 """Tests for the web-controlled sorting flow."""
 
 from collections.abc import Callable
+from time import monotonic, sleep
 
 from fastapi.testclient import TestClient
 
@@ -54,6 +55,7 @@ class FakeStepper:
     current_slot = 0
     travel_steps = 90
     step_delay = 0
+    position_offset_steps = 0
 
     def __init__(self, operations: list[str]) -> None:
         self.operations = operations
@@ -65,10 +67,16 @@ class FakeStepper:
 
     def set_home(self) -> None:
         self.current_slot = 0
+        self.position_offset_steps = 0
 
     def configure(self, *, travel_steps: int, step_delay: float) -> None:
         self.travel_steps = travel_steps
         self.step_delay = step_delay
+
+    def shift_positions(self, steps: int) -> int:
+        self.operations.append(f"shift:{steps}")
+        self.position_offset_steps += steps
+        return steps
 
     def close(self) -> None:
         pass
@@ -111,13 +119,166 @@ def test_sort_endpoint_runs_complete_flow() -> None:
 
     assert response.status_code == 200
     assert response.json()["color"] == "red"
-    assert response.json()["slot"] == 0
+    assert response.json()["slot"] == 9
     assert status.json()["detection"]["name"] == "blue"
     assert operations == [
-        "move:0",
+        "move:9",
         "push-and-return",
         "read-after:1",
     ]
+
+
+def test_unknown_color_is_not_sorted() -> None:
+    operations: list[str] = []
+    camera = FakeCamera(operations)
+    camera.reading = CameraReading((0, 255, 0), b"unknown", 1)
+    runtime = AppRuntime(
+        camera,
+        FakeStepper(operations),
+        FakePusher(operations),
+    )
+
+    with TestClient(create_app(runtime)) as client:
+        response = client.post("/api/sort")
+        status = client.get("/api/status")
+
+    assert response.status_code == 422
+    assert status.json()["detection"]["name"] == "unknown"
+    assert status.json()["detection"]["slot"] is None
+    assert operations == []
+
+
+def test_calibrated_background_is_not_sorted() -> None:
+    operations: list[str] = []
+    runtime = AppRuntime(
+        FakeCamera(operations),
+        FakeStepper(operations),
+        FakePusher(operations),
+    )
+
+    with TestClient(create_app(runtime)) as client:
+        calibration = client.post("/api/calibrate/background")
+        response = client.post("/api/sort")
+        status = client.get("/api/status")
+
+    assert calibration.status_code == 200
+    assert calibration.json()["background_rgb"] == [210, 45, 45]
+    assert response.status_code == 422
+    assert status.json()["detection"]["name"] == "background"
+    assert status.json()["detection"]["slot"] is None
+    assert operations == ["read:current"]
+
+
+def test_background_tolerance_can_be_adjusted_separately() -> None:
+    runtime = AppRuntime(FakeCamera(), FakeStepper([]), FakePusher([]))
+
+    with TestClient(create_app(runtime)) as client:
+        response = client.put(
+            "/api/config/background",
+            json={"background_tolerance": 12},
+        )
+
+    assert response.status_code == 200
+    assert response.json()["background_tolerance"] == 12
+    assert runtime.controller.classifier.rgb_tolerance == 80
+
+
+def test_automatic_mode_waits_when_background_is_detected() -> None:
+    operations: list[str] = []
+    runtime = AppRuntime(
+        FakeCamera(operations),
+        FakeStepper(operations),
+        FakePusher(operations),
+    )
+
+    with TestClient(create_app(runtime)) as client:
+        client.post("/api/calibrate/background")
+        start = client.post("/api/automatic/start")
+        deadline = monotonic() + 2
+        state = client.get("/api/status").json()
+        while (
+            not state["automatic"]["waiting_for_bead"]
+            and monotonic() < deadline
+        ):
+            sleep(0.01)
+            state = client.get("/api/status").json()
+        stop = client.post("/api/automatic/stop")
+
+    assert start.status_code == 200
+    assert stop.status_code == 200
+    assert state["automatic"]["running"] is True
+    assert state["automatic"]["waiting_for_bead"] is True
+    assert state["automatic"]["sorted_count"] == 0
+    assert state["last_error"] is None
+    assert operations == ["read:current"]
+
+
+def test_automatic_mode_sorts_then_waits_for_a_changed_bead() -> None:
+    operations: list[str] = []
+    runtime = AppRuntime(
+        FakeCamera(operations),
+        FakeStepper(operations),
+        FakePusher(operations),
+    )
+
+    with TestClient(create_app(runtime)) as client:
+        start = client.post("/api/automatic/start")
+        deadline = monotonic() + 2
+        state = client.get("/api/status").json()
+        while (
+            state["automatic"]["sorted_count"] < 1
+            or not state["automatic"]["waiting_for_bead"]
+        ) and monotonic() < deadline:
+            sleep(0.01)
+            state = client.get("/api/status").json()
+
+        manual = client.post("/api/move", json={"slot": 3})
+        stop = client.post("/api/automatic/stop")
+        deadline = monotonic() + 2
+        while state["automatic"]["running"] and monotonic() < deadline:
+            sleep(0.01)
+            state = client.get("/api/status").json()
+
+    assert start.status_code == 200
+    assert state["automatic"]["sorted_count"] == 1
+    assert state["automatic"]["running"] is False
+    assert manual.status_code == 409
+    assert stop.status_code == 200
+    assert operations[:3] == ["move:9", "push-and-return", "read-after:1"]
+
+
+def test_automatic_mode_accepts_stable_same_color() -> None:
+    class ChangingCamera(FakeCamera):
+        def __init__(self) -> None:
+            super().__init__()
+            self.readings = iter(
+                [
+                    CameraReading((226, 12, 8), b"same", 1),
+                    CameraReading((226, 12, 8), b"same", 2),
+                    CameraReading((226, 12, 8), b"same", 3),
+                ]
+            )
+            self.reading = CameraReading((226, 12, 8), b"same", 0)
+
+        def latest(self) -> CameraReading:
+            self.reading = next(
+                self.readings,
+                CameraReading(
+                    self.reading.rgb,
+                    self.reading.jpeg,
+                    self.reading.sequence + 1,
+                ),
+            )
+            return self.reading
+
+    runtime = AppRuntime(
+        ChangingCamera(),
+        FakeStepper([]),
+        FakePusher([]),
+        automatic_stability_seconds=0.01,
+    )
+
+    assert runtime._wait_for_stable_reading() is True
 
 
 def test_manual_push_recognizes_only_after_return() -> None:
@@ -136,6 +297,46 @@ def test_manual_push_recognizes_only_after_return() -> None:
     assert operations == ["push-and-return", "read-after:1"]
 
 
+def test_stepper_positions_can_shift_left_and_right() -> None:
+    operations: list[str] = []
+    stepper = FakeStepper(operations)
+    runtime = AppRuntime(FakeCamera(), stepper, FakePusher(operations))
+
+    with TestClient(create_app(runtime)) as client:
+        right = client.post(
+            "/api/stepper/shift",
+            json={"direction": "right", "steps": 12},
+        )
+        left = client.post(
+            "/api/stepper/shift",
+            json={"direction": "left", "steps": 5},
+        )
+
+    assert right.status_code == 200
+    assert right.json()["position_offset_steps"] == 12
+    assert left.status_code == 200
+    assert left.json()["position_offset_steps"] == 7
+    assert operations == ["shift:12", "shift:-5"]
+
+
+def test_stepper_shift_uses_slot_direction_for_negative_travel() -> None:
+    operations: list[str] = []
+    stepper = FakeStepper(operations)
+    stepper.travel_steps = -90
+    runtime = AppRuntime(FakeCamera(), stepper, FakePusher(operations))
+
+    with TestClient(create_app(runtime)) as client:
+        response = client.post(
+            "/api/stepper/shift",
+            json={"direction": "right", "steps": 8},
+        )
+
+    assert response.status_code == 200
+    assert response.json()["moved_steps"] == -8
+    assert response.json()["position_offset_steps"] == 8
+    assert operations == ["shift:-8"]
+
+
 def test_status_continuously_reclassifies_live_frames() -> None:
     operations: list[str] = []
     camera = FakeCamera(operations)
@@ -151,6 +352,7 @@ def test_status_continuously_reclassifies_live_frames() -> None:
         status = client.get("/api/status")
 
     assert status.json()["detection"]["name"] == "blue"
+    assert status.json()["detection"]["slot"] == 4
     assert operations == ["read:current"]
 
 
@@ -244,8 +446,8 @@ def test_recognition_threshold_can_be_adjusted_separately() -> None:
 
     assert response.status_code == 200
     assert response.json()["rgb_tolerance"] == 25
-    assert red["rgb_min"] == [185, 20, 20]
-    assert red["rgb_max"] == [235, 70, 70]
+    assert red["rgb_min"] == [201, 0, 0]
+    assert red["rgb_max"] == [251, 37, 33]
 
 
 def test_calibration_page_separates_controls_and_lists_thresholds() -> None:
@@ -264,6 +466,15 @@ def test_calibration_page_separates_controls_and_lists_thresholds() -> None:
     assert "押し出しサーボ" in page.text
     assert "RGB閾値" in page.text
     assert 'id="color-table-body"' in page.text
+    assert 'id="detection-slot"' in page.text
+    assert 'id="automatic-start"' in page.text
+    assert 'id="automatic-stop"' in page.text
+    assert 'id="position-shift"' in page.text
+    assert 'id="shift-left"' in page.text
+    assert 'id="shift-right"' in page.text
+    assert 'id="background-rgb"' in page.text
+    assert 'id="background-tolerance"' in page.text
+    assert 'id="calibrate-background"' in page.text
 
 
 def test_motion_range_can_be_adjusted_from_api() -> None:

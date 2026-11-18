@@ -2,7 +2,34 @@
 
 import pytest
 
-from beads_sorter.vision.color import ColorClassifier
+from beads_sorter.vision.color import DEFAULT_COLOR_REFERENCES, ColorClassifier
+
+
+def test_default_references_match_calibrated_beads() -> None:
+    assert DEFAULT_COLOR_REFERENCES == {
+        "white": (191, 191, 184),
+        "pink": (229, 92, 165),
+        "magenta": (215, 12, 118),
+        "purple": (124, 39, 167),
+        "blue": (2, 46, 214),
+        "cyan": (15, 170, 210),
+        "green": (37, 183, 88),
+        "green_tea": (153, 224, 48),
+        "orange": (249, 158, 1),
+        "red": (226, 12, 8),
+    }
+    assert list(DEFAULT_COLOR_REFERENCES) == [
+        "white",
+        "pink",
+        "magenta",
+        "purple",
+        "blue",
+        "cyan",
+        "green",
+        "green_tea",
+        "orange",
+        "red",
+    ]
 
 
 def test_classifier_matches_nearest_reference() -> None:
