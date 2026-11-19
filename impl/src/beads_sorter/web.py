@@ -22,7 +22,7 @@ from beads_sorter.ejector.hardware import (
     StepperMotor,
     SysfsServo,
 )
-from beads_sorter.vision.camera import CameraService, CameraUnavailableError
+from beads_sorter.vision.camera import CameraReading, CameraService, CameraUnavailableError
 from beads_sorter.vision.color import RGB, ColorClassifier, ColorMatch
 
 COLOR_LABELS = {
@@ -44,6 +44,8 @@ AUTO_RGB_STABILITY_THRESHOLD = 12.0
 AUTO_FRAME_STABILITY_THRESHOLD = 5.0
 AUTO_STABLE_FRAMES = 2
 AUTO_STABILITY_SECONDS = 0.5
+AUTO_COLOR_RETRY_INTERVAL_SECONDS = 1.0
+AUTO_COLOR_RETRY_TIMEOUT_SECONDS = 60.0
 
 
 class BusyError(RuntimeError):
@@ -195,6 +197,8 @@ class AppRuntime:
         self._auto_running = False
         self._auto_waiting = False
         self._auto_count = 0
+        self._auto_retry_since: float | None = None
+        self._auto_retry_count = 0
 
     def start(self) -> None:
         self.camera.start()
@@ -306,6 +310,57 @@ class AppRuntime:
 
         return False
 
+    def _retry_color(
+        self, reading: CameraReading, match: ColorMatch
+    ) -> ColorMatch | None:
+        """Retry uncertain colors using fresh frames, without moving hardware."""
+        if match.name == "background" or (
+            match.name != "unknown"
+            and match.confidence >= self.controller.minimum_confidence
+        ):
+            return match
+
+        started = monotonic()
+        deadline = started + AUTO_COLOR_RETRY_TIMEOUT_SECONDS
+        last_sequence = reading.sequence
+        with self._state_lock:
+            self._auto_retry_since = started
+            self._auto_retry_count = 0
+        try:
+            while not self._auto_stop_event.is_set():
+                remaining = deadline - monotonic()
+                if remaining <= 0:
+                    break
+                if self._auto_stop_event.wait(
+                    min(AUTO_COLOR_RETRY_INTERVAL_SECONDS, remaining)
+                ):
+                    return None
+                reading = self.camera.latest()
+                if self.camera.error is not None:
+                    raise CameraUnavailableError(self.camera.error)
+                if reading is not None and reading.sequence != last_sequence:
+                    last_sequence = reading.sequence
+                    match = self._classify_rgb(reading.rgb)
+                    with self._state_lock:
+                        self.last_detection = match
+                        self._auto_retry_count += 1
+                    if match.name == "background" or (
+                        match.name != "unknown"
+                        and match.confidence >= self.controller.minimum_confidence
+                    ):
+                        return match
+            if self._auto_stop_event.is_set():
+                return None
+            raise ValueError(
+                f"Color recognition timed out after "
+                f"{AUTO_COLOR_RETRY_TIMEOUT_SECONDS:g}s: "
+                f"{match.name}, confidence {match.confidence:.2f}"
+            )
+        finally:
+            with self._state_lock:
+                self._auto_retry_since = None
+                self._auto_retry_count = 0
+
     def _automatic_loop(self) -> None:
         has_sorted = False
         try:
@@ -322,6 +377,10 @@ class AppRuntime:
                 match = self._classify_rgb(reading.rgb)
                 with self._state_lock:
                     self.last_detection = match
+                    self._auto_waiting = False
+                match = self._retry_color(reading, match)
+                if match is None or self._auto_stop_event.is_set():
+                    break
                 if match.name == "background":
                     with self._state_lock:
                         self._auto_waiting = True
@@ -330,12 +389,11 @@ class AppRuntime:
                     has_sorted = True
                     continue
 
-                with self._state_lock:
-                    self._auto_waiting = False
-
                 self.execute(
                     "automatic sorting",
-                    self.sort_current,
+                    lambda: self.controller.sort_match(
+                        match, push_action=self._push_with_recognition_paused
+                    ),
                     allow_during_automatic=True,
                 )
                 with self._state_lock:
@@ -383,6 +441,17 @@ class AppRuntime:
                     self._auto_running and self._auto_stop_event.is_set()
                 ),
                 "sorted_count": self._auto_count,
+                "retrying": self._auto_retry_since is not None,
+                "retry_elapsed_seconds": (
+                    min(
+                        monotonic() - self._auto_retry_since,
+                        AUTO_COLOR_RETRY_TIMEOUT_SECONDS,
+                    )
+                    if self._auto_retry_since is not None
+                    else 0.0
+                ),
+                "retry_timeout_seconds": AUTO_COLOR_RETRY_TIMEOUT_SECONDS,
+                "retry_count": self._auto_retry_count,
             }
 
     def recognize_current(
@@ -1023,7 +1092,7 @@ OPERATOR_HTML = """<!doctype html>
         document.querySelector('#slot').textContent=`SLOT ${state.current_slot}`;
         document.querySelector('#status-dot').classList.toggle('ready',state.camera.ready && state.hardware.mode!=='unavailable');
         const automatic=state.automatic;
-        document.querySelector('#status-text').textContent=state.recognition_paused ? 'PUSHING / COLOR HOLD' : automatic.running ? (automatic.waiting_for_bead ? 'AUTO / WAITING FOR BEAD' : 'AUTO / SORTING') : state.busy ? state.action.toUpperCase() : `${state.camera.ready?'CAMERA OK':'CAMERA WAIT'} / ${state.hardware.mode.toUpperCase()}`;
+        document.querySelector('#status-text').textContent=state.recognition_paused ? 'PUSHING / COLOR HOLD' : automatic.running ? (automatic.retrying ? 'AUTO / RETRYING' : automatic.waiting_for_bead ? 'AUTO / WAITING FOR BEAD' : 'AUTO / SORTING') : state.busy ? state.action.toUpperCase() : `${state.camera.ready?'CAMERA OK':'CAMERA WAIT'} / ${state.hardware.mode.toUpperCase()}`;
         document.querySelectorAll('.action').forEach(button => button.disabled=state.busy || automatic.running);
         document.querySelector('#automatic-start').disabled=state.busy || automatic.running;
         document.querySelector('#automatic-stop').disabled=!automatic.running || automatic.stop_requested;
@@ -1035,6 +1104,7 @@ OPERATOR_HTML = """<!doctype html>
         else if (state.camera.error) message(state.camera.error,true);
         else if (state.hardware.error) message(state.hardware.error,true);
         else if (automatic.stop_requested) message(`停止待ちです（仕分け済み ${automatic.sorted_count}個）`);
+        else if (automatic.retrying) message(`色判定リトライ中（${Math.floor(automatic.retry_elapsed_seconds)} / ${automatic.retry_timeout_seconds}秒、再判定 ${automatic.retry_count}回、仕分け済み ${automatic.sorted_count}個）`);
         else if (automatic.running) message(`完全自動仕分け中（仕分け済み ${automatic.sorted_count}個）`);
         else if (!state.busy) message('常時認識中');
       } catch (error) { message(error.message,true); }
