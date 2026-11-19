@@ -6,8 +6,7 @@ from time import monotonic, sleep
 import pytest
 from fastapi.testclient import TestClient
 
-import beads_sorter.web as web
-
+from beads_sorter import web
 from beads_sorter.vision.camera import CameraReading
 from beads_sorter.web import AppRuntime, create_app
 
@@ -18,6 +17,12 @@ class FakeCamera:
     def __init__(self, operations: list[str] | None = None) -> None:
         self.operations = operations
         self.reading = CameraReading((210, 45, 45), b"jpeg", 1)
+        self.background_rgb = (30, 30, 30)
+        self.background_tolerance = 25
+
+    def configure_background(self, rgb, tolerance) -> None:
+        self.background_rgb = rgb
+        self.background_tolerance = tolerance
 
     def start(self) -> None:
         pass
@@ -172,6 +177,24 @@ def test_calibrated_background_is_not_sorted() -> None:
     assert operations == ["read:current"]
 
 
+def test_empty_foreground_is_background_and_calibration_uses_raw_roi() -> None:
+    operations: list[str] = []
+    camera = FakeCamera(operations)
+    camera.reading = CameraReading((30, 30, 30), b"jpeg", 1, 0, (42, 39, 36))
+    runtime = AppRuntime(camera, FakeStepper(operations), FakePusher(operations))
+    with TestClient(create_app(runtime)) as client:
+        state = client.get("/api/status").json()
+        assert state["config"]["background_rgb"] == [30, 30, 30]
+        assert state["detection"]["name"] == "background"
+        assert client.post("/api/sort").status_code == 422
+        response = client.post("/api/calibrate/background")
+        assert response.json()["background_rgb"] == [42, 39, 36]
+        assert camera.background_rgb == (42, 39, 36)
+        assert client.post("/api/calibrate/color", json={"color": "red"}).status_code == 422
+
+    assert not any(op.startswith("move") or op == "push-and-return" for op in operations)
+
+
 def test_background_tolerance_can_be_adjusted_separately() -> None:
     runtime = AppRuntime(FakeCamera(), FakeStepper([]), FakePusher([]))
 
@@ -184,6 +207,7 @@ def test_background_tolerance_can_be_adjusted_separately() -> None:
     assert response.status_code == 200
     assert response.json()["background_tolerance"] == 12
     assert runtime.controller.classifier.rgb_tolerance == 80
+    assert runtime.camera.background_tolerance == 12
 
 
 def test_automatic_mode_waits_when_background_is_detected() -> None:

@@ -2,12 +2,13 @@
 
 import asyncio
 import os
+from collections.abc import Callable
 from contextlib import asynccontextmanager
 from dataclasses import asdict
 from math import sqrt
 from threading import Event, Lock, Thread
 from time import monotonic
-from typing import Any, Callable, Literal
+from typing import Any, Literal
 
 import cv2
 import numpy as np
@@ -22,7 +23,13 @@ from beads_sorter.ejector.hardware import (
     StepperMotor,
     SysfsServo,
 )
-from beads_sorter.vision.camera import CameraReading, CameraService, CameraUnavailableError
+from beads_sorter.vision.camera import (
+    DEFAULT_BACKGROUND_RGB,
+    DEFAULT_BACKGROUND_TOLERANCE,
+    CameraReading,
+    CameraService,
+    CameraUnavailableError,
+)
 from beads_sorter.vision.color import RGB, ColorClassifier, ColorMatch
 
 COLOR_LABELS = {
@@ -162,7 +169,7 @@ class AppRuntime:
             try:
                 self.stepper = StepperMotor()
                 self.hardware_mode = "gpio"
-            except Exception as error:
+            except Exception as error:  # noqa: BLE001 - hardware fallback
                 self.hardware_error = str(error)
                 self.stepper = UnavailableStepper(str(error))
                 self.hardware_mode = "unavailable"
@@ -189,8 +196,8 @@ class AppRuntime:
         self.last_error: str | None = None
         self.last_result: dict[str, Any] | None = None
         self.last_detection: ColorMatch | None = None
-        self.background_rgb: RGB | None = None
-        self.background_tolerance = 25
+        self.background_rgb: RGB = DEFAULT_BACKGROUND_RGB
+        self.background_tolerance = DEFAULT_BACKGROUND_TOLERANCE
         self._recognition_paused = False
         self._auto_stop_event = Event()
         self._auto_thread: Thread | None = None
@@ -340,7 +347,7 @@ class AppRuntime:
                     raise CameraUnavailableError(self.camera.error)
                 if reading is not None and reading.sequence != last_sequence:
                     last_sequence = reading.sequence
-                    match = self._classify_rgb(reading.rgb)
+                    match = self._classify_reading(reading)
                     with self._state_lock:
                         self.last_detection = match
                         self._auto_retry_count += 1
@@ -374,7 +381,7 @@ class AppRuntime:
                 reading = self.camera.latest()
                 if reading is None:
                     reading = self.camera.get_reading()
-                match = self._classify_rgb(reading.rgb)
+                match = self._classify_reading(reading)
                 with self._state_lock:
                     self.last_detection = match
                     self._auto_waiting = False
@@ -391,7 +398,7 @@ class AppRuntime:
 
                 self.execute(
                     "automatic sorting",
-                    lambda: self.controller.sort_match(
+                    lambda match=match: self.controller.sort_match(
                         match, push_action=self._push_with_recognition_paused
                     ),
                     allow_during_automatic=True,
@@ -399,7 +406,7 @@ class AppRuntime:
                 with self._state_lock:
                     self._auto_count += 1
                 has_sorted = True
-        except Exception as error:
+        except Exception as error:  # noqa: BLE001 - stop automatic on any failure
             with self._state_lock:
                 self.last_error = f"Automatic sorting stopped: {error}"
         finally:
@@ -460,19 +467,30 @@ class AppRuntime:
         after_sequence: int | None = None,
     ) -> ColorMatch:
         reading = self.camera.get_reading(after_sequence=after_sequence)
-        match = self._classify_rgb(reading.rgb)
+        match = self._classify_reading(reading)
         with self._state_lock:
             self.last_detection = match
         return match
 
-    def _classify_rgb(self, rgb: RGB) -> ColorMatch:
-        background_rgb = self.background_rgb
-        if background_rgb is not None and all(
-            abs(channel - background_channel) <= self.background_tolerance
-            for channel, background_channel in zip(rgb, background_rgb)
+    def _classify_reading(self, reading: CameraReading) -> ColorMatch:
+        # Real camera measurements explicitly report foreground area.
+        # Legacy/injected RGB-only readings retain their original fallback.
+        if reading.sample_count == 0 or (
+            reading.sample_count is None
+            and all(
+                abs(channel - bg) <= self.background_tolerance
+                for channel, bg in zip(reading.rgb, self.background_rgb)
+            )
         ):
-            return ColorMatch(name="background", rgb=rgb, confidence=1.0)
-        return self.controller.recognize(rgb)
+            return ColorMatch(name="background", rgb=reading.rgb, confidence=1.0)
+        return self.controller.recognize(reading.rgb)
+
+    def configure_background(self, rgb: RGB, tolerance: int) -> None:
+        with self._state_lock:
+            self.camera.configure_background(rgb, tolerance)
+            self.background_rgb = rgb
+            self.background_tolerance = tolerance
+            self.last_detection = None
 
     def _refresh_live_detection(self) -> ColorMatch | None:
         reading = self.camera.latest()
@@ -481,7 +499,7 @@ class AppRuntime:
         with self._state_lock:
             if self._recognition_paused:
                 return self.last_detection
-            self.last_detection = self._classify_rgb(reading.rgb)
+            self.last_detection = self._classify_reading(reading)
             return self.last_detection
 
     def _push_with_recognition_paused(self) -> ColorMatch:
@@ -492,7 +510,7 @@ class AppRuntime:
             latest = self.camera.latest()
             after_sequence = latest.sequence if latest is not None else None
             reading = self.camera.get_reading(after_sequence=after_sequence)
-            match = self._classify_rgb(reading.rgb)
+            match = self._classify_reading(reading)
             with self._state_lock:
                 self.last_detection = match
             return match
@@ -504,7 +522,7 @@ class AppRuntime:
         reading = self.camera.latest()
         if reading is None:
             reading = self.camera.get_reading()
-        match = self._classify_rgb(reading.rgb)
+        match = self._classify_reading(reading)
         with self._state_lock:
             self.last_detection = match
         if match.name == "background":
@@ -539,7 +557,7 @@ class AppRuntime:
             "camera": {
                 "ready": reading is not None,
                 "error": self.camera.error,
-                "sample_count": reading.sample_count if reading is not None else 0,
+                "sample_count": (reading.sample_count or 0) if reading else 0,
             },
             "hardware": {
                 "mode": self.hardware_mode,
@@ -745,6 +763,8 @@ def create_app(runtime: AppRuntime | None = None) -> FastAPI:
     async def calibrate(request: CalibrationRequest) -> Any:
         def apply_calibration() -> dict[str, Any]:
             reading = runtime.camera.get_reading()
+            if runtime._classify_reading(reading).name == "background":
+                raise ValueError("No bead detected for color calibration")
             runtime.controller.classifier.set_reference(request.color, reading.rgb)
             runtime.controller.slots[request.color] = request.slot
             return {
@@ -759,6 +779,8 @@ def create_app(runtime: AppRuntime | None = None) -> FastAPI:
     async def calibrate_color(request: ColorRequest) -> Any:
         def apply_color_calibration() -> dict[str, Any]:
             reading = runtime.camera.get_reading()
+            if runtime._classify_reading(reading).name == "background":
+                raise ValueError("No bead detected for color calibration")
             with runtime._state_lock:
                 runtime.controller.classifier.set_reference(
                     request.color,
@@ -773,11 +795,10 @@ def create_app(runtime: AppRuntime | None = None) -> FastAPI:
     async def calibrate_background() -> Any:
         def apply_background_calibration() -> dict[str, Any]:
             reading = runtime.camera.get_reading()
-            with runtime._state_lock:
-                runtime.background_rgb = reading.rgb
-                runtime.last_detection = runtime._classify_rgb(reading.rgb)
+            rgb = reading.background_sample or reading.rgb
+            runtime.configure_background(rgb, runtime.background_tolerance)
             return {
-                "background_rgb": reading.rgb,
+                "background_rgb": rgb,
                 "background_tolerance": runtime.background_tolerance,
             }
 
@@ -839,8 +860,9 @@ def create_app(runtime: AppRuntime | None = None) -> FastAPI:
     @app.put("/api/config/background")
     async def configure_background(request: BackgroundConfig) -> Any:
         def apply_background_config() -> dict[str, Any]:
-            with runtime._state_lock:
-                runtime.background_tolerance = request.background_tolerance
+            runtime.configure_background(
+                runtime.background_rgb, request.background_tolerance
+            )
             return runtime.config()
 
         return await run_action("configuring", apply_background_config)
@@ -1043,7 +1065,7 @@ OPERATOR_HTML = """<!doctype html>
                                 <label>背景RGB<span id="background-rgb" class="threshold">未登録</span></label>
                                 <label>背景RGB許容幅（±）<input id="background-tolerance" type="number" min="0" max="255" value="25"></label>
                             </div>
-                            <div class="group-actions"><button id="save-background" class="action">背景設定を適用</button><button id="calibrate-background" class="action">現在のRGBを背景に登録</button></div>
+                            <div class="group-actions"><button id="save-background" class="action">背景設定を適用</button><button id="calibrate-background" class="action">ビーズなしの背景RGBを登録</button></div>
                             <div class="subsection-title">基準色の校正</div>
                             <label>校正する色<select id="calibration-color"></select></label>
                             <div class="group-actions"><button id="calibrate" class="action">現在のRGBを基準色に登録</button></div>
@@ -1153,7 +1175,7 @@ OPERATOR_HTML = """<!doctype html>
             await refresh();
         });
         document.querySelector('#calibrate-background').addEventListener('click',async()=>{
-            try { await request('/api/calibrate/background'); message('現在のRGBを背景として登録しました'); } catch(error) { message(error.message,true); }
+            try { await request('/api/calibrate/background'); message('背景RGBを登録しました'); } catch(error) { message(error.message,true); }
             await refresh();
         });
     document.querySelector('#calibrate').addEventListener('click',async()=>{
