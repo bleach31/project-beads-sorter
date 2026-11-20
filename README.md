@@ -37,7 +37,44 @@ uv sync --python /usr/bin/python3
 
 `uv venv` と `uv sync` は一般ユーザーで実行する（sudo 不要）。
 
-### 2. カメラの確認と起動
+### 2. ハードウェアPWMを有効にする（初回のみ）
+
+Raspberry Pi 4ではサーボの信号線をGPIO19（物理ピン35）に接続する。
+アナログ音声とPWMが競合するため、以下の設定が必要。
+
+```bash
+sudo nano /boot/firmware/config.txt
+```
+
+既存の `dtparam=audio=on` を `off` に変更し、GPIO19のPWM設定を追加する。
+設定が重複しないようにし、適用対象のセクション（例: `[all]`）に記載する。
+
+```ini
+dtparam=audio=off
+dtoverlay=pwm,pin=19,func=2
+```
+
+保存して再起動する。
+
+```bash
+sudo reboot
+```
+
+再起動後、GPIO19の機能とPWMデバイスを確認する。
+
+```bash
+pinctrl get 19
+ls /sys/class/pwm/
+cat /sys/class/pwm/pwmchip*/npwm
+```
+
+GPIO19がAlt5のPWM機能になっており、チャンネル1を利用できる
+PWMデバイス（npwmが2以上）が存在することを確認する。
+PWMのexport、周期、デューティ比の設定はアプリが行うため、手動操作は不要。
+サーボの電源には外部5 V電源を使い、Raspberry PiとGNDを共通にする。
+詳細は [GPIO19でサーボを制御する](docs/servo_pwm.rst) を参照。
+
+### 3. カメラの確認と起動
 
 ```bash
 .venv/bin/python -c "from picamera2 import Picamera2; print('Picamera2 OK')"
@@ -53,7 +90,7 @@ Picamera2 が見つからない場合は、まず OS 側で
 `/usr/bin/python3 -c "import picamera2"` が成功するか確認する。
 OS 側だけ成功する場合は、上記の仮想環境再構築手順を実行する。
 
-### 3. 2回目以降の起動・アップデート
+### 4. 2回目以降の起動・アップデート
 
 通常は仮想環境を作り直す必要はない。コード更新時のみ依存関係を同期する。
 
