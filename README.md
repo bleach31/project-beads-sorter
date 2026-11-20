@@ -46,13 +46,20 @@ Raspberry Pi 4ではサーボの信号線をGPIO19（物理ピン35）に接続�
 sudo nano /boot/firmware/config.txt
 ```
 
-既存の `dtparam=audio=on` を `off` に変更し、GPIO19のPWM設定を追加する。
+既存の `dtparam=audio=on` は `off` に変更する。
+**`dtoverlay=pwm,pin=19,func=2` は新しい行として追加する。既存の `dtoverlay` を上書き・削除しないこと。**
+特に `dtoverlay=vc4-kms-v3d` はディスプレイ用の設定であり、削除するとデスクトップGUIが表示されなくなる場合がある。
 設定が重複しないようにし、適用対象のセクション（例: `[all]`）に記載する。
+
+設定例（既存のディスプレイ用オーバーレイを残したままPWM用の行を追加）：
 
 ```ini
 dtparam=audio=off
+dtoverlay=vc4-kms-v3d
 dtoverlay=pwm,pin=19,func=2
 ```
+
+上記は関連行のみの例であり、config.txt全体を置き換えるものではない。その他の既存設定は維持する。
 
 保存して再起動する。
 
