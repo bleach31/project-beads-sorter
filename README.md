@@ -6,6 +6,63 @@
 ビーズを自動仕分けするシステムのプロジェクトです。  
 ソフトウェア（画像認識・制御）と3Dプリント用CADデータを含みます。
 
+## セットアップ（Raspberry Pi 実機）
+
+**Raspberry Pi では、最初に `uv sync` を単独で実行しないこと。**
+Picamera2 は Raspberry Pi OS のパッケージとして提供されるため、OS 標準の Python を使い、
+システムパッケージを参照できる仮想環境を先に作成する必要がある。
+
+### 1. 初回インストール
+
+Raspberry Pi OS 上で、uv をインストール済みの状態から、リポジトリのルートで実行する。
+OS 標準の Python は 3.10 以上が必要。
+
+```bash
+sudo apt update
+sudo apt install -y python3-picamera2
+
+uv venv --python /usr/bin/python3 --system-site-packages
+uv sync --python /usr/bin/python3
+```
+
+既に通常の `uv sync` などで `.venv` を作ってしまった場合、または Permission denied
+が発生する場合は、アプリを停止したうえで、リポジトリのルートから以下を実行して
+仮想環境を作り直す。`.venv` のインストール済みパッケージは削除される。
+
+```bash
+sudo rm -rf .venv
+uv venv --python /usr/bin/python3 --system-site-packages
+uv sync --python /usr/bin/python3
+```
+
+`uv venv` と `uv sync` は一般ユーザーで実行する（sudo 不要）。
+
+### 2. カメラの確認と起動
+
+```bash
+.venv/bin/python -c "from picamera2 import Picamera2; print('Picamera2 OK')"
+```
+
+上記が成功したら起動する。
+
+```bash
+sudo .venv/bin/beads-sorter
+```
+
+Picamera2 が見つからない場合は、まず OS 側で
+`/usr/bin/python3 -c "import picamera2"` が成功するか確認する。
+OS 側だけ成功する場合は、上記の仮想環境再構築手順を実行する。
+
+### 3. 2回目以降の起動・アップデート
+
+通常は仮想環境を作り直す必要はない。コード更新時のみ依存関係を同期する。
+
+```bash
+git pull
+uv sync --python /usr/bin/python3
+sudo .venv/bin/beads-sorter
+```
+
 ## プロジェクト構成
 
 ```
@@ -24,32 +81,6 @@ project-beads-sorter/
 └── docs/                     # ドキュメント（Sphinx + sphinx-needs）
 ```
 
-## セットアップ
-
-```bash
-# 依存パッケージのインストール（uv が .venv を自動作成）
-uv sync
-
-# 開発用パッケージも含めてインストール
-uv sync --group dev
-
-# ドキュメント用パッケージも含めてインストール
-uv sync --group docs
-```
-
-## ドキュメント
-
-```bash
-uv run sphinx-build docs docs/_build/html
-```
-
-生成されたドキュメントは `docs/_build/html/index.html` で閲覧できます。
-
-## ライセンス
-
-TBD
-
-
 ## Web UI
 
 Pi Camera、ステッピングモーター、押し出しサーボを接続したRaspberry Piで起動する。
@@ -57,16 +88,7 @@ Pi Camera、ステッピングモーター、押し出しサーボを接続し�
 [GPIO19でサーボを制御する](https://bleach31.github.io/project-beads-sorter/servo_pwm.html)
 を参照する。
 
-```bash
-sudo apt update
-sudo apt install -y python3-picamera2
-
-rm -rf .venv
-uv venv --system-site-packages
-uv sync
-
-sudo .venv/bin/beads-sorter
-```
+起動は上記の「セットアップ（Raspberry Pi 実機）」を参照する。
 
 同じネットワークの端末から ``http://<Raspberry PiのIPアドレス>:8000`` にアクセスする。
 Web UIでは次の操作ができる。
@@ -114,8 +136,28 @@ SG90の既定位置は待機90度、押し出し175度。設定値は「校正�
 条件にしないため、同じ色のビーズが連続する場合も処理を継続する。
 停止操作は進行中の1回を完了してから反映し、カメラや機構のエラー時は自動停止する。
 
+## 開発PC向けセットアップ（Raspberry Pi 実機用ではない）
+
+PCでソフトウェア開発・テスト・ドキュメント生成を行う場合の手順。
+
+```bash
+uv sync --group dev
+uv run pytest
+
+# ドキュメント生成
+uv sync --group docs
+uv run sphinx-build docs docs/_build/html
+```
+
+生成されたドキュメントは `docs/_build/html/index.html` で閲覧できる。
+
 GPIOを接続せず画面とAPIだけを確認する場合はシミュレーションモードで起動する。
+開発PCにPi Cameraがない場合、カメラ映像は利用できない。
 
 ```bash
 BEADS_SORTER_SIMULATION=1 uv run beads-sorter
 ```
+
+## ライセンス
+
+TBD
