@@ -3,8 +3,10 @@
 from collections.abc import Callable
 from time import monotonic, sleep
 
+import pytest
 from fastapi.testclient import TestClient
 
+from beads_sorter import web
 from beads_sorter.vision.camera import CameraReading
 from beads_sorter.web import AppRuntime, create_app
 
@@ -15,6 +17,12 @@ class FakeCamera:
     def __init__(self, operations: list[str] | None = None) -> None:
         self.operations = operations
         self.reading = CameraReading((210, 45, 45), b"jpeg", 1)
+        self.background_rgb = (30, 30, 30)
+        self.background_tolerance = 25
+
+    def configure_background(self, rgb, tolerance) -> None:
+        self.background_rgb = rgb
+        self.background_tolerance = tolerance
 
     def start(self) -> None:
         pass
@@ -169,6 +177,24 @@ def test_calibrated_background_is_not_sorted() -> None:
     assert operations == ["read:current"]
 
 
+def test_empty_foreground_is_background_and_calibration_uses_raw_roi() -> None:
+    operations: list[str] = []
+    camera = FakeCamera(operations)
+    camera.reading = CameraReading((30, 30, 30), b"jpeg", 1, 0, (42, 39, 36))
+    runtime = AppRuntime(camera, FakeStepper(operations), FakePusher(operations))
+    with TestClient(create_app(runtime)) as client:
+        state = client.get("/api/status").json()
+        assert state["config"]["background_rgb"] == [30, 30, 30]
+        assert state["detection"]["name"] == "background"
+        assert client.post("/api/sort").status_code == 422
+        response = client.post("/api/calibrate/background")
+        assert response.json()["background_rgb"] == [42, 39, 36]
+        assert camera.background_rgb == (42, 39, 36)
+        assert client.post("/api/calibrate/color", json={"color": "red"}).status_code == 422
+
+    assert not any(op.startswith("move") or op == "push-and-return" for op in operations)
+
+
 def test_background_tolerance_can_be_adjusted_separately() -> None:
     runtime = AppRuntime(FakeCamera(), FakeStepper([]), FakePusher([]))
 
@@ -181,6 +207,7 @@ def test_background_tolerance_can_be_adjusted_separately() -> None:
     assert response.status_code == 200
     assert response.json()["background_tolerance"] == 12
     assert runtime.controller.classifier.rgb_tolerance == 80
+    assert runtime.camera.background_tolerance == 12
 
 
 def test_automatic_mode_waits_when_background_is_detected() -> None:
@@ -245,6 +272,111 @@ def test_automatic_mode_sorts_then_waits_for_a_changed_bead() -> None:
     assert manual.status_code == 409
     assert stop.status_code == 200
     assert operations[:3] == ["move:9", "push-and-return", "read-after:1"]
+
+
+def wait_for_automatic(runtime: AppRuntime, predicate) -> dict:
+    deadline = monotonic() + 2
+    while monotonic() < deadline:
+        status = runtime.automatic_status()
+        if predicate(status):
+            return status
+        sleep(0.005)
+    raise AssertionError(f"Automatic state did not change: {status}")
+
+
+@pytest.mark.parametrize("low_confidence", [False, True])
+def test_automatic_retries_then_sorts(
+    monkeypatch: pytest.MonkeyPatch, low_confidence: bool
+) -> None:
+    monkeypatch.setattr(web, "AUTO_COLOR_RETRY_INTERVAL_SECONDS", 0.02)
+    monkeypatch.setattr(web, "AUTO_COLOR_RETRY_TIMEOUT_SECONDS", 0.5)
+    operations: list[str] = []
+    camera = FakeCamera(operations)
+    camera.reading = CameraReading(
+        (210, 45, 45) if low_confidence else (0, 255, 0), b"jpeg", 1
+    )
+    runtime = AppRuntime(camera, FakeStepper(operations), FakePusher(operations))
+    if low_confidence:
+        runtime.controller.minimum_confidence = 0.99
+
+    with TestClient(create_app(runtime)) as client:
+        client.post("/api/automatic/start")
+        wait_for_automatic(runtime, lambda s: s["retrying"])
+        status = client.get("/api/status").json()
+        assert status["automatic"]["retrying"]
+        assert status["automatic"]["retry_timeout_seconds"] == 0.5
+        assert operations == []
+        camera.reading = CameraReading((226, 12, 8), b"jpeg", 2)
+        wait_for_automatic(runtime, lambda s: s["sorted_count"] == 1)
+        assert not runtime.automatic_status()["retrying"]
+
+    assert operations[:3] == ["move:9", "push-and-return", "read-after:2"]
+
+
+def test_automatic_retry_times_out_without_reusing_frame(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(web, "AUTO_COLOR_RETRY_INTERVAL_SECONDS", 0.02)
+    monkeypatch.setattr(web, "AUTO_COLOR_RETRY_TIMEOUT_SECONDS", 0.15)
+    operations: list[str] = []
+    camera = FakeCamera(operations)
+    camera.reading = CameraReading((0, 255, 0), b"jpeg", 1)
+    runtime = AppRuntime(camera, FakeStepper(operations), FakePusher(operations))
+
+    with TestClient(create_app(runtime)) as client:
+        client.post("/api/automatic/start")
+        wait_for_automatic(runtime, lambda s: s["retrying"])
+        sleep(0.04)
+        assert runtime.automatic_status()["retry_count"] == 0
+        camera.reading = CameraReading((0, 255, 0), b"jpeg", 2)
+        wait_for_automatic(runtime, lambda s: s["retry_count"] == 1)
+        wait_for_automatic(runtime, lambda s: not s["running"])
+        status = client.get("/api/status").json()
+
+    assert "Color recognition timed out" in status["last_error"]
+    assert not status["automatic"]["retrying"]
+    assert status["automatic"]["sorted_count"] == 0
+    assert operations == []
+
+
+def test_automatic_retry_can_be_stopped(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(web, "AUTO_COLOR_RETRY_INTERVAL_SECONDS", 10.0)
+    operations: list[str] = []
+    camera = FakeCamera(operations)
+    camera.reading = CameraReading((0, 255, 0), b"jpeg", 1)
+    runtime = AppRuntime(camera, FakeStepper(operations), FakePusher(operations))
+
+    with TestClient(create_app(runtime)) as client:
+        client.post("/api/automatic/start")
+        wait_for_automatic(runtime, lambda s: s["retrying"])
+        client.post("/api/automatic/stop")
+        wait_for_automatic(runtime, lambda s: not s["running"])
+        assert runtime.last_error is None
+        assert not runtime.automatic_status()["retrying"]
+
+    assert operations == []
+
+
+def test_automatic_retry_returns_to_background_wait(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(web, "AUTO_COLOR_RETRY_INTERVAL_SECONDS", 0.02)
+    operations: list[str] = []
+    camera = FakeCamera(operations)
+    camera.reading = CameraReading((0, 255, 0), b"jpeg", 1)
+    runtime = AppRuntime(camera, FakeStepper(operations), FakePusher(operations))
+    runtime.background_rgb = (0, 0, 0)
+
+    with TestClient(create_app(runtime)) as client:
+        client.post("/api/automatic/start")
+        wait_for_automatic(runtime, lambda s: s["retrying"])
+        camera.reading = CameraReading((0, 0, 0), b"jpeg", 2)
+        status = wait_for_automatic(runtime, lambda s: s["waiting_for_bead"])
+        assert not status["retrying"]
+        assert status["running"]
+        assert runtime.last_error is None
+
+    assert operations == []
 
 
 def test_automatic_mode_accepts_stable_same_color() -> None:
